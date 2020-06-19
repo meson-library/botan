@@ -39,7 +39,7 @@ const corelib::AssetInfo Plugin::GetPluginInfo()
 
 const corelib::Semver Plugin::GetPluginVersion()
 {
-	return corelib::Semver(1, 2, 3, "build.1");
+	return corelib::Semver(1, 2, 3, "z");
 }
 
 const corelib::Semver Plugin::GetPluginHostVersion()
