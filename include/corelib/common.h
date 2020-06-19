@@ -159,7 +159,10 @@
      */
 #    define CORELIB_API
 
-#elif defined(BUILDING_SHARED_LIBRARY)
+#elif defined(CORELIB_BUILDING_STATIC_LIBRARY)
+#    define CORELIB_API 
+
+#elif defined(CORELIB_BUILDING_SHARED_LIBRARY)
 #    define CORELIB_API CORELIB_SYMBOL_EXPORT
 
 #else
