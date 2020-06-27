@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "my_plugin.h"
+#include "corelib/corelib.h"
 
 namespace sdk 
 {

@@ -20,14 +20,14 @@
 // |
 // +---------------------------------------------------------------------------
 
+#include "my_plugin.h"
+
 #include <corelib/corelib.h>
 #include <iostream>
 
-#include "my_plugin.h"
-
 int main() 
 {
-	std::string pluginPath = "example04_plugin.dll";
+	std::string pluginPath = "example04.plugin";
 	CORELIB_DLL_HANDLER dll_handler = corelib::dll::load(pluginPath);
 	sdk::MyPlugin* plugin = (sdk::MyPlugin*)CORELIB_START_PLUGIN(dll_handler);
 

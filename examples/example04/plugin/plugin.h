@@ -22,10 +22,10 @@
 
 #pragma once
 
+#include <my_plugin.h>
+
 #include <corelib/corelib.h>
 #include <iostream>
-
-#include <my_plugin.h>
 
 class Plugin : public sdk::MyPlugin
 {

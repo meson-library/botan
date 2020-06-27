@@ -22,11 +22,12 @@
 
 #pragma once
 
+#include "dll.h"
 #include "disposable.h"
 #include "asset_info.h"
 #include "semver.h"
 
-#include<string>
+#include <string>
 
 namespace corelib 
 {

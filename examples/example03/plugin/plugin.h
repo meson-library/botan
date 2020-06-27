@@ -23,7 +23,6 @@
 #pragma once
 
 #include <corelib/corelib.h>
-
 #include <iostream>
 
 class Plugin : public corelib::Plugable

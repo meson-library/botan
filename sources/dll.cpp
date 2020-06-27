@@ -20,7 +20,7 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "../include/corelib/dll.h"
+#include "corelib/dll.h"
 
 #if defined(CORELIB_OS_FAMILY_UNIX)
     #include <dlfcn.h>

@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include<string>
+#include <string>
 
 namespace corelib
 {

@@ -20,4 +20,4 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "../include/corelib/plugable.h"
+#include "corelib/plugable.h"
