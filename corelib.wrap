@@ -1,4 +1,0 @@
-[wrap-git]
-directory = corelib
-url = https://github.com/meson-library/corelib.git
-revision = master
