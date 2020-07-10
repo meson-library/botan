@@ -1,4 +1,16 @@
+option('stl_implementation',
+        description : 'Choose what stl implementation to use.',
+        type        : 'combo',
+        choices     : ['XCORE_STL', 'XCORE_EASTL'],
+        value       : 'XCORE_EASTL')
+
 option('build_examples',
-        description : 'Build the xcore example programs.',
+        description : 'Build the example programs.',
         type        : 'boolean',
         value       : false)
+
+option('build_docs',
+        description : 'Build the documentation.',
+        type        : 'boolean',
+        value       : true,
+        yield       : true)

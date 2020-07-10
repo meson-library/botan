@@ -27,12 +27,12 @@
 
 int main()
 {
-    std::string pluginPath = "example04.plugin";
+    xcore::stl::string pluginPath = "example04.plugin";
     XCORE_DLL_HANDLER dll_handler = xcore::dll::load(pluginPath);
     sdk::MyPlugin* plugin = (sdk::MyPlugin*)XCORE_START_PLUGIN(dll_handler);
 
-    std::string pluginUID = plugin->GetPluginUID();
-    std::string pluginGroupUID = plugin->GetPluginGroupUID();
+    xcore::stl::string pluginUID = plugin->GetPluginUID();
+    xcore::stl::string pluginGroupUID = plugin->GetPluginGroupUID();
     xcore::Semver pluginVersion = plugin->GetPluginVersion();
     xcore::Semver pluginHostVersion = plugin->GetPluginHostVersion();
     xcore::AssetInfo pluginInfo = plugin->GetPluginInfo();
@@ -40,23 +40,23 @@ int main()
 
     std::cout << std::endl;
     std::cout << " ------------------------------------------------------------" << std::endl;
-    std::cout << "| Loaded plugin : " + pluginPath << std::endl;
+    std::cout << "| Loaded plugin : " + std::string(pluginPath.c_str()) << std::endl;
     std::cout << "|------------------------------------------------------------" << std::endl;
-    std::cout << "| Plugin UID           : " + pluginUID << std::endl;
-    std::cout << "| Plugin Group UID     : " + pluginGroupUID << std::endl;
+    std::cout << "| Plugin UID           : " + std::string(pluginUID.c_str()) << std::endl;
+    std::cout << "| Plugin Group UID     : " + std::string(pluginGroupUID.c_str()) << std::endl;
     std::cout << "| Plugin Version       : " + std::to_string(pluginVersion.Major) + "."
                                              + std::to_string(pluginVersion.Minor) + "."
                                              + std::to_string(pluginVersion.Path) + "."
-                                             + pluginVersion.Label << std::endl;
+                                             + std::string(pluginVersion.Label.c_str()) << std::endl;
     std::cout << "| Plugin Host Version  : " + std::to_string(pluginHostVersion.Major) + "."
                                              + std::to_string(pluginHostVersion.Minor) + "."
                                              + std::to_string(pluginHostVersion.Path) + "."
-                                             + pluginHostVersion.Label << std::endl;
+                                             + std::string(pluginHostVersion.Label.c_str()) << std::endl;
     std::cout << "|------------------------------------------------------------" << std::endl;
-    std::cout << "| Plugin Name           : " + pluginInfo.Name << std::endl;
-    std::cout << "| Plugin Author         : " + pluginInfo.Author << std::endl;
-    std::cout << "| Plugin License        : " + pluginInfo.License << std::endl;
-    std::cout << "| Plugin Description    : " + pluginInfo.Description << std::endl;
+    std::cout << "| Plugin Name           : " + std::string(pluginInfo.Name.c_str()) << std::endl;
+    std::cout << "| Plugin Author         : " + std::string(pluginInfo.Author.c_str()) << std::endl;
+    std::cout << "| Plugin License        : " + std::string(pluginInfo.License.c_str()) << std::endl;
+    std::cout << "| Plugin Description    : " + std::string(pluginInfo.Description.c_str()) << std::endl;
     std::cout << "|------------------------------------------------------------" << std::endl;
     std::cout << "|"; plugin->DisplayHelloWorldFromMyPlugin();
     std::cout << "|------------------------------------------------------------" << std::endl;

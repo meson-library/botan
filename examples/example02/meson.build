@@ -2,6 +2,5 @@
 subdir('library')
 subdir('host')
 
-install_data(['README.txt'],
-               rename      : ['README.txt'],
-               install_dir : 'share/docs/xcore/examples/02')
+install_data(['README.md'],
+               install_dir : install_dir_docs/'examples'/'02')

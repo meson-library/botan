@@ -22,12 +22,14 @@
 
 #include "plugin.h"
 
-const std::string Plugin::GetPluginUID()
+#include<iostream>
+
+const xcore::stl::string Plugin::GetPluginUID()
 {
     return "79896acc-8e99-481d-bc3e-5a7e150ddd71";
 }
 
-const std::string Plugin::GetPluginGroupUID()
+const xcore::stl::string Plugin::GetPluginGroupUID()
 {
     return "a7b048fe-179d-459b-86c3-28a1c644b931";
 }

@@ -20,29 +20,38 @@
 // |
 // +---------------------------------------------------------------------------
 
+/** 
+ * @file
+ * 
+ * @brief Contains code about a struct to hold asset info.
+ *
+ */
+
 #pragma once
 
-#include <string>
+#include "stl.h"
 
 namespace xcore
 {
     /**
-     * @ingroup    xcore
-     *
-     * @brief      Struct to hold basic asset info.
+     * @struct AssetInfo asset_info.h <xcore/asset_info.h>
+     * 
+     * @brief Struct to hold basic asset info.
+     * 
      */
-    typedef struct AssetInfo
+    struct AssetInfo
     {
         AssetInfo
         (
-            std::string name, std::string author="", std::string license="", std::string description=""
+            xcore::stl::string name, xcore::stl::string author="", xcore::stl::string license="", xcore::stl::string description=""
         ):
         Name(name), Author(author), License(license), Description(description) { };
 
-        std::string Name;
-        std::string Author;
-        std::string License;
-        std::string Description;
-    }
-    AssetInfo;
+        xcore::stl::string Name;
+        xcore::stl::string Author;
+        xcore::stl::string License;
+        xcore::stl::string Description;
+    };
+
+    typedef struct AssetInfo AssetInfo;
 }

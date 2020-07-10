@@ -24,7 +24,6 @@
 
 #include <xcore/xcore.h>
 
-extern "C"
-{
+XCORE_EXTERN_C_BEGIN
     XCORE_API void display_helloworld_from_shared_library(void);
-}
+XCORE_EXTERN_C_END

@@ -1,0 +1,4 @@
+[wrap-git]
+directory = eastl
+url = https://github.com/meson-library/eastl.git
+revision = v3.16.07

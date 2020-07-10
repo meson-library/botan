@@ -1,64 +1,49 @@
+#
+# Project info.
+#
 project('xcore', ['cpp'],
          version       : '0.1.0',
          license       : ['GPL3'],
-         meson_version : '>= 0.49.0')
+         default_options: ['cpp_std=c++17'],
+         meson_version : '>= 0.50.0')
 
 
 
-
-name = 'xcore'
-
-
-
-
-system     = build_machine.system()
-cpu        = build_machine.cpu()
-cpu_family = build_machine.cpu_family()
-
-cppc    = meson.get_compiler('cpp')
-cppc_id = cppc.get_id()
-
-includes  = []
-sources   = []
-cpp_args  = []
-link_args = []
-
+#
+# Declare some useful global variables.
+#
+proj_name              = meson.project_name()
+root_dir               = meson.current_source_dir()
+root_build_dir         = meson.current_build_dir()
+include_dir_root       = 'include'
+include_dir_proj       = include_dir_root/proj_name 
+sources_dir            = 'sources'
+examples_dir           = 'examples' 
+docs_dir               = 'docs'
+dependencies_dir       = 'subprojects'
+install_dir_general    = 'share'
+install_dir_licenses   = install_dir_general/'licenses'/proj_name
+install_dir_docs       = install_dir_general/'docs'/proj_name
+install_headers_subdir = proj_name
 
 
 
-if system not in ['windows']
-    error('Script (meson.build) not prepared for your platform yet.')
+#
+# Some pre-validations before project setup.
+#
+if build_machine.system() not in ['windows']
+    error('[' + proj_name + '] Script (meson.build) not prepared for your platform yet.')
 endif
 
-if system == 'windows' and cppc_id not in ['msvc']
-    error('Script (meson.build) not prepared for your compiler yet.')
-endif
-
-
-
-
-subdir('sources')
-
-if get_option('build_examples')
-    if not meson.is_subproject()
-        subdir('examples')
-    else
-        warning('The option ' + name + ':' + 'build_examples' + ' not work in subproject.')
-    endif
+if build_machine.system() == 'windows' and meson.get_compiler('cpp').get_id() not in ['msvc']
+    error('[' + proj_name + '] Script (meson.build) not prepared for your compiler yet.')
 endif
 
 
 
-
-install_headers('include/xcore/xcore.h',
-                'include/xcore/common.h',
-                'include/xcore/asset_info.h',
-                'include/xcore/semver.h',
-                'include/xcore/dll.h',
-                'include/xcore/disposable.h',
-                'include/xcore/plugable.h',
-                 subdir : 'xcore')
-
-install_data(['LICENSE.GPL3'],
-               rename      : ['LICENSE.GPL3'],
-               install_dir :  'share/licenses/xcore')
+#
+# Delegate the rest of configuration to the rigth place.
+#
+subdir(sources_dir)
+subdir(examples_dir)
+subdir(docs_dir)

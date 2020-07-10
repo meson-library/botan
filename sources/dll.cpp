@@ -26,7 +26,7 @@
     #include <dlfcn.h>
 #endif
 
-XCORE_DLL_HANDLER xcore::dll::load(const std::string& path)
+XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
 {
 #if defined(XCORE_COMPILER_MSVC)
     XCORE_DLL_HANDLER handler = LoadLibraryA(path.c_str());
@@ -60,7 +60,7 @@ bool xcore::dll::unload(XCORE_DLL_HANDLER handler)
 #endif
 }
 
-XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER handler, const std::string& symbolName)
+XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER handler, const xcore::stl::string& symbolName)
 {
 #if defined(XCORE_COMPILER_MSVC)
     XCORE_DLL_SYMBOL_POINTER symbolPointer = GetProcAddress(handler, symbolName.c_str());

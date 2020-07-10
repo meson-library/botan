@@ -26,8 +26,7 @@
 #include "disposable.h"
 #include "asset_info.h"
 #include "semver.h"
-
-#include <string>
+#include "stl.h"
 
 namespace xcore
 {
@@ -37,35 +36,37 @@ namespace xcore
         Plugable() {};
         virtual ~Plugable() {};
 
-        virtual const std::string      GetPluginUID() = 0;
-        virtual const std::string      GetPluginGroupUID() = 0;
-        virtual const xcore::AssetInfo GetPluginInfo() = 0;
-        virtual const xcore::Semver    GetPluginVersion() = 0;
-        virtual const xcore::Semver    GetPluginHostVersion() = 0;
+        virtual const xcore::stl::string GetPluginUID() = 0;
+        virtual const xcore::stl::string GetPluginGroupUID() = 0;
+        virtual const xcore::AssetInfo   GetPluginInfo() = 0;
+        virtual const xcore::Semver      GetPluginVersion() = 0;
+        virtual const xcore::Semver      GetPluginHostVersion() = 0;
     };
 }
 
 #define XCORE_EXPORT_PLUGIN(PluginClassName) \
-PluginClassName* pluginInstance = NULL; \
-\
-extern "C" XCORE_API xcore::Plugable * xcore_start_plugin() \
-{ \
-    if(pluginInstance == NULL) \
-    { \
-        pluginInstance = new PluginClassName(); \
-    } \
-    return pluginInstance; \
-}; \
-\
-extern "C" XCORE_API void xcore_stop_plugin(void) \
-{ \
-    if(pluginInstance != NULL) \
-    { \
-        pluginInstance->Dispose(); \
-        delete pluginInstance; \
-        pluginInstance = NULL; \
-    } \
-}
+    PluginClassName* pluginInstance = NULL; \
+    \
+    XCORE_EXTERN_C_BEGIN \
+        XCORE_API xcore::Plugable * xcore_start_plugin() \
+        { \
+            if(pluginInstance == NULL) \
+            { \
+                pluginInstance = new PluginClassName(); \
+            } \
+            return pluginInstance; \
+        }; \
+        \
+        XCORE_API void xcore_stop_plugin(void) \
+        { \
+            if(pluginInstance != NULL) \
+            { \
+                pluginInstance->Dispose(); \
+                delete pluginInstance; \
+                pluginInstance = NULL; \
+            } \
+        } \
+    XCORE_EXTERN_C_END
 
 typedef xcore::Plugable* (*xcore_start_plugin_function_pointer) (void);
 typedef void (*xcore_stop_plugin_function_pointer) (void);

@@ -20,17 +20,18 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Contains a set of resources for shared library manipulation.
+ *
+ */
+
 #pragma once
 
+#include "stl.h"
 #include "common.h"
 
-#include <string>
-
-/**
- * @defgroup 	xcore_dll dll
- *
- * @ingroup  	xcore_dll
- */
 namespace xcore { namespace dll
 {
     /**
@@ -49,7 +50,7 @@ namespace xcore { namespace dll
      *             [HMODULE](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751(v=vs.85).aspx)
      *             and in *nix is of type <b>void *</b>
      */
-    XCORE_DLL_HANDLER load(const std::string& path);
+    XCORE_DLL_HANDLER load(const xcore::stl::string& path);
 
     /**
      * @ingroup    xcore_dll
@@ -77,5 +78,5 @@ namespace xcore { namespace dll
      *             [FARPROC](https://msdn.microsoft.com/en-us/library/windows/desktop/ms633571(v=vs.85).aspx)
      *             and in *nix is of type <b>void *</b>
      */
-    XCORE_DLL_SYMBOL_POINTER get_symbol_pointer(XCORE_DLL_HANDLER handler, const std::string& symbolName);
+    XCORE_DLL_SYMBOL_POINTER get_symbol_pointer(XCORE_DLL_HANDLER handler, const xcore::stl::string& symbolName);
 }}

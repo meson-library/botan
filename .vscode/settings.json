@@ -1,6 +1,15 @@
 {
     "files.associations": {
         "ostream": "cpp",
-        "string": "cpp"
-    }
+        "string": "cpp",
+        "random": "cpp",
+        "eigen": "cpp",
+        "memory": "cpp",
+        "future": "cpp",
+        "system_error": "cpp",
+        "typeindex": "cpp",
+        "xlocale": "cpp",
+        "unordered_map": "cpp"
+    },
+    "git.ignoreLimitWarning": true
 }

@@ -20,28 +20,36 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Contains an interface for disposable types.
+ *
+ */
+
 #pragma once
 
 namespace xcore
 {
     /**
-     * @ingroup    xcore
-     *
-     * @brief      An interface to do resource cleanup.
+     * @class Disposable disposable.h <xcore/disposable.h>
+     * 
+     * @brief An interface to disposable types, so we can do resource cleanup.
+     * 
      */
     class Disposable
     {
     public:
 
         /**
-         * @brief    Method used for resource cleanup.
+         * @brief Method used for resource cleanup.
          */
         virtual void Dispose() = 0;
 
     protected:
 
         /**
-         * @brief    Default destructor.
+         * @brief Default destructor.
          */
         ~Disposable() {};
     };

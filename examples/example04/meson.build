@@ -2,7 +2,5 @@
 subdir('host')
 subdir('plugin')
 
-
-install_data(['README.txt'],
-               rename      : ['README.txt'],
-               install_dir : 'share/docs/xcore/examples/04')
+install_data(['README.md'],
+               install_dir : install_dir_docs/'examples'/'04')

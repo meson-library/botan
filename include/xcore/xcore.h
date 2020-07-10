@@ -20,15 +20,24 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Main header for the xcore library.
+ *
+ */
+
 #pragma once
+
+#include "fs.h"
+#include "dll.h"
+#include "stl.h"
+#include "math.h"
 
 #include "plugable.h"
 #include "disposable.h"
-#include "dll.h"
+
 #include "asset_info.h"
 #include "semver.h"
-#include "common.h"
 
-
-
-
+#include "common.h" 

@@ -23,18 +23,17 @@
 #pragma once
 
 #include <xcore/xcore.h>
-#include <iostream>
 
 class Plugin : public xcore::Plugable
 {
 public:
     Plugin() { };
 
-    const std::string      GetPluginUID();
-    const std::string      GetPluginGroupUID();
-    const xcore::AssetInfo GetPluginInfo();
-    const xcore::Semver    GetPluginVersion();
-    const xcore::Semver    GetPluginHostVersion();
+    const xcore::stl::string GetPluginUID();
+    const xcore::stl::string GetPluginGroupUID();
+    const xcore::AssetInfo   GetPluginInfo();
+    const xcore::Semver      GetPluginVersion();
+    const xcore::Semver      GetPluginHostVersion();
 
     void Dispose();
 };
