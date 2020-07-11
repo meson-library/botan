@@ -35,8 +35,6 @@
 namespace xcore { namespace dll
 {
     /**
-     * @ingroup    xcore_dll
-     *
      * @brief      Load a shared library at runtime.
      *
      * @details    Load a shared library at runtime in a cross platform manner.
@@ -53,8 +51,6 @@ namespace xcore { namespace dll
     XCORE_DLL_HANDLER load(const xcore::stl::string& path);
 
     /**
-     * @ingroup    xcore_dll
-     *
      * @brief      Unload a shared library at runtime.
      *
      * @param[in]  handler  A shared library handler.
@@ -64,8 +60,6 @@ namespace xcore { namespace dll
     bool unload(XCORE_DLL_HANDLER handler);
 
     /**
-     * @ingroup    xcore_dll
-     *
      * @brief      Get a symbol pointer from the loaded shared library.
      *
      * @param[in]  handler     A shared library handler.

@@ -20,13 +20,18 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Contains a set of resources for work with logs.
+ *
+ */
+
 #pragma once
 
-#include "xcore/stl.h"
+#include <spdlog/spdlog.h>
 
-#if XCORE_STL_IMPLEMENTATION == XCORE_EASTL
-    void* __cdecl operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
-    {
-        return new uint8_t[size];
-    }
-#endif
+namespace xcore
+{
+    namespace log = spdlog;
+}

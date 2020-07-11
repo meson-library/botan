@@ -2,10 +2,9 @@
 # Project info.
 #
 project('xcore', ['cpp'],
-         version       : '0.1.0',
-         license       : ['GPL3'],
-         default_options: ['cpp_std=c++17'],
-         meson_version : '>= 0.50.0')
+         version         : '0.1.0',
+         license         : ['GPL3'],
+         meson_version   : '>= 0.50.0')
 
 
 

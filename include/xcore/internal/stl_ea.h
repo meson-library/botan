@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "common.h"
+#include "xcore/common.h"
 
 /**
  * @cond

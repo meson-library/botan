@@ -33,9 +33,10 @@
 #include "dll.h"
 #include "stl.h"
 #include "math.h"
+#include "log.h"
 
-#include "plugable.h"
 #include "disposable.h"
+#include "plugable.h"
 
 #include "asset_info.h"
 #include "semver.h"

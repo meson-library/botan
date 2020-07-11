@@ -41,6 +41,8 @@ namespace xcore
 
     }
 
+
+
     /**
      * @namespace xcore::fs
      * 
@@ -48,48 +50,72 @@ namespace xcore
      * 
      * @details This is the start point for filesystem manipulations like read and write to files, list directories, set <br> 
      *          file attributes, copy and move files and so on... <br>
-     *          
+     *          <br>
      *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
      *          https://github.com/meson-library/filesystem. The namespace `xcore::fs` is an alias to the original library <br>
      *          namespace that is `ghc::filesystem`. Basicaly the original library consist of a C++11 cross-platform <br>
      *          implementation of the standard `std::filesystem` (Now already included in the C++17 standard).
-     *  
+     * 
      */
     namespace fs
     {
 
     }
 
-   /**
-    * @namespace xcore::math
-    * 
-    * @brief Contains a set of resources for mathematical manipulation.
-    * 
-    * @details This is the start point for mathematical manipulations.
-    *          
-    *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-    *          https://github.com/meson-library/eigen. The namespace `xcore::math` is an alias to the original library <br>
-    *          namespace that is `Eigen`.
-    */
+
+
+    /**
+     * @namespace xcore::math
+     * 
+     * @brief Contains a set of resources for mathematical manipulation.
+     * 
+     * @details This is the start point for mathematical manipulations. <br>
+     *          <br>
+     *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
+     *          https://github.com/meson-library/eigen. The namespace `xcore::math` is an alias to the original library <br>
+     *          namespace that is `Eigen`.
+     * 
+     */
     namespace math
     {
 
     }
+
+
 
     /**
      * @namespace xcore::stl
      * 
      * @brief Contains the STL implementation currently in use by our system.
      * 
-     * @details This namespace contains the STL implementation currently in use by our system. We can use the standard STL 
-     *          implementation of our compilers or use an implementation from Eletronic Arts (EASTL).
-     *          
+     * @details This namespace contains the STL implementation currently in use by our system. We can use the standard STL <br>
+     *          implementation of our compilers or use an implementation from Eletronic Arts (EASTL). <br>
+     *          <br>
      *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
      *          https://github.com/meson-library/eastl. The namespace `xcore::math` is an alias to the original library <br>
      *          namespace that is `eastl`.
      * 
      */
     namespace stl
+    {
+
+    }
+
+
+
+    /**
+    * @namespace xcore::log
+    * 
+    * @brief Contains a set of resources for work with logs.
+    * 
+    * @details This is the start point for log manipulations. <br>
+    *          <br>
+    *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
+    *          https://github.com/meson-library/spdlog. The namespace `xcore::log` is an alias to the original library <br>
+    *          namespace that is `spdlog`.
+    * 
+    */
+    namespace log
     {
 
     }

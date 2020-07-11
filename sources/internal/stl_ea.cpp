@@ -20,29 +20,13 @@
 // |
 // +---------------------------------------------------------------------------
 
-/**
- * @file
- *
- * @brief Contains the STL implementation currently in use by the system.
- *
- */
-
 #pragma once
 
-#include "common.h"
+#include "xcore/internal/stl_ea.h"
 
-#if !defined(XCORE_STL_IMPLEMENTATION)
-    #error The XCORE_STL_IMPLEMENTATION was not defined.
-#endif
-
-#if XCORE_STL_IMPLEMENTATION != XCORE_STL && XCORE_STL_IMPLEMENTATION != XCORE_EASTL
-    #error The value of XCORE_STL_IMPLEMENTATION is inválid.
-#endif
-
-#if XCORE_STL_IMPLEMENTATION == XCORE_STL || defined(DOXYGEN)
-    #include "internal/stl_std.h"
-#endif
-
-#if XCORE_STL_IMPLEMENTATION == XCORE_EASTL || defined(DOXYGEN)
-    #include "internal/stl_ea.h"
+#if XCORE_STL_IMPLEMENTATION == XCORE_EASTL
+    void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
+    {
+        return new uint8_t[size];
+    }
 #endif

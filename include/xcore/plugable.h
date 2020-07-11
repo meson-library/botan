@@ -20,6 +20,13 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Contains an interface for plugable libraries.
+ *
+ */
+
 #pragma once
 
 #include "dll.h"
@@ -30,6 +37,12 @@
 
 namespace xcore
 {
+    /**
+     * @class Plugable plugable.h <xcore/plugable.h>
+     *
+     * @brief An interface to plugable libraries, so we can have a native plugin system.
+     *
+     */
     class Plugable: public xcore::Disposable
     {
     public:
@@ -44,6 +57,12 @@ namespace xcore
     };
 }
 
+
+
+/**
+ * @brief  We must pass a class name (From a class that inherits from `xcore::Plugable`) to this
+ *         macro and it will generate a boilerplate code for the plugin export, startup and stop.
+ */
 #define XCORE_EXPORT_PLUGIN(PluginClassName) \
     PluginClassName* pluginInstance = NULL; \
     \
@@ -65,11 +84,22 @@ namespace xcore
                 delete pluginInstance; \
                 pluginInstance = NULL; \
             } \
-        } \
+        }; \
     XCORE_EXTERN_C_END
 
-typedef xcore::Plugable* (*xcore_start_plugin_function_pointer) (void);
+
+
+typedef xcore::Plugable * (*xcore_start_plugin_function_pointer) (void);
 typedef void (*xcore_stop_plugin_function_pointer) (void);
 
+
+
+/**
+ * @brief We can pass a plugin handler (Obteined by `xcore::dll::load(...)`) to this macro and it will startup and return a reference to the plugin.
+ */
 #define XCORE_START_PLUGIN(handler) ((xcore_start_plugin_function_pointer) xcore::dll::get_symbol_pointer(handler, "xcore_start_plugin"))()
+
+/**
+ * @brief We can pass a plugin handler (Obteined by `xcore::dll::load(...)`) to this macro and it will stop the plugin.
+ */
 #define XCORE_STOP_PLUGIN(handler) ((xcore_stop_plugin_function_pointer) xcore::dll::get_symbol_pointer(handler, "xcore_stop_plugin"))()
