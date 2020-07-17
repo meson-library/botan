@@ -25,6 +25,7 @@
 #include <my_plugin.h>
 
 #include <xcore/xcore.h>
+
 #include <iostream>
 
 class Plugin : public sdk::MyPlugin

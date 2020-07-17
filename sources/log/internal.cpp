@@ -22,20 +22,38 @@
 
 #pragma once
 
-#include <xcore/xcore.h>
+#include "internal.h"
 
-class Plugin : public xcore::plugin::Plugable
+spdlog::level::level_enum xcore::log::convert_level(xcore::log::Level level)
 {
-public:
-    Plugin() { };
+    spdlog::level::level_enum nativeLevel = spdlog::level::level_enum::off;
 
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
+    switch (level)
+    {
+    case xcore::log::Level::None:
+        nativeLevel = spdlog::level::level_enum::off;
+        break;
+    case xcore::log::Level::Fatal:
+        nativeLevel = spdlog::level::level_enum::critical;
+        break;
+    case xcore::log::Level::Error:
+        nativeLevel = spdlog::level::level_enum::err;
+        break;
+    case xcore::log::Level::Warning:
+        nativeLevel = spdlog::level::level_enum::warn;
+        break;
+    case xcore::log::Level::Info:
+        nativeLevel = spdlog::level::level_enum::info;
+        break;
+    case xcore::log::Level::Debug:
+        nativeLevel = spdlog::level::level_enum::debug;
+        break;
+    case xcore::log::Level::Trace:
+        nativeLevel = spdlog::level::level_enum::trace;
+        break;
+    default:
+        break;
+    }
 
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+    return nativeLevel;
+}

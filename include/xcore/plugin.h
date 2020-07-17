@@ -20,4 +20,13 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/plugable.h"
+/**
+ * @file
+ *
+ * @brief Contains a set of resources for plugin creation and manipulation.
+ *
+ */
+
+#pragma once
+
+#include "plugin/plugable.h"

@@ -24,18 +24,6 @@
 
 #include <xcore/xcore.h>
 
-class Plugin : public xcore::plugin::Plugable
-{
-public:
-    Plugin() { };
-
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
-
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+XCORE_EXTERN_C_BEGIN
+    XCORE_API void display_helloworld_from_shared_library(void);
+XCORE_EXTERN_C_END

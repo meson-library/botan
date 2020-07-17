@@ -20,22 +20,11 @@
 // |
 // +---------------------------------------------------------------------------
 
-#pragma once
+#include "library.h"
 
-#include <xcore/xcore.h>
+#include <stdio.h>
 
-class Plugin : public xcore::plugin::Plugable
+void display_helloworld_from_shared_library(void)
 {
-public:
-    Plugin() { };
-
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
-
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+    printf("Hello World from shared library.\n");
+}

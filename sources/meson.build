@@ -4,22 +4,39 @@
 includes = ['..'/include_dir_root]
 
 sources = ['dll.cpp',
-           'plugable.cpp',
-           'internal'/'stl_ea.cpp']
+           'stl'/'ea.cpp',
+           'log'/'logger.cpp',
+           'log'/'console_sink.cpp',
+           'log'/'file_sink.cpp',
+           'log'/'internal.cpp',
+           'plugin'/'plugable.cpp']
 
 extra_files = ['..'/include_dir_proj/'xcore.h',
-               '..'/include_dir_proj/'common.h',
-               '..'/include_dir_proj/'asset_info.h',
-               '..'/include_dir_proj/'semver.h',
-               '..'/include_dir_proj/'dll.h',
+
                '..'/include_dir_proj/'fs.h',
-               '..'/include_dir_proj/'stl.h',
-               '..'/include_dir_proj/'log.h',
-               '..'/include_dir_proj/'internal'/'stl_std.h',
-               '..'/include_dir_proj/'internal'/'stl_ea.h',
+               '..'/include_dir_proj/'dll.h',
                '..'/include_dir_proj/'math.h',
-               '..'/include_dir_proj/'disposable.h',
-               '..'/include_dir_proj/'plugable.h']
+               
+               '..'/include_dir_proj/'stl.h',
+               '..'/include_dir_proj/'stl'/'std.h',
+               '..'/include_dir_proj/'stl'/'ea.h',
+
+               '..'/include_dir_proj/'log.h',
+               '..'/include_dir_proj/'log'/'level.h',
+               '..'/include_dir_proj/'log'/'sink.h',
+               '..'/include_dir_proj/'log'/'loggable.h',
+               '..'/include_dir_proj/'log'/'logger.h',
+               '..'/include_dir_proj/'log'/'console_sink.h',
+               '..'/include_dir_proj/'log'/'file_sink.h',
+               '..'/sources_dir/'log'/'internal.h',
+
+                '..'/include_dir_proj/'plugin.h',
+                '..'/include_dir_proj/'plugin'/'plugable.h',
+
+               '..'/include_dir_proj/'common'/'common.h',
+               '..'/include_dir_proj/'common'/'asset_info.h',
+               '..'/include_dir_proj/'common'/'semver.h',
+               '..'/include_dir_proj/'common'/'disposable.h']
 
 cpp_args = ['-DXCORE_STL_IMPLEMENTATION=' + get_option('stl_implementation')]
 
@@ -64,14 +81,14 @@ xcore_static_dep = declare_dependency(include_directories : includes,
                                       dependencies        : [filesystem_dep, eastl_dep, eigen_dep, spdlog_dep])
 
 # With this line we, connotatively, export xcore_dep and xcore_static_dep to the outside world.
-xcore_dep = xcore_static_dep 
+xcore_dep = xcore_static_dep
 
 
 
 #
 # Install lib data (headers for the external API, docs, licenses and so on...)
 #
-install_subdir('..'/include_dir_proj, 
+install_subdir('..'/include_dir_proj,
                install_dir : include_dir_root)
 
 install_data(['..'/'LICENSE.GPL3'],

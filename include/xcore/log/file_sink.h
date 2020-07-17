@@ -20,22 +20,31 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief 
+ *
+ */
+
 #pragma once
 
-#include <xcore/xcore.h>
+#include "sink.h"
+#include "level.h"
 
-class Plugin : public xcore::plugin::Plugable
+#include <string>
+
+namespace xcore
 {
-public:
-    Plugin() { };
+    namespace log
+    {
+        class FileSink : public xcore::log::Sink
+        {
+        public:
+                         FileSink(std::string path);
 
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
-
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+            virtual void SetLevel(xcore::log::Level level) override;
+            virtual void Flush() override;
+        };
+    }
+}

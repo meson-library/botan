@@ -27,7 +27,7 @@ int main()
 {
     xcore::stl::string pluginPath = "example03_plugin.dll";
     XCORE_DLL_HANDLER dll_handler = xcore::dll::load(pluginPath);
-    xcore::Plugable* plugin = XCORE_START_PLUGIN(dll_handler);
+    xcore::plugin::Plugable* plugin = XCORE_START_PLUGIN(dll_handler);
 
     xcore::stl::string pluginUID = plugin->GetPluginUID();
     xcore::stl::string pluginGroupUID = plugin->GetPluginGroupUID();

@@ -119,4 +119,19 @@ namespace xcore
     {
 
     }
+
+
+
+    /**
+    * @namespace xcore::plugin
+    * 
+    * @brief Contains a set of resources for work with plugins.
+    * 
+    * @details This is the start point for plugin manipulations.
+    * 
+    */
+    namespace plugin
+    {
+
+    }
 }

@@ -22,20 +22,11 @@
 
 #pragma once
 
-#include <xcore/xcore.h>
+#include "xcore/stl/ea.h"
 
-class Plugin : public xcore::plugin::Plugable
-{
-public:
-    Plugin() { };
-
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
-
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+#if XCORE_STL_IMPLEMENTATION == XCORE_EASTL
+    void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
+    {
+        return new uint8_t[size];
+    }
+#endif

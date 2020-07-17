@@ -20,38 +20,33 @@
 // |
 // +---------------------------------------------------------------------------
 
-/** 
+/**
  * @file
- * 
- * @brief Contains code about a struct to hold asset info.
+ *
+ * @brief 
  *
  */
 
 #pragma once
 
-#include "stl.h"
+#include "sink.h"
+#include "level.h"
+
+#include "../common/disposable.h"
+
+#include <memory>
+#include <string>
 
 namespace xcore
 {
-    /**
-     * @struct AssetInfo asset_info.h <xcore/asset_info.h>
-     * 
-     * @brief Struct to hold basic asset info.
-     * 
-     */
-    struct AssetInfo
+    namespace log
     {
-        AssetInfo
-        (
-            xcore::stl::string name, xcore::stl::string author="", xcore::stl::string license="", xcore::stl::string description=""
-        ):
-        Name(name), Author(author), License(license), Description(description) { };
-
-        xcore::stl::string Name;
-        xcore::stl::string Author;
-        xcore::stl::string License;
-        xcore::stl::string Description;
-    };
-
-    typedef struct AssetInfo AssetInfo;
+        class Loggable : public xcore::Disposable
+        {
+        public:
+            virtual void Log(xcore::log::Level level, std::string msg) = 0;
+            virtual void SetLevel(xcore::log::Level level) = 0;
+            virtual void AddSink(std::unique_ptr<xcore::log::Sink> sink) = 0;
+        };
+    }
 }

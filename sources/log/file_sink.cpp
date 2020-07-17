@@ -20,13 +20,26 @@
 // |
 // +---------------------------------------------------------------------------
 
-#pragma once
+#include "xcore/log/file_sink.h"
 
-#include "xcore/internal/stl_ea.h"
+#include "internal.h"
 
-#if XCORE_STL_IMPLEMENTATION == XCORE_EASTL
-    void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
-    {
-        return new uint8_t[size];
-    }
-#endif
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
+
+xcore::log::FileSink::FileSink(std::string filePath)
+{
+    m_LogSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(filePath, true);
+}
+
+inline void xcore::log::FileSink::SetLevel(xcore::log::Level level)
+{
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    logSink->set_level(convert_level(level));
+}
+
+inline void xcore::log::FileSink::Flush()
+{
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    logSink->flush();
+}

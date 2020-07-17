@@ -26,7 +26,7 @@
 
 namespace sdk
 {
-    class MyPlugin : public xcore::Plugable
+    class MyPlugin : public xcore::plugin::Plugable
     {
     public:
         MyPlugin() { };

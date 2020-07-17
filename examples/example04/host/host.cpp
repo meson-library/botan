@@ -23,6 +23,7 @@
 #include "my_plugin.h"
 
 #include <xcore/xcore.h>
+
 #include <iostream>
 
 int main()

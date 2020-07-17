@@ -20,22 +20,38 @@
 // |
 // +---------------------------------------------------------------------------
 
+/** 
+ * @file
+ * 
+ * @brief Contains code about a struct to hold asset info.
+ *
+ */
+
 #pragma once
 
-#include <xcore/xcore.h>
+#include "../stl.h"
 
-class Plugin : public xcore::plugin::Plugable
+namespace xcore
 {
-public:
-    Plugin() { };
+    /**
+     * @struct AssetInfo asset_info.h <xcore/asset_info.h>
+     * 
+     * @brief Struct to hold basic asset info.
+     * 
+     */
+    struct AssetInfo
+    {
+        AssetInfo
+        (
+            xcore::stl::string name, xcore::stl::string author="", xcore::stl::string license="", xcore::stl::string description=""
+        ):
+        Name(name), Author(author), License(license), Description(description) { };
 
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
+        xcore::stl::string Name;
+        xcore::stl::string Author;
+        xcore::stl::string License;
+        xcore::stl::string Description;
+    };
 
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+    typedef struct AssetInfo AssetInfo;
+}

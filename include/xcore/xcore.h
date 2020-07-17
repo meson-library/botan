@@ -34,11 +34,4 @@
 #include "stl.h"
 #include "math.h"
 #include "log.h"
-
-#include "disposable.h"
-#include "plugable.h"
-
-#include "asset_info.h"
-#include "semver.h"
-
-#include "common.h" 
+#include "plugin.h"

@@ -20,22 +20,43 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Contains code about a struct to hold semantic version info.
+ *
+ */
+
 #pragma once
 
-#include <xcore/xcore.h>
+#include "../stl.h"
 
-class Plugin : public xcore::plugin::Plugable
+namespace xcore
 {
-public:
-    Plugin() { };
+    /**
+     * @struct Semver semver.h <xcore/semver.h>
+     *
+     * @brief      Struct to hold version info in the <a href="http://semver.org/spec/v2.0.0.html"
+     *             target="_blank">Semantic version standard</a>.
+     *
+     * @todo Validate the construction of instances of this struct with the
+     * standard found at <a href="http://semver.org/spec/v2.0.0.html"
+     * target="_blank">http://semver.org/spec/v2.0.0.html</a>. Right now, the
+     * version info is stored without any validation.
+     */
+    struct Semver
+    {
+        Semver
+        (
+            int major, int minor=0, int path=0, xcore::stl::string label=""
+        ):
+        Major(major), Minor(minor), Path(path), Label(label) { };
 
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
+        int	               Major;
+        int	               Minor;
+        int	               Path;
+        xcore::stl::string Label;
+    };
 
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+    typedef struct Semver Semver;
+}

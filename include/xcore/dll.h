@@ -30,7 +30,7 @@
 #pragma once
 
 #include "stl.h"
-#include "common.h"
+#include "common/common.h"
 
 namespace xcore { namespace dll
 {

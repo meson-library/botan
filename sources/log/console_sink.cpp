@@ -20,22 +20,26 @@
 // |
 // +---------------------------------------------------------------------------
 
-#pragma once
+#include "xcore/log/console_sink.h"
 
-#include <xcore/xcore.h>
+#include "internal.h"
 
-class Plugin : public xcore::plugin::Plugable
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
+xcore::log::ConsoleSink::ConsoleSink()
 {
-public:
-    Plugin() { };
+    m_LogSink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+}
 
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
+inline void xcore::log::ConsoleSink::SetLevel(Level level)
+{
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    logSink->set_level(convert_level(level));
+} 
 
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+inline void xcore::log::ConsoleSink::Flush()
+{
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    logSink->flush();
+}

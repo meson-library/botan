@@ -20,22 +20,4 @@
 // |
 // +---------------------------------------------------------------------------
 
-#pragma once
-
-#include <xcore/xcore.h>
-
-class Plugin : public xcore::plugin::Plugable
-{
-public:
-    Plugin() { };
-
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
-
-    void Dispose();
-};
-
-XCORE_EXPORT_PLUGIN(Plugin);
+#include "xcore/plugin/plugable.h"

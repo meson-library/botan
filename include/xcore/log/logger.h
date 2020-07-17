@@ -20,22 +20,45 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief 
+ *
+ */
+
 #pragma once
 
-#include <xcore/xcore.h>
+#include "loggable.h"
+#include "sink.h"
+#include "level.h"
 
-class Plugin : public xcore::plugin::Plugable
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/dist_sink.h>
+
+#include <vector>
+#include <memory>
+
+namespace xcore
 {
-public:
-    Plugin() { };
+    namespace log
+    {
+        class Logger : public xcore::log::Loggable
+        {
+        public:
+                         Logger(std::string name);
+                         Logger(std::string name, std::vector<std::unique_ptr<xcore::log::Sink>> sinks);
 
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
+            virtual void Log(xcore::log::Level level, std::string msg) override;
+            virtual void SetLevel(xcore::log::Level level) override;
+            virtual void AddSink(std::unique_ptr<xcore::log::Sink> sink) override;
+            virtual void Dispose() override;
 
-    void Dispose();
-};
+        private:
+            std::shared_ptr<spdlog::logger>              m_Logger;
+            std::shared_ptr<spdlog::sinks::dist_sink_mt> m_LogSinkRoot;
 
-XCORE_EXPORT_PLUGIN(Plugin);
+            std::vector<std::unique_ptr<xcore::log::Sink>> m_LogSinks;
+        };
+    }
+}
