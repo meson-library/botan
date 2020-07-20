@@ -44,7 +44,7 @@ namespace xcore
             virtual void Flush() = 0;
 
         protected:
-            std::shared_ptr<void> m_LogSink;
+            std::shared_ptr<void> m_Sink;
 
             friend class Logger;
         };

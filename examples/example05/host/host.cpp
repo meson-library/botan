@@ -26,20 +26,26 @@
 
 int main()
 {
-    xcore::log::Level loggerLevel      = xcore::log::Level::Warning;
-    xcore::log::Level consoleSinkLevel = xcore::log::Level::Error;
-    xcore::log::Level fileSinkLevel    = xcore::log::Level::Warning;
-
-    auto logger = std::make_unique<xcore::log::Logger>("logger-01");
-    logger->SetLevel(loggerLevel);
+    xcore::log::Level loggerLevel      = xcore::log::Level::Trace;
+    xcore::log::Level consoleSinkLevel = xcore::log::Level::Trace;
+    xcore::log::Level fileSinkLevel    = xcore::log::Level::Trace;
 
     auto consoleSink = std::make_unique<xcore::log::ConsoleSink>();
     consoleSink->SetLevel(consoleSinkLevel);
-    logger->AddSink(std::move(consoleSink));
 
     auto fileSink = std::make_unique<xcore::log::FileSink>("teste.txt");
     fileSink->SetLevel(fileSinkLevel);
-    logger->AddSink(std::move(fileSink));
+
+    std::vector<std::unique_ptr<xcore::log::Sink>> sinks;
+    sinks.push_back(std::move(consoleSink));
+    sinks.push_back(std::move(fileSink));
+
+    auto logger = std::make_shared<xcore::log::Logger>("logger-01", std::move(sinks));
+    logger->SetLevel(loggerLevel);
+
+    /*auto consoleSink2 = std::make_unique<xcore::log::ConsoleSink>();
+    consoleSink2->SetLevel(consoleSinkLevel);
+    logger->AddSink(std::move(consoleSink2));*/
 
     logger->Log(xcore::log::Level::None,    "Log message 1.");
     logger->Log(xcore::log::Level::Fatal,   "Log message 2.");

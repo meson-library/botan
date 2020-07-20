@@ -32,9 +32,7 @@
 #include "loggable.h"
 #include "sink.h"
 #include "level.h"
-
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/dist_sink.h>
+#include "../common/common.h"
 
 #include <vector>
 #include <memory>
@@ -46,19 +44,22 @@ namespace xcore
         class Logger : public xcore::log::Loggable
         {
         public:
-                         Logger(std::string name);
-                         Logger(std::string name, std::vector<std::unique_ptr<xcore::log::Sink>> sinks);
+            Logger(const std::string& name);
+            Logger(const std::string& name, std::vector<std::unique_ptr<xcore::log::Sink>> sinks);
 
-            virtual void Log(xcore::log::Level level, std::string msg) override;
             virtual void SetLevel(xcore::log::Level level) override;
-            virtual void AddSink(std::unique_ptr<xcore::log::Sink> sink) override;
+            virtual void AddSink(const std::string& name, std::unique_ptr<xcore::log::Sink> sink) override;
+            virtual void RemoveSink(const std::string& name) override;
+            virtual void Log(xcore::log::Level level, const std::string& msg) override;
+            
             virtual void Dispose() override;
 
         private:
-            std::shared_ptr<spdlog::logger>              m_Logger;
-            std::shared_ptr<spdlog::sinks::dist_sink_mt> m_LogSinkRoot;
+            class Impl;
+            std::unique_ptr<Impl> m_Impl;
 
-            std::vector<std::unique_ptr<xcore::log::Sink>> m_LogSinks;
+            std::vector<std::shared_ptr<xcore::log::Sink>> m_Sinks;
         };
     }
 }
+

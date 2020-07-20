@@ -31,26 +31,26 @@
 
 namespace xcore
 {
-    /**
-     * @class Disposable disposable.h <xcore/disposable.h>
-     * 
-     * @brief An interface to disposable types, so we can do resource cleanup.
-     * 
-     */
-    class Disposable
-    {
-    public:
+	/**
+	 * @class Disposable disposable.h <xcore/disposable.h>
+	 *
+	 * @brief An interface to disposable types, so we can do resource cleanup.
+	 *
+	 */
+	class Disposable
+	{
+	public:
+		/**
+		 * @brief Method used for resource cleanup.
+		 * 
+		 */
+		virtual void Dispose() = 0;
 
-        /**
-         * @brief Method used for resource cleanup.
-         */
-        virtual void Dispose() = 0;
-
-    protected:
-
-        /**
-         * @brief Default destructor.
-         */
-        ~Disposable() {};
-    };
+	protected:
+		/**
+		 * @brief Default destructor.
+		 * 
+		 */
+		~Disposable() {};
+	};
 }

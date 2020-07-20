@@ -36,13 +36,13 @@
 
 namespace xcore
 {
-    namespace log
+    namespace log 
     {
         class FileSink : public xcore::log::Sink
         {
         public:
                          FileSink(std::string path);
-
+                         
             virtual void SetLevel(xcore::log::Level level) override;
             virtual void Flush() override;
         };

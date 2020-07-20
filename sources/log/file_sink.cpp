@@ -29,17 +29,17 @@
 
 xcore::log::FileSink::FileSink(std::string filePath)
 {
-    m_LogSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(filePath, true);
+    m_Sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(filePath, true);
 }
 
 inline void xcore::log::FileSink::SetLevel(xcore::log::Level level)
 {
-    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
     logSink->set_level(convert_level(level));
 }
 
 inline void xcore::log::FileSink::Flush()
 {
-    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
     logSink->flush();
 }

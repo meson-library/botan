@@ -29,17 +29,17 @@
 
 xcore::log::ConsoleSink::ConsoleSink()
 {
-    m_LogSink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+    m_Sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
 }
 
 inline void xcore::log::ConsoleSink::SetLevel(Level level)
 {
-    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
     logSink->set_level(convert_level(level));
 } 
 
 inline void xcore::log::ConsoleSink::Flush()
 {
-    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_LogSink);
+    auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
     logSink->flush();
 }
