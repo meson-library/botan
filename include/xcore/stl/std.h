@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Contains the standard STL implementation.
- *
  */
 
 #pragma once
@@ -69,5 +68,5 @@
 
 namespace xcore
 {
-    namespace stl = std;
+	namespace stl = std;
 }

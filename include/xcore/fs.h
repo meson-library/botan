@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Contains a set of resources for filesystem manipulation.
- *
  */
 
 #pragma once
@@ -33,5 +32,5 @@
 
 namespace xcore
 {
-    namespace fs = ghc::filesystem;
+	namespace fs = ghc::filesystem;
 }

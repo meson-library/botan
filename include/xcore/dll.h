@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Contains a set of resources for shared library manipulation.
- *
  */
 
 #pragma once
@@ -32,45 +31,48 @@
 #include "stl.h"
 #include "common/common.h"
 
-namespace xcore { namespace dll
+namespace xcore
 {
-    /**
-     * @brief      Load a shared library at runtime.
-     *
-     * @details    Load a shared library at runtime in a cross platform manner.
-     *
-     * @param[in]  path  A path to the shared library to be loaded.
-     *
-     * @return     An handle to the loaded shared library. If the function
-     *             fails, the return value is NULL.
-     *
-     * @note       This function return a XCORE_DLL_HANDLER that in Windows is of type
-     *             [HMODULE](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751(v=vs.85).aspx)
-     *             and in *nix is of type <b>void *</b>
-     */
-    XCORE_DLL_HANDLER load(const xcore::stl::string& path);
+	namespace dll
+	{
+		/**
+		 * @brief      Load a shared library at runtime.
+		 *
+		 * @details    Load a shared library at runtime in a cross platform manner.
+		 *
+		 * @param[in]  path  A path to the shared library to be loaded.
+		 *
+		 * @return     An handle to the loaded shared library. If the function
+		 *             fails, the return value is NULL.
+		 *
+		 * @note       This function return a XCORE_DLL_HANDLER that in Windows is of type
+		 *             [HMODULE](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751(v=vs.85).aspx)
+		 *             and in *nix is of type <b>void *</b>
+		 */
+		XCORE_DLL_HANDLER load(const xcore::stl::string& path);
 
-    /**
-     * @brief      Unload a shared library at runtime.
-     *
-     * @param[in]  handler  A shared library handler.
-     *
-     * @return     true if success, otherwise false.
-     */
-    bool unload(XCORE_DLL_HANDLER handler);
+		/**
+		 * @brief      Unload a shared library at runtime.
+		 *
+		 * @param[in]  handler  A shared library handler.
+		 *
+		 * @return     true if success, otherwise false.
+		 */
+		bool unload(XCORE_DLL_HANDLER handler);
 
-    /**
-     * @brief      Get a symbol pointer from the loaded shared library.
-     *
-     * @param[in]  handler     A shared library handler.
-     * @param[in]  symbolName  A symbol name (Exported variable or function).
-     *
-     * @return     A symbol pointer from a shared library. If the function fails, the return value is NULL.
-     *
-     * @note       This function return a XCORE_DLL_SYMBOL_POINTER that in Windows
-     *             is of type
-     *             [FARPROC](https://msdn.microsoft.com/en-us/library/windows/desktop/ms633571(v=vs.85).aspx)
-     *             and in *nix is of type <b>void *</b>
-     */
-    XCORE_DLL_SYMBOL_POINTER get_symbol_pointer(XCORE_DLL_HANDLER handler, const xcore::stl::string& symbolName);
-}}
+		/**
+		 * @brief      Get a symbol pointer from the loaded shared library.
+		 *
+		 * @param[in]  handler     A shared library handler.
+		 * @param[in]  symbolName  A symbol name (Exported variable or function).
+		 *
+		 * @return     A symbol pointer from a shared library. If the function fails, the return value is NULL.
+		 *
+		 * @note       This function return a XCORE_DLL_SYMBOL_POINTER that in Windows
+		 *             is of type
+		 *             [FARPROC](https://msdn.microsoft.com/en-us/library/windows/desktop/ms633571(v=vs.85).aspx)
+		 *             and in *nix is of type <b>void *</b>
+		 */
+		XCORE_DLL_SYMBOL_POINTER get_symbol_pointer(XCORE_DLL_HANDLER handler, const xcore::stl::string& symbolName);
+	}
+}

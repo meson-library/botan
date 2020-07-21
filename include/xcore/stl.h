@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Contains the STL implementation currently in use by the system.
- *
  */
 
 #pragma once

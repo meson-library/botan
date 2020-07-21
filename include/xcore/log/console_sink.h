@@ -23,8 +23,7 @@
 /**
  * @file
  *
- * @brief 
- *
+ * @brief
  */
 
 #pragma once
@@ -34,15 +33,15 @@
 
 namespace xcore
 {
-    namespace log
-    {
-        class ConsoleSink : public xcore::log::Sink
-        {
-        public: 
-                         ConsoleSink();
+	namespace log
+	{
+		class ConsoleSink : public xcore::log::Sink
+		{
+		public:
+			ConsoleSink();
 
-            virtual void SetLevel(xcore::log::Level level) override;
-            virtual void Flush() override;
-        };
-    }
+			virtual void SetLevel(xcore::log::Level level) override;
+			virtual void Flush() override;
+		};
+	}
 }

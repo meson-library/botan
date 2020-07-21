@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Main header for the xcore library.
- *
  */
 
 #pragma once

@@ -23,8 +23,7 @@
 /**
  * @file
  *
- * @brief 
- *
+ * @brief The default logger implementation.
  */
 
 #pragma once
@@ -32,6 +31,7 @@
 #include "loggable.h"
 #include "sink.h"
 #include "level.h"
+
 #include "../common/common.h"
 
 #include <vector>
@@ -39,27 +39,26 @@
 
 namespace xcore
 {
-    namespace log
-    {
-        class Logger : public xcore::log::Loggable
-        {
-        public:
-            Logger(const std::string& name);
-            Logger(const std::string& name, std::vector<std::unique_ptr<xcore::log::Sink>> sinks);
+	namespace log
+	{
+		class Logger : public xcore::log::Loggable
+		{
+		public:
+			Logger(const std::string& name);
+			Logger(const std::string& name, std::vector<std::unique_ptr<xcore::log::Sink>> sinks);
 
-            virtual void SetLevel(xcore::log::Level level) override;
-            virtual void AddSink(const std::string& name, std::unique_ptr<xcore::log::Sink> sink) override;
-            virtual void RemoveSink(const std::string& name) override;
-            virtual void Log(xcore::log::Level level, const std::string& msg) override;
-            
-            virtual void Dispose() override;
+		public:
+			virtual void SetLevel(xcore::log::Level level) override;
+			virtual void AddSink(std::unique_ptr<xcore::log::Sink> sink) override;
+			virtual void RemoveSink(const std::string& name) override;
+			virtual void Log(xcore::log::Level level, const std::string& msg) override;
 
-        private:
-            class Impl;
-            std::unique_ptr<Impl> m_Impl;
+			virtual void Dispose() override;
 
-            std::vector<std::shared_ptr<xcore::log::Sink>> m_Sinks;
-        };
-    }
+		private:
+			struct Impl;
+			std::unique_ptr<Impl> m_Impl;
+		};
+	}
 }
 

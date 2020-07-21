@@ -26,34 +26,34 @@
 
 spdlog::level::level_enum xcore::log::convert_level(xcore::log::Level level)
 {
-    spdlog::level::level_enum nativeLevel = spdlog::level::level_enum::off;
+	spdlog::level::level_enum nativeLevel = spdlog::level::level_enum::off;
 
-    switch (level)
-    {
-    case xcore::log::Level::None:
-        nativeLevel = spdlog::level::level_enum::off;
-        break;
-    case xcore::log::Level::Fatal:
-        nativeLevel = spdlog::level::level_enum::critical;
-        break;
-    case xcore::log::Level::Error:
-        nativeLevel = spdlog::level::level_enum::err;
-        break;
-    case xcore::log::Level::Warning:
-        nativeLevel = spdlog::level::level_enum::warn;
-        break;
-    case xcore::log::Level::Info:
-        nativeLevel = spdlog::level::level_enum::info;
-        break;
-    case xcore::log::Level::Debug:
-        nativeLevel = spdlog::level::level_enum::debug;
-        break;
-    case xcore::log::Level::Trace:
-        nativeLevel = spdlog::level::level_enum::trace;
-        break;
-    default:
-        break;
-    }
+	switch(level)
+	{
+	case xcore::log::Level::None:
+		nativeLevel = spdlog::level::level_enum::off;
+		break;
+	case xcore::log::Level::Fatal:
+		nativeLevel = spdlog::level::level_enum::critical;
+		break;
+	case xcore::log::Level::Error:
+		nativeLevel = spdlog::level::level_enum::err;
+		break;
+	case xcore::log::Level::Warning:
+		nativeLevel = spdlog::level::level_enum::warn;
+		break;
+	case xcore::log::Level::Info:
+		nativeLevel = spdlog::level::level_enum::info;
+		break;
+	case xcore::log::Level::Debug:
+		nativeLevel = spdlog::level::level_enum::debug;
+		break;
+	case xcore::log::Level::Trace:
+		nativeLevel = spdlog::level::level_enum::trace;
+		break;
+	default:
+		break;
+	}
 
-    return nativeLevel;
+	return nativeLevel;
 }

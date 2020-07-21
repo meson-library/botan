@@ -24,11 +24,10 @@
  * @file
  *
  * @brief Contains a set of resources for work with logs.
- *
  */
 
 #pragma once
- 
+
 #include "log/logger.h"
 #include "log/loggable.h"
 #include "log/console_sink.h"

@@ -29,39 +29,37 @@
  *          and macro definitions, shared among all other source files.   
  *          Common codes you will find here are macros for data alignment,  
  *          architecture and operational system identification and so on...
- *
  */
 
 #pragma once
 
 /*
  * Macros for operational system identification.
- *
  */
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) || defined(DOXYGEN)
     /**
-     *  @brief Identify that the target operational system is Windows.
+     * @brief Identify that the target operational system is Windows.
      */
     #define XCORE_OS_FAMILY_WINDOWS
 #endif
 
 #if defined(linux) || defined(__linux) || defined(__linux__) || defined(DOXYGEN)
     /**
-     *  @brief Identify that the target operational system is Linux.
+     * @brief Identify that the target operational system is Linux.
      */
     #define XCORE_OS_FAMILY_LINUX
 #endif
 
 #if defined(__APPLE__) && defined(__MACH__) || defined(DOXYGEN)
     /**
-     *  @brief Identify that the target operational system is OSX.
+     * @brief Identify that the target operational system is OSX.
      */
     #define XCORE_OS_FAMILY_OSX
 #endif
 
 #if defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))  || defined(DOXYGEN)
     /**
-     *  @brief Identify that the target operational system is UNIX.
+     * @brief Identify that the target operational system is UNIX.
      */
     #define XCORE_OS_FAMILY_UNIX
 #endif
@@ -70,16 +68,15 @@
 
 /*
  * Macro for compiler identification.
- *
  */
 #if defined(DOXYGEN)
     /**
-     *  @brief Identify that the target compiler is MSVC.
+     * @brief Identify that the target compiler is MSVC.
      */
     #define XCORE_COMPILER_MSVC
 
     /**
-     *  @brief Identify that the target compiler is GCC.
+     * @brief Identify that the target compiler is GCC.
      */
     #define XCORE_COMPILER_GCC
 #elif defined(_MSC_VER)
@@ -102,44 +99,43 @@
 
 /*
  * Other macro definitions.
- *
  */
 #if defined(DOXYGEN)
     /**
-     *  @brief Define what attribute must be used to import symbols from a shared
-     *         library.
+     * @brief Define what attribute must be used to import symbols from a shared
+     *        library.
      *
-     *  @details Define what attribute must be used to instruct the linker to import
-     *           a symbol from a shared library. On MSVC is `__declspec(dllimport)`
-     *           on GCC is `__attribute__ ((visibility ("default")))`.
+     * @details Define what attribute must be used to instruct the linker to import
+     *          a symbol from a shared library. On MSVC is `__declspec(dllimport)`
+     *          on GCC is `__attribute__ ((visibility ("default")))`.
      */
     #define XCORE_SYMBOL_IMPORT
 
     /**
-     *  @brief Define what attribute must be used to export symbols from a shared
-     *         library.
+     * @brief Define what attribute must be used to export symbols from a shared
+     *        library.
      *
-     *  @details Define what attribute must be used to instruct the linker to export
-     *           a symbol to a shared library. On MSVC is `__declspec(dllexport)`
-     *           on GCC is `__attribute__ ((visibility ("default")))`.
+     * @details Define what attribute must be used to instruct the linker to export
+     *          a symbol to a shared library. On MSVC is `__declspec(dllexport)`
+     *          on GCC is `__attribute__ ((visibility ("default")))`.
      */
     #define XCORE_SYMBOL_EXPORT
 
     /**
-     *  @brief Define what attribute must be used to not export symbols from a shared
-     *         library.
+     * @brief Define what attribute must be used to not export symbols from a shared
+     *        library.
      *
-     *  @details Define what attribute must be used to instruct the linker to not export
-     *           any symbol from a shared library. In MSVC, all symbols are not exported
-     *           by default, so we don't need any attributes to prevent symbol export.
-     *           In GCC, all synbols are exported by default, so we use the following
-     *           attribute to prevent symbol export `__attribute__ ((visibility ("hidden")))`.
+     * @details Define what attribute must be used to instruct the linker to not export
+     *          any symbol from a shared library. In MSVC, all symbols are not exported
+     *          by default, so we don't need any attributes to prevent symbol export.
+     *          In GCC, all synbols are exported by default, so we use the following
+     *          attribute to prevent symbol export `__attribute__ ((visibility ("hidden")))`.
      */
     #define XCORE_SYMBOL_LOCAL
 
     /**
-     *  @brief Valid only within a function and returns the signature of the enclosing
-     *         function (as a string).
+     * @brief Valid only within a function and returns the signature of the enclosing
+     *        function (as a string).
      */
     #define XCORE_CURRENT_FUNCTION
 #elif defined(XCORE_COMPILER_MSVC)
@@ -160,9 +156,9 @@
 
 #if defined(DOXYGEN)
     /**
-     *  @brief Macro to import/export symbols from the public API.
-     *         The value is determined by the macros #XCORE_SYMBOL_IMPORT
-     *         and #XCORE_SYMBOL_EXPORT.
+     * @brief Macro to import/export symbols from the public API.
+     *        The value is determined by the macros #XCORE_SYMBOL_IMPORT
+     *        and #XCORE_SYMBOL_EXPORT.
      */
     #define XCORE_API
 #elif defined(XCORE_BUILD_STATIC_LIBRARY)
@@ -176,30 +172,30 @@
 
 
 /**
- *  @brief Stringify the identifier passed as argument.
+ * @brief Stringify the identifier passed as argument.
  *
- *  @details Turns an unquoted identifier into a "quoted" string.
+ * @details Turns an unquoted identifier into a "quoted" string.
  *
- *  @code{.c}
- *      #define PI 3.14
- *      XCORE_STRINGIFY_IDENTIFIER(PI) // After macro expansion, we will get this: "PI".
- *                                     // The only thing made was the quotation of the
- *                                     // identifier passed as argument.
- *  @endcode
+ * @code{.c}
+ *     #define PI 3.14
+ *     XCORE_STRINGIFY_IDENTIFIER(PI) // After macro expansion, we will get this: "PI".
+ *                                    // The only thing made was the quotation of the
+ *                                    // identifier passed as argument.
+ * @endcode
  */
 #define XCORE_STRINGIFY_IDENTIFIER(ARG) #ARG
 
 /**
- *  @brief Stringify the value of the macro passed as argument.
+ * @brief Stringify the value of the macro passed as argument.
  *
- *  @details Turns the value of the macro passed as argument into a "quoted" string.
+ * @details Turns the value of the macro passed as argument into a "quoted" string.
  *
- *  @code{.c}
- *      #define PI 3.14
- *      XCORE_STRINGIFY_MACRO(PI) // After macro expansion, we will get this: "3.14".
- *                                // The only thing made was the quotation of the value
- *                                // of the macro passed as argument.
- *  @endcode
+ * @code{.c}
+ *     #define PI 3.14
+ *     XCORE_STRINGIFY_MACRO(PI) // After macro expansion, we will get this: "3.14".
+ *                               // The only thing made was the quotation of the value
+ *                               // of the macro passed as argument.
+ * @endcode
  */
 #define XCORE_STRINGIFY_MACRO(ARG) XCORE_STRINGIFY_IDENTIFIER(ARG)
 
@@ -209,18 +205,18 @@
     #include <windows.h>
 
     /**
-     *  @brief A handle to manage a dynamic shared library.
+     * @brief A handle to manage a dynamic shared library.
      *
-     *  @details On MSVC this macro expands to #HMODULE and
-     *           on GCC expands to `void*`.
+     * @details On MSVC this macro expands to #HMODULE and
+     *          on GCC expands to `void*`.
      */
     typedef HMODULE XCORE_DLL_HANDLER;
 
     /**
-     *  @brief A pointer to a symbol inside a shared library.
+     * @brief A pointer to a symbol inside a shared library.
      *
-     *  @details On MSVC this macro expands to #FARPROC and
-     *           on GCC expands to `void*`.
+     * @details On MSVC this macro expands to #FARPROC and
+     *          on GCC expands to `void*`.
      */
     typedef FARPROC XCORE_DLL_SYMBOL_POINTER;
 #else
@@ -231,12 +227,12 @@
 
 
 /**
- *  @brief Represent the default STL implementation.
+ * @brief Represent the default STL implementation.
  */
 #define XCORE_STL   1
 
 /**
- *  @brief Represent the EASTL implementation.
+ * @brief Represent the EASTL implementation.
  */
 #define XCORE_EASTL 2
 
@@ -244,23 +240,23 @@
 
 #if defined(DOXYGEN)
     /**
-     *  @brief Calling convention.
+     * @brief Calling convention.
      *
-     *  @details On MSVC `__stdcall` and on GCC `__attribute__((stdcall))`
+     * @details On MSVC `__stdcall` and on GCC `__attribute__((stdcall))`
      */
     #define XCORE_STDCALL
 
     /**
-     *  @brief Calling convention.
+     * @brief Calling convention.
      *
-     *  @details On MSVC `__cdecl` and on GCC expand to nothing.
+     * @details On MSVC `__cdecl` and on GCC expand to nothing.
      */
     #define XCORE_CDECL
 
     /**
-     *  @brief Calling convention.
+     * @brief Calling convention.
      *
-     *  @details On MSVC `__fastcall` and on GCC `__attribute__((fastcall))`
+     * @details On MSVC `__fastcall` and on GCC `__attribute__((fastcall))`
      */
     #define XCORE_FASTCALL
 #elif defined(XCORE_COMPILER_MSVC)
@@ -277,14 +273,14 @@
 
 #if defined(__cplusplus)
     /**
-     *  @brief This macro should be used to indicate that the functions
-     *         declared after this macro should be treated with C linkage.
-     *         Therefore, C++ will not mangle the function names.
+     * @brief This macro should be used to indicate that the functions
+     *        declared after this macro should be treated with C linkage.
+     *        Therefore, C++ will not mangle the function names.
      */
     #define XCORE_EXTERN_C_BEGIN extern "C" {
 
     /**
-     *  @brief This macro should be used in conjunction with #XCORE_EXTERN_C_BEGIN.
+     * @brief This macro should be used in conjunction with #XCORE_EXTERN_C_BEGIN.
      */
     #define XCORE_EXTERN_C_END }
 #else
@@ -296,11 +292,11 @@
 
 #if defined(DOXYGEN)
     /**
-     *  @brief Force a function to be inlined.
+     * @brief Force a function to be inlined.
      *
-     *  @details As the name say, force a function to be inlined even if the compiler disagree
-     *           with you. On MSVC this macro expand to `__forceinline`. On GCC this macro expand
-     *           to `__attribute__((always_inline)) inline`.
+     * @details As the name say, force a function to be inlined even if the compiler disagree
+     *          with you. On MSVC this macro expand to `__forceinline`. On GCC this macro expand
+     *          to `__attribute__((always_inline)) inline`.
      */
     #define XCORE_FORCE_INLINE
 #elif defined(XCORE_COMPILER_MSVC)
@@ -313,12 +309,12 @@
 
 #if defined(DOXYGEN)
     /**
-     *  @brief Specifies the alignment requirement of a type or an object.
+     * @brief Specifies the alignment requirement of a type or an object.
      */
     #define XCORE_ALIGN(x)
 
     /**
-     *  @brief Returns the alignment, in bytes, of the specified type.
+     * @brief Returns the alignment, in bytes, of the specified type.
      */
     #define XCORE_ALIGNOF(x)
 #elif defined(XCORE_COMPILER_MSVC)
@@ -333,12 +329,12 @@
 
 #if defined(DOXYGEN)
     /**
-     *  @brief Identify that the target system is 32 bits.
+     * @brief Identify that the target system is 32 bits.
      */
     #define XCORE_SYSTEM_32BIT
 
     /**
-     *  @brief Identify that the target system is 64 bits.
+     * @brief Identify that the target system is 64 bits.
      */
     #define XCORE_SYSTEM_64BIT
 #elif defined(XCORE_COMPILER_MSVC)
@@ -358,22 +354,22 @@
 
 
 /**
-*  @brief Disable move and copy constructors and operator= overloadings.
-*
-*  @details With this method we can disable the copy/move constructors
-*           and operator= overloading. Thus, transforming our type into 
-*           a non-copyable and non-movable type.
-*
-*  @attention Only the copy constructor and the operator= overload are disabled (deleted)
-*             by this macro. However, according to the C++11 standard, when a copy constructor
-*             is provided (Even if is a deleted copy constructor), the move constructor and the 
-*             move operator= is not generated by the compiler. Thus, transforming our type 
-*             into a non-copyable and non-movable type. For more info about move constructors, 
-*             go to the <a href="https://en.cppreference.com/w/cpp/language/move_constructor" 
-*             target="_blank">C++ reference website</a>.
-*
-*  @param TypeName Name of the non copyable type (struct or class).
-*/
+ * @brief Disable move and copy constructors and operator= overloadings.
+ *
+ * @details With this method we can disable the copy/move constructors
+ *          and operator= overloading. Thus, transforming our type into 
+ *          a non-copyable and non-movable type.
+ *
+ * @attention Only the copy constructor and the operator= overload are disabled (deleted)
+ *            by this macro. However, according to the C++11 standard, when a copy constructor
+ *            is provided (Even if is a deleted copy constructor), the move constructor and the 
+ *            move operator= is not generated by the compiler. Thus, transforming our type 
+ *            into a non-copyable and non-movable type. For more info about move constructors, 
+ *            go to the <a href="https://en.cppreference.com/w/cpp/language/move_constructor" 
+ *            target="_blank">C++ reference website</a>.
+ *
+ * @param TypeName Name of the non copyable type (struct or class).
+ */
 #define XCORE_DISABLE_COPY_AND_MOVE(TypeName) \
     explicit TypeName(const TypeName& typeName) = delete; \
     TypeName & operator=(const TypeName & typeName) = delete

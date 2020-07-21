@@ -28,8 +28,8 @@
 
 namespace xcore
 {
-    namespace log
-    {
-        spdlog::level::level_enum convert_level(xcore::log::Level level);
-    }
+	namespace log
+	{
+		spdlog::level::level_enum convert_level(xcore::log::Level level);
+	}
 }

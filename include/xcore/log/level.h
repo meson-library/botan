@@ -23,25 +23,24 @@
 /**
  * @file
  *
- * @brief 
- *
+ * @brief
  */
 
 #pragma once
 
 namespace xcore
 {
-    namespace log
-    {
-        enum class Level
-        {
-            None, 
-            Fatal, 
-            Error, 
-            Warning, 
-            Info, 
-            Debug, 
-            Trace
-        };
-    }
+	namespace log
+	{
+		enum class Level
+		{
+			None,
+			Fatal,
+			Error,
+			Warning,
+			Info,
+			Debug,
+			Trace
+		};
+	}
 }

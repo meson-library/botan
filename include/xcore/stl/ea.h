@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Contains the Eletronic Arts STL implementation (EASTL).
- *
  */
 
 #pragma once
@@ -128,7 +127,7 @@
 
 namespace xcore
 {
-    namespace stl = eastl;
+	namespace stl = eastl;
 }
 
 void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line);

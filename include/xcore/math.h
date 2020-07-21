@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Contains a set of resources for mathematical manipulation.
- *
  */
 
 #pragma once
@@ -32,6 +31,6 @@
 #include <Eigen/Eigen>
 
 namespace xcore
-{ 
-    namespace math = Eigen;
+{
+	namespace math = Eigen;
 }

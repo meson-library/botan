@@ -23,30 +23,31 @@
 /**
  * @file
  *
- * @brief 
- *
+ * @brief
  */
 
 #pragma once
 
 #include "level.h"
 
+#include<string>
 #include <memory>
 
 namespace xcore
 {
-    namespace log
-    {
-        class Sink
-        {
-        public:
-            virtual void SetLevel(xcore::log::Level level) = 0;
-            virtual void Flush() = 0;
+	namespace log
+	{
+		class Sink
+		{
+		public:
+			virtual void SetLevel(xcore::log::Level level) = 0;
+			virtual void Flush() = 0;
 
-        protected:
-            std::shared_ptr<void> m_Sink;
+		protected:
+			std::string           m_Name;
+			std::shared_ptr<void> m_Sink;
 
-            friend class Logger;
-        };
-    }
+			friend class Logger;
+		};
+	}
 }

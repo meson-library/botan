@@ -24,7 +24,6 @@
  * @file
  *
  * @brief Contains an interface for loggable types.
- *
  */
 
 #pragma once
@@ -40,34 +39,35 @@
 
 namespace xcore
 {
-    namespace log
-    {
-        /**
-         * @class Loggable loggable.h <xcore/log/loggable.h>
-         *
-         * @brief An interface for loggable types.
-         */
-        class Loggable : public xcore::Disposable
-        {
-        public:
-            XCORE_DISABLE_COPY_AND_MOVE(Loggable);
+	namespace log
+	{
+		/**
+		 * @class Loggable loggable.h <xcore/log/loggable.h>
+		 *
+		 * @brief An interface for loggable types.
+		 */
+		class Loggable : public xcore::Disposable
+		{
+		public:
+			XCORE_DISABLE_COPY_AND_MOVE(Loggable);
 
-        public:
-            /**
-             * @brief Default destructor.
-             * 
-             */
-            Loggable() = default;
+		public:
+			/**
+			 * @brief Default destructor.
+			 *
+			 */
+			Loggable() = default;
 
-            /**
-             * @brief Default virtual destructor.
-             */
-            virtual ~Loggable() = default;
+			/**
+			 * @brief Default virtual destructor.
+			 */
+			virtual ~Loggable() = default;
 
-            virtual void SetLevel(xcore::log::Level level) = 0;
-            virtual void AddSink(const std::string& name, std::unique_ptr<xcore::log::Sink> sink) = 0;
-            virtual void RemoveSink(const std::string& name) = 0;
-            virtual void Log(xcore::log::Level level, const std::string& msg) = 0;
-        };
-    }
+		public:
+			virtual void SetLevel(xcore::log::Level level) = 0;
+			virtual void AddSink(std::unique_ptr<xcore::log::Sink> sink) = 0;
+			virtual void RemoveSink(const std::string& name) = 0;
+			virtual void Log(xcore::log::Level level, const std::string& msg) = 0;
+		};
+	}
 }
