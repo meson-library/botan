@@ -26,34 +26,34 @@
 
 int main()
 {
-    xcore::log::Level loggerLevel      = xcore::log::Level::Trace;
-    xcore::log::Level consoleSinkLevel = xcore::log::Level::Trace;
-    xcore::log::Level fileSinkLevel    = xcore::log::Level::Trace;
+    xcore::log::general::Level loggerLevel      = xcore::log::general::Level::Trace;
+    xcore::log::general::Level consoleSinkLevel = xcore::log::general::Level::Trace;
+    xcore::log::general::Level fileSinkLevel    = xcore::log::general::Level::Trace;
 
-    auto consoleSink = std::make_unique<xcore::log::ConsoleSink>();
+    auto consoleSink = std::make_unique<xcore::log::general::ConsoleSink>();
     consoleSink->SetLevel(consoleSinkLevel);
 
-    auto fileSink = std::make_unique<xcore::log::FileSink>("teste.txt");
+    auto fileSink = std::make_unique<xcore::log::general::FileSink>("teste.txt");
     fileSink->SetLevel(fileSinkLevel);
 
-    std::vector<std::unique_ptr<xcore::log::Sink>> sinks;
+    std::vector<std::unique_ptr<xcore::log::general::Sink>> sinks;
     sinks.push_back(std::move(consoleSink));
     sinks.push_back(std::move(fileSink));
 
-    auto logger = std::make_shared<xcore::log::Logger>("logger-01", std::move(sinks));
+    auto logger = std::make_shared<xcore::log::general::Logger>("logger-01", std::move(sinks));
     logger->SetLevel(loggerLevel);
 
-    /*auto consoleSink2 = std::make_unique<xcore::log::ConsoleSink>();
+    /*auto consoleSink2 = std::make_unique<xcore::log::general::ConsoleSink>();
     consoleSink2->SetLevel(consoleSinkLevel);
     logger->AddSink(std::move(consoleSink2));*/
 
-    logger->Log(xcore::log::Level::None,    "Log message 1.");
-    logger->Log(xcore::log::Level::Fatal,   "Log message 2.");
-    logger->Log(xcore::log::Level::Error,   "Log message 3.");
-    logger->Log(xcore::log::Level::Warning, "Log message 4.");
-    logger->Log(xcore::log::Level::Info,    "Log message 5.");
-    logger->Log(xcore::log::Level::Debug,   "Log message 6.");
-    logger->Log(xcore::log::Level::Trace,   "Log message 7.");
+    logger->Log(xcore::log::general::Level::None,    "Log message 1.");
+    logger->Log(xcore::log::general::Level::Fatal,   "Log message 2.");
+    logger->Log(xcore::log::general::Level::Error,   "Log message 3.");
+    logger->Log(xcore::log::general::Level::Warning, "Log message 4.");
+    logger->Log(xcore::log::general::Level::Info,    "Log message 5.");
+    logger->Log(xcore::log::general::Level::Debug,   "Log message 6.");
+    logger->Log(xcore::log::general::Level::Trace,   "Log message 7.");
 
     return 0;
 }

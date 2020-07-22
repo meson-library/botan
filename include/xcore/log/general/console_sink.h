@@ -28,19 +28,17 @@
 
 #pragma once
 
-namespace xcore
+#include "sink.h"
+#include "level.h"
+
+namespace xcore { namespace log { namespace general
 {
-	namespace log
-	{
-		enum class Level
-		{
-			None,
-			Fatal,
-			Error,
-			Warning,
-			Info,
-			Debug,
-			Trace
-		};
-	}
-}
+    class ConsoleSink : public xcore::log::general::Sink
+    {
+    public:
+        ConsoleSink();
+
+        virtual void SetLevel(xcore::log::general::Level level) override;
+        virtual void Flush() override;
+    };
+}}}

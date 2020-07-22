@@ -32,33 +32,33 @@
 #include "sink.h"
 #include "level.h"
 
-#include "../common/common.h"
+#include "../../common/common.h"
 
 #include <vector>
 #include <memory>
 
-namespace xcore
+namespace xcore { namespace log { namespace general
 {
-	namespace log
-	{
-		class Logger : public xcore::log::Loggable
-		{
-		public:
-			Logger(const std::string& name);
-			Logger(const std::string& name, std::vector<std::unique_ptr<xcore::log::Sink>> sinks);
+    class Logger : public xcore::log::general::Loggable
+    {
+        public:
+            Logger(const std::string& name);
+            Logger(const std::string& name, xcore::log::general::Level level);
+            Logger(const std::string& name, std::vector<std::unique_ptr<xcore::log::general::Sink>> sinks);
+            Logger(const std::string& name, xcore::log::general::Level level, std::vector<std::unique_ptr<xcore::log::general::Sink>> sinks);
 
-		public:
-			virtual void SetLevel(xcore::log::Level level) override;
-			virtual void AddSink(std::unique_ptr<xcore::log::Sink> sink) override;
-			virtual void RemoveSink(const std::string& name) override;
-			virtual void Log(xcore::log::Level level, const std::string& msg) override;
+        public:
+            virtual const std::string& GetName() override;
+            virtual xcore::log::general::Level GetLevel() override;
+            virtual void SetLevel(xcore::log::general::Level level) override;
+            virtual void AddSink(std::unique_ptr<xcore::log::general::Sink> sink) override;
+            virtual void RemoveSink(const std::string& name) override;
+            virtual void Log(xcore::log::general::Level level, const std::string& msg) override;
+                    
+            virtual void Dispose() override;
 
-			virtual void Dispose() override;
-
-		private:
-			struct Impl;
-			std::unique_ptr<Impl> m_Impl;
-		};
-	}
-}
-
+        private:
+            struct Impl;
+            std::unique_ptr<Impl> m_Impl;
+    };
+}}}

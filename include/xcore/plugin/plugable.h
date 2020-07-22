@@ -35,30 +35,27 @@
 #include "../common/semver.h"
 #include "../common/common.h"
 
-namespace xcore
+namespace xcore { namespace plugin
 {
-	namespace plugin
-	{
-		/**
-		 * @class Plugable plugable.h <xcore/plugin/plugable.h>
-		 *
-		 * @brief An interface to plugable libraries, so we can have a native plugin system.
-		 *
-		 */
-		class Plugable : public xcore::Disposable
-		{
-		public:
-			Plugable() {};
-			virtual ~Plugable() {};
+    /**
+     * @class Plugable plugable.h <xcore/plugin/plugable.h>
+     *
+     * @brief An interface to plugable libraries, so we can have a native plugin system.
+     *
+     */
+    class Plugable : public xcore::common::Disposable
+    {
+    public:
+        Plugable() {};
+        virtual ~Plugable() {};
 
-			virtual const xcore::stl::string GetPluginUID() = 0;
-			virtual const xcore::stl::string GetPluginGroupUID() = 0;
-			virtual const xcore::AssetInfo   GetPluginInfo() = 0;
-			virtual const xcore::Semver      GetPluginVersion() = 0;
-			virtual const xcore::Semver      GetPluginHostVersion() = 0;
-		};
-	}
-}
+        virtual const xcore::stl::string GetPluginUID() = 0;
+        virtual const xcore::stl::string GetPluginGroupUID() = 0;
+        virtual const xcore::common::AssetInfo   GetPluginInfo() = 0;
+        virtual const xcore::common::Semver      GetPluginVersion() = 0;
+        virtual const xcore::common::Semver      GetPluginHostVersion() = 0;
+    };
+}}
 
 
 

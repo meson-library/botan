@@ -32,19 +32,19 @@ const xcore::stl::string Plugin::GetPluginGroupUID()
     return "a7b048fe-179d-459b-86c3-28a1c644b931";
 }
 
-const xcore::AssetInfo Plugin::GetPluginInfo()
+const xcore::common::AssetInfo Plugin::GetPluginInfo()
 {
-    return xcore::AssetInfo("Plugin Demo", "XNerv", "GPL3", "A demo plugin.");
+    return xcore::common::AssetInfo("Plugin Demo", "XNerv", "GPL3", "A demo plugin.");
 }
 
-const xcore::Semver Plugin::GetPluginVersion()
+const xcore::common::Semver Plugin::GetPluginVersion()
 {
-    return xcore::Semver(1, 2, 3, "z");
+    return xcore::common::Semver(1, 2, 3, "z");
 }
 
-const xcore::Semver Plugin::GetPluginHostVersion()
+const xcore::common::Semver Plugin::GetPluginHostVersion()
 {
-    return xcore::Semver(1, 2, 3, "build.1");
+    return xcore::common::Semver(1, 2, 3, "build.1");
 }
 
 void Plugin::Dispose()

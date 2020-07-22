@@ -22,14 +22,45 @@
 
 #pragma once
 
-#include "xcore/log/level.h"
+#include "internal.h"
 
-#include <spdlog/spdlog.h>
-
-namespace xcore
+spdlog::level::level_enum xcore::log::general::convert_level(xcore::log::general::Level level)
 {
-	namespace log
+	spdlog::level::level_enum nativeLevel = spdlog::level::level_enum::off;
+
+	switch(level)
 	{
-		spdlog::level::level_enum convert_level(xcore::log::Level level);
+	case xcore::log::general::Level::None:
+		nativeLevel = spdlog::level::level_enum::off;
+		break;
+
+	case xcore::log::general::Level::Fatal:
+		nativeLevel = spdlog::level::level_enum::critical;
+		break;
+
+	case xcore::log::general::Level::Error:
+		nativeLevel = spdlog::level::level_enum::err;
+		break;
+
+	case xcore::log::general::Level::Warning:
+		nativeLevel = spdlog::level::level_enum::warn;
+		break;
+
+	case xcore::log::general::Level::Info:
+		nativeLevel = spdlog::level::level_enum::info;
+		break;
+
+	case xcore::log::general::Level::Debug:
+		nativeLevel = spdlog::level::level_enum::debug;
+		break;
+
+	case xcore::log::general::Level::Trace:
+		nativeLevel = spdlog::level::level_enum::trace;
+		break;
+
+	default:
+		break;
 	}
+
+	return nativeLevel;
 }

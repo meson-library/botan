@@ -31,9 +31,9 @@ int main()
 
     xcore::stl::string pluginUID = plugin->GetPluginUID();
     xcore::stl::string pluginGroupUID = plugin->GetPluginGroupUID();
-    xcore::Semver pluginVersion = plugin->GetPluginVersion();
-    xcore::Semver pluginHostVersion = plugin->GetPluginHostVersion();
-    xcore::AssetInfo pluginInfo = plugin->GetPluginInfo();
+    xcore::common::Semver pluginVersion = plugin->GetPluginVersion();
+    xcore::common::Semver pluginHostVersion = plugin->GetPluginHostVersion();
+    xcore::common::AssetInfo pluginInfo = plugin->GetPluginInfo();
     
     std::cout << std::endl;
     std::cout << " ------------------------------------------------------------" << std::endl;

@@ -31,9 +31,9 @@ public:
 
     const xcore::stl::string GetPluginUID();
     const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
+    const xcore::common::AssetInfo   GetPluginInfo();
+    const xcore::common::Semver      GetPluginVersion();
+    const xcore::common::Semver      GetPluginHostVersion();
 
     void Dispose();
 };

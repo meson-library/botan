@@ -30,26 +30,26 @@
 
 #include "../stl.h"
 
-namespace xcore
+namespace xcore { namespace common
 {
-	/**
-	 * @struct AssetInfo asset_info.h <xcore/asset_info.h>
-	 *
-	 * @brief Struct to hold basic asset info.
-	 */
-	struct AssetInfo
-	{
-		AssetInfo
-		(
-			xcore::stl::string name, xcore::stl::string author = "", xcore::stl::string license = "", xcore::stl::string description = ""
-		) :
-			Name(name), Author(author), License(license), Description(description) { };
+    /**
+     * @struct AssetInfo asset_info.h <xcore/asset_info.h>
+     *
+     * @brief Struct to hold basic asset info.
+     */
+    struct AssetInfo
+    {
+        AssetInfo
+        (
+            xcore::stl::string name, xcore::stl::string author = "", xcore::stl::string license = "", xcore::stl::string description = ""
+        ) :
+            Name(name), Author(author), License(license), Description(description) { };
 
-		xcore::stl::string Name;
-		xcore::stl::string Author;
-		xcore::stl::string License;
-		xcore::stl::string Description;
-	};
+        xcore::stl::string Name;
+        xcore::stl::string Author;
+        xcore::stl::string License;
+        xcore::stl::string Description;
+    };
 
-	typedef struct AssetInfo AssetInfo;
-}
+    typedef struct AssetInfo AssetInfo;
+}}

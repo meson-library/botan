@@ -31,17 +31,16 @@
 #include "sink.h"
 #include "level.h"
 
-namespace xcore
-{
-	namespace log
-	{
-		class ConsoleSink : public xcore::log::Sink
-		{
-		public:
-			ConsoleSink();
+#include <string>
 
-			virtual void SetLevel(xcore::log::Level level) override;
-			virtual void Flush() override;
-		};
-	}
-}
+namespace xcore { namespace log { namespace general
+{
+    class FileSink : public xcore::log::general::Sink
+    {
+    public:
+        FileSink(std::string path);
+
+        virtual void SetLevel(xcore::log::general::Level level) override;
+        virtual void Flush() override;
+    };
+}}}

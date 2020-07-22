@@ -23,31 +23,50 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains an interface for loggable types.
  */
 
 #pragma once
 
+#include "sink.h"
 #include "level.h"
 
-#include<string>
+#include "../../common/disposable.h"
+#include "../../common/common.h"
+
 #include <memory>
+#include <string>
 
-namespace xcore
+namespace xcore { namespace log { namespace general
 {
-	namespace log
-	{
-		class Sink
-		{
-		public:
-			virtual void SetLevel(xcore::log::Level level) = 0;
-			virtual void Flush() = 0;
+    /**
+     * @class Loggable loggable.h <xcore/log/loggable.h>
+     *
+     * @brief An interface for loggable types.
+     */
+    class Loggable : public xcore::common::Disposable
+    {
+    public:
+        XCORE_DISABLE_COPY_AND_MOVE(Loggable);
 
-		protected:
-			std::string           m_Name;
-			std::shared_ptr<void> m_Sink;
+    public:
+        /**
+         * @brief Default destructor.
+         *
+         */
+        Loggable() = default;
 
-			friend class Logger;
-		};
-	}
-}
+        /**
+         * @brief Default virtual destructor.
+         */
+        virtual ~Loggable() = default;
+
+    public:
+        virtual const std::string& GetName() = 0;
+        virtual xcore::log::general::Level GetLevel() = 0;
+        virtual void SetLevel(xcore::log::general::Level level) = 0;
+        virtual void AddSink(std::unique_ptr<xcore::log::general::Sink> sink) = 0;
+        virtual void RemoveSink(const std::string& name) = 0;
+        virtual void Log(xcore::log::general::Level level, const std::string& msg) = 0;
+    };
+}}}

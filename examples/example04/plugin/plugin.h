@@ -31,17 +31,17 @@
 class Plugin : public sdk::MyPlugin
 {
 public:
-    Plugin() { };
+	Plugin() { };
 
-    const xcore::stl::string GetPluginUID();
-    const xcore::stl::string GetPluginGroupUID();
-    const xcore::AssetInfo   GetPluginInfo();
-    const xcore::Semver      GetPluginVersion();
-    const xcore::Semver      GetPluginHostVersion();
+	const xcore::stl::string GetPluginUID();
+	const xcore::stl::string GetPluginGroupUID();
+	const xcore::common::AssetInfo   GetPluginInfo();
+	const xcore::common::Semver      GetPluginVersion();
+	const xcore::common::Semver      GetPluginHostVersion();
 
-    void Dispose();
+	void Dispose();
 
-    const void DisplayHelloWorldFromMyPlugin();
+	const void DisplayHelloWorldFromMyPlugin();
 };
 
 XCORE_EXPORT_PLUGIN(Plugin);

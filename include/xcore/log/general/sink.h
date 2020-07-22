@@ -28,22 +28,23 @@
 
 #pragma once
 
-#include "sink.h"
 #include "level.h"
 
-#include <string>
+#include<string>
+#include <memory>
 
-namespace xcore
+namespace xcore { namespace log { namespace general
 {
-	namespace log
-	{
-		class FileSink : public xcore::log::Sink
-		{
-		public:
-			FileSink(std::string path);
+    class Sink
+    {
+    public:
+        virtual void SetLevel(xcore::log::general::Level level) = 0;
+        virtual void Flush() = 0;
 
-			virtual void SetLevel(xcore::log::Level level) override;
-			virtual void Flush() override;
-		};
-	}
-}
+    protected:
+        std::string           m_Name;
+        std::shared_ptr<void> m_Sink;
+
+        friend class Logger;
+    };
+}}}

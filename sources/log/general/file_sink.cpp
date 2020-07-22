@@ -20,25 +20,25 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/log/console_sink.h"
+#include "xcore/log/general/file_sink.h"
 
 #include "internal.h"
 
 #include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/basic_file_sink.h>
 
-xcore::log::ConsoleSink::ConsoleSink()
+xcore::log::general::FileSink::FileSink(std::string filePath)
 {
-	m_Sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+	m_Sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(filePath, true);
 }
 
-inline void xcore::log::ConsoleSink::SetLevel(Level level)
+inline void xcore::log::general::FileSink::SetLevel(xcore::log::general::Level level)
 {
 	auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
 	logSink->set_level(convert_level(level));
 }
 
-inline void xcore::log::ConsoleSink::Flush()
+inline void xcore::log::general::FileSink::Flush()
 {
 	auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
 	logSink->flush();
