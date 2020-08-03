@@ -1,0 +1,12 @@
+[submodule "tools/toolset/win-utils"]
+	path = tools/toolset/win-utils
+	url = https://github.com/tools-library/win-utils.git
+[submodule "tools/toolset/win-meson"]
+	path = tools/toolset/win-meson
+	url = https://github.com/tools-library/win-meson.git
+[submodule "tools/toolset/win-msvc"]
+	path = tools/toolset/win-msvc
+	url = https://github.com/tools-library/win-msvc.git
+[submodule "tools/toolset/win-doxygen"]
+	path = tools/toolset/win-doxygen
+	url = https://github.com/tools-library/win-doxygen.git
