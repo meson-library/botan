@@ -5,8 +5,8 @@
 process_cmd()
 {
     local show_help_arg=false
-    local generate_ninja_proj_arg=false
-    local generate_vs2019_proj_arg=false
+    local generate_ninja_project_arg=false
+    local generate_vs2019_project_arg=false
     local total_args="$#"
 
     while [[ "$#" -gt 0 ]]; do
@@ -15,10 +15,10 @@ process_cmd()
                 show_help_arg=true 
             ;;
             --ninja)   
-                generate_ninja_proj_arg=true 
+                generate_ninja_project_arg=true 
             ;;
             --vs2019)  
-                generate_vs2019_proj_arg=true 
+                generate_vs2019_project_arg=true 
             ;;
             *) 
                 echo "An invalid parameter was provided: $1";
@@ -31,9 +31,9 @@ process_cmd()
     if [ $show_help_arg = true ] || [ $total_args -eq 0 ]
     then
         show_help
-    elif [ $generate_ninja_proj_arg = true ] || [ $generate_vs2019_proj_arg = true ]
+    elif [ $generate_ninja_project_arg = true ] || [ $generate_vs2019_project_arg = true ]
     then
-        main $generate_ninja_proj_arg $generate_vs2019_proj_arg
+        main $generate_ninja_project_arg $generate_vs2019_project_arg
     fi
 
     exit 0
@@ -43,8 +43,8 @@ process_cmd()
 
 main()
 {
-    local generate_ninja_proj_arg=$1
-    local generate_vs2019_proj_arg=$2
+    local generate_ninja_project_arg=$1
+    local generate_vs2019_project_arg=$2
 
     if [ $build_for_os = windows ]; then
         current_folder=`cygpath -w $current_folder`
@@ -54,20 +54,20 @@ main()
     local artifact_folder="artifact"
     local base_path="${current_folder}build/$build_for_os/$build_for_arch/$build_for_type"
     
-    if [ $generate_ninja_proj_arg = true ]
+    if [ $generate_ninja_project_arg = true ]
     then
-        generate_ninja_proj $projects_folder $artifact_folder $base_path
+        generate_ninja_project $projects_folder $artifact_folder $base_path
     fi
 
-    if [ $generate_vs2019_proj_arg = true ]
+    if [ $generate_vs2019_project_arg = true ]
     then
-        generate_vs2019_proj $projects_folder $artifact_folder $base_path
+        generate_vs2019_project $projects_folder $artifact_folder $base_path
     fi
 }
 
 
 
-generate_ninja_proj()
+generate_ninja_project()
 {
     local projects_folder=$1
     local artifact_folder=$2
@@ -84,7 +84,7 @@ generate_ninja_proj()
 
 
 
-generate_vs2019_proj()
+generate_vs2019_project()
 {
     local projects_folder=$1
     local artifact_folder=$2
