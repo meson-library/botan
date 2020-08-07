@@ -1,0 +1,4 @@
+#!/bin/bash
+
+project-clean
+project-build

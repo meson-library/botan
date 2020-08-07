@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ $build_for_os = windows ]; then
+    current_folder=`cygpath -w $current_folder`
+fi
+
+projects_folder="projects"
+artifact_folder="artifact"
+base_path="${current_folder}build/${build_for_os}/${build_for_arch}/${build_for_type}"
+
+ninja_project=${base_path}/${projects_folder}/ninja
+ninja_artifact=${base_path}/${artifact_folder}/ninja
+if [ ! -d "$ninja_project" ] 
+then
+    meson setup ${ninja_project} --buildtype ${build_for_type} --default-library static \
+        --backend ninja --prefix ${ninja_artifact} -Dbuild_examples=true -Dbuild_docs=false
+fi
+
+vs2019_project=${base_path}/${projects_folder}/vs2019
+vs2019_artifact=${base_path}/${artifact_folder}/vs2019
+if [ ! -d "$vs2019_project" ] 
+then
+    meson setup ${vs2019_project} --buildtype ${build_for_type}  --default-library static \
+        --backend vs2019  --prefix ${vs2019_artifact} -Dbuild_examples=true -Dbuild_docs=false
+fi

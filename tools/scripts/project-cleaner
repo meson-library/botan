@@ -1,0 +1,121 @@
+#!/bin/bash
+
+
+
+process_cmd()
+{
+    local total_args="$#"
+    local show_help_arg=false
+    local clean_ninja_proj_arg=false
+    local clean_vs2019_proj_arg=false
+    
+    while [[ "$#" -gt 0 ]]; do
+        case $1 in
+            -h|--help) 
+                show_help_arg=true 
+            ;;
+            --ninja)   
+                clean_ninja_proj_arg=true 
+            ;;
+            --vs2019)  
+                clean_vs2019_proj_arg=true 
+            ;;
+            *) 
+                echo "An invalid argument was provided: $1";
+                exit -1 
+            ;;
+        esac
+        shift
+    done
+
+    if [ $show_help_arg = true ] || [ $total_args -eq 0 ]
+    then
+        show_help
+    elif [ $clean_ninja_proj_arg = true ] || [ $clean_vs2019_proj_arg = true ]
+    then
+        main $clean_ninja_proj_arg $clean_vs2019_proj_arg
+    fi
+
+    exit 0
+}
+
+
+
+main()
+{
+    local clean_ninja_proj_arg=$1
+    local clean_vs2019_proj_arg=$2
+
+    if [ $build_for_os = windows ]; then
+        current_folder=`cygpath -w $current_folder`
+    fi
+    
+    local projects_folder="projects"
+    local artifact_folder="artifact"
+    local base_path="${current_folder}build/$build_for_os/$build_for_arch/$build_for_type"
+    
+    if [ $clean_ninja_proj_arg = true ]
+    then
+        clean_ninja_proj $base_path $projects_folder 
+    fi
+
+    if [ $clean_vs2019_proj_arg = true ]
+    then
+        clean_vs2019_proj $base_path $projects_folder
+    fi
+}
+
+
+
+clean_ninja_proj()
+{
+    local base_path=$1
+    local projects_folder=$2
+   
+    local ninja_project_folder=$base_path/$projects_folder/ninja
+    if [ -d "$ninja_project_folder" ]
+    then
+        meson compile -C $ninja_project_folder --clean
+    fi
+}
+
+
+
+clean_vs2019_proj()
+{
+    local base_path=$1
+    local projects_folder=$2
+ 
+    local vs2019_project_folder=$base_path/$projects_folder/vs2019
+    if [ -d "$vs2019_project_folder" ] 
+    then
+        meson compile -C $vs2019_project_folder --clean
+    fi
+}
+
+
+
+show_help() 
+{
+    script_name=$(basename "$0")
+    echo "#######################################################################"
+    echo "#                                                                     #"
+    echo "#                        Project cleaner                              #"
+    echo "#                                                                     #"
+    echo "# USAGE:                                                              #"
+    echo "#     $script_name {-h|--help | [--ninja] [--vs2019]}                  #"
+    echo "#                                                                     #"
+    echo "# ARGUMENTS:                                                          #"
+    echo "#     -h|--help    Print this help and exit.                          #"
+    echo "#                                                                     #"
+    echo "#     --ninja    Clean Ninja projects.                                #"
+    echo "#                                                                     #"
+    echo "#     --vs2019    Clean Visual Studio 2019 projects.                  #"
+    echo "#                                                                     #"
+    echo "#######################################################################"
+}
+
+
+
+command_line_args=("$@")
+process_cmd ${command_line_args[@]}
