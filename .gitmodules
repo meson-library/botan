@@ -10,3 +10,6 @@
 [submodule "tools/toolset/win-doxygen"]
 	path = tools/toolset/win-doxygen
 	url = https://github.com/tools-library/win-doxygen.git
+[submodule "tools/toolset/win-git"]
+	path = tools/toolset/win-git
+	url = https://github.com/tools-library/win-git.git
