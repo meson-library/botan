@@ -4,13 +4,14 @@
 
 process_cmd()
 {
-    local total_args="$#"
+    local total_args=$#
     local show_help_arg=false
     local remove_artifacts_arg=false
     local clean_ninja_project_arg=false
     local clean_vs2019_project_arg=false
     
-    while [[ "$#" -gt 0 ]]; do
+    while [[ $# > 0 ]] 
+    do
         case $1 in
             -h|--help) 
                 show_help_arg=true 
@@ -28,10 +29,10 @@ process_cmd()
         shift
     done
 
-    if [ $show_help_arg = true ] || [ $total_args -eq 0 ]
+    if [[ $show_help_arg == true ]] || [[ $total_args == 0 ]]
     then
         show_help
-    elif [ $clean_ninja_project_arg = true ] || [ $clean_vs2019_project_arg = true ]
+    elif [[ $clean_ninja_project_arg == true ]] || [[ $clean_vs2019_project_arg == true ]]
     then
         main $clean_ninja_project_arg $clean_vs2019_project_arg $remove_artifacts_arg
     fi
@@ -47,22 +48,23 @@ main()
     local clean_vs2019_project_arg=$2
     local remove_artifacts_arg=$3
     
-    if [ $build_for_os = windows ]; then
-        current_folder=`cygpath -w $current_folder`
+    if [[ $build_for_os == windows ]] 
+    then
+        current_folder=`cygpath -w "$current_folder"`
     fi
     
     local base_path="${current_folder}build/$build_for_os/$build_for_arch/$build_for_type"
     local projects_folder="projects"
     local artifact_folder="artifact"
     
-    if [ $clean_ninja_project_arg = true ]
+    if [[ $clean_ninja_project_arg == true ]]
     then
-        clean_ninja_project $base_path $projects_folder $artifact_folder $remove_artifacts_arg
+        clean_ninja_project "$base_path" $projects_folder $artifact_folder $remove_artifacts_arg
     fi
 
-    if [ $clean_vs2019_project_arg = true ]
+    if [[ $clean_vs2019_project_arg == true ]]
     then
-        clean_vs2019_project $base_path $projects_folder $artifact_folder $remove_artifacts_arg
+        clean_vs2019_project "$base_path" $projects_folder $artifact_folder $remove_artifacts_arg
     fi
 }
 
@@ -70,18 +72,18 @@ main()
 
 clean_ninja_project()
 {
-    local base_path=$1
+    local base_path="$1"
     local projects_folder=$2
     local artifact_folder=$3
     local remove_artifacts_arg=$4
    
-    local ninja_project_folder=$base_path/$projects_folder/ninja
-    local ninja_artifact_folder=$base_path/$artifact_folder/ninja
-    if [ -d "$ninja_project_folder" ]
+    local ninja_project_folder="$base_path/$projects_folder/ninja"
+    local ninja_artifact_folder="$base_path/$artifact_folder/ninja"
+    if [[ -d $ninja_project_folder ]]
     then
-        meson compile -C $ninja_project_folder --clean
+        meson compile -C "$ninja_project_folder" --clean
         
-        if [ -d "$ninja_artifact_folder" ] && [ $remove_artifacts_arg = true ]
+        if [[ -d $ninja_artifact_folder ]] && [[ $remove_artifacts_arg == true ]]
         then
             rm -rf "$ninja_artifact_folder" 
         fi
@@ -92,18 +94,18 @@ clean_ninja_project()
 
 clean_vs2019_project()
 {
-    local base_path=$1
+    local base_path="$1"
     local projects_folder=$2
     local artifact_folder=$3
     local remove_artifacts_arg=$4
  
-    local vs2019_project_folder=$base_path/$projects_folder/vs2019
-    local vs2019_artifact_folder=$base_path/$artifact_folder/vs2019
-    if [ -d "$vs2019_project_folder" ] 
+    local vs2019_project_folder="$base_path/$projects_folder/vs2019"
+    local vs2019_artifact_folder="$base_path/$artifact_folder/vs2019"
+    if [[ -d $vs2019_project_folder ]] 
     then
-        meson compile -C $vs2019_project_folder --clean
+        meson compile -C "$vs2019_project_folder" --clean
 
-        if [ -d "$vs2019_artifact_folder" ] && [ $remove_artifacts_arg = true ]
+        if [[ -d $vs2019_artifact_folder ]] && [[ $remove_artifacts_arg == true ]]
         then
             rm -rf "$vs2019_artifact_folder" 
         fi

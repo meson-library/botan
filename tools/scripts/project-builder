@@ -4,12 +4,13 @@
 
 process_cmd()
 {
+    local total_args=$#
     local show_help_arg=false
     local build_ninja_project_arg=false
     local build_vs2019_project_arg=false
-    local total_args="$#"
 
-    while [[ "$#" -gt 0 ]]; do
+    while [[ $# > 0 ]] 
+    do
         case $1 in
             -h|--help) 
                 show_help_arg=true 
@@ -24,10 +25,10 @@ process_cmd()
         shift
     done
 
-    if [ $show_help_arg = true ] || [ $total_args -eq 0 ]
+    if [[ $show_help_arg == true ]] || [[ $total_args == 0 ]]
     then
         show_help
-    elif [ $build_ninja_project_arg = true ] || [ $build_vs2019_project_arg = true ]
+    elif [[ $build_ninja_project_arg == true ]] || [[ $build_vs2019_project_arg == true ]]
     then
         main $build_ninja_project_arg $build_vs2019_project_arg
     fi
@@ -42,21 +43,22 @@ main()
     local build_ninja_project_arg=$1
     local build_vs2019_project_arg=$2
 
-    if [ $build_for_os = windows ]; then
-        current_folder=`cygpath -w $current_folder`
+    if [[ $build_for_os == windows ]] 
+    then
+        current_folder=`cygpath -w "$current_folder"`
     fi
     
     local base_path="${current_folder}build/$build_for_os/$build_for_arch/$build_for_type"
-    local projects_folder="projects"
+    local projects_folder=projects
     
-    if [ $build_ninja_project_arg = true ]
+    if [[ $build_ninja_project_arg == true ]]
     then
-        build_ninja_project $base_path $projects_folder 
+        build_ninja_project "$base_path" $projects_folder 
     fi
 
-    if [ $build_vs2019_project_arg = true ]
+    if [[ $build_vs2019_project_arg == true ]]
     then
-        build_vs2019_project $base_path $projects_folder 
+        build_vs2019_project "$base_path" $projects_folder 
     fi
 }
 
@@ -64,14 +66,14 @@ main()
 
 build_ninja_project()
 {
-    local base_path=$1
+    local base_path="$1"
     local projects_folder=$2
 
-    ninja_project_folder=$base_path/$projects_folder/ninja
-    if [ -d "$ninja_project_folder" ] 
+    ninja_project_folder="$base_path/$projects_folder/ninja"
+    if [[ -d $ninja_project_folder ]] 
     then
-        meson compile -C $ninja_project_folder 
-        meson install --only-changed -C $ninja_project_folder 
+        meson compile -C "$ninja_project_folder" 
+        meson install --only-changed -C "$ninja_project_folder" 
     fi
 }
 
@@ -79,14 +81,14 @@ build_ninja_project()
 
 build_vs2019_project()
 {
-    local base_path=$1
+    local base_path="$1"
     local projects_folder=$2
 
-    vs2019_project_folder=$base_path/$projects_folder/vs2019
-    if [ -d "$vs2019_project_folder" ] 
+    vs2019_project_folder="$base_path/$projects_folder/vs2019"
+    if [[ -d $vs2019_project_folder ]] 
     then
-        meson compile -C $vs2019_project_folder
-        meson install --only-changed -C $vs2019_project_folder 
+        meson compile -C "$vs2019_project_folder"
+        meson install --only-changed -C "$vs2019_project_folder" 
     fi
 }
 
