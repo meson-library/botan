@@ -48,14 +48,24 @@ EXIT /B 0
 
 :MAIN
     ECHO.
-    ECHO PREPARING THE ENVIRONMENT BEFORE STARTING SHELL.
+    ECHO.PREPARING THE ENVIRONMENT BEFORE STARTING SHELL.
     ECHO.
     CALL :LOAD_TOOLS
-
+    
     ECHO.
-    ECHO STARTING THE SHELL...
+    ECHO.ENVIRONMENT READY FOR USE. STARTING SHELL...
+    ECHO.
+
+    ECHO.Some useful commands available in this shell:
+    ECHO.* project-generator - Command used to generate projects (ninja and(or) vs2019).
+    ECHO.* project-builder   - Command used to build projects.
+    ECHO.* project-cleaner   - Command used to clean projects.
+    ECHO.* project-rebuilder - Command used to rebuild projects.
+    ECHO.
+    ECHO.Important: You can start this script with '--help' to see more startup options.
+
     bash.exe --minimal-search-path
-    ECHO ENDING SHELL...
+    ECHO.ENDING SHELL...
     ECHO.
 EXIT /B 0
 
