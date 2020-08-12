@@ -23,22 +23,44 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains a sink implementation for general use wich de destination is a 
+ *     console.
  */
 
 #pragma once
 
-#include "sink.h"
+#include "sinkable.h"
 #include "level.h"
+
+#include <string>
 
 namespace xcore { namespace log { namespace general
 {
-    class ConsoleSink : public xcore::log::general::Sink
+    /**
+     * @class ConsoleSink console_sink.h <xcore/log/general/console_sink.h>
+     *
+     * @brief A sink implementation for general use wich the destination is a 
+     *     console.
+     */
+    class ConsoleSink : public xcore::log::general::Sinkable
     {
     public:
-        ConsoleSink();
-
+        /**
+         * @brief Construct a new sink object wich the destination is a console.
+         * 
+         * @param[in] name A unique name for the sink that will be built.
+         */
+        ConsoleSink(const std::string& name);
+    
+    public:
+        virtual const std::string& GetName() override;
+        virtual xcore::log::general::Level GetLevel() override;
         virtual void SetLevel(xcore::log::general::Level level) override;
+        virtual std::shared_ptr<void> GetData() override;
         virtual void Flush() override;
+    
+    private:
+        struct Impl;
+        std::unique_ptr<Impl> m_Impl;
     };
 }}}

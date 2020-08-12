@@ -23,7 +23,7 @@ extra_files = ['..'/include_dir_proj/'xcore.h',
 
                '..'/include_dir_proj/'log.h',
                '..'/include_dir_proj/'log'/'general'/'level.h',
-               '..'/include_dir_proj/'log'/'general'/'sink.h',
+               '..'/include_dir_proj/'log'/'general'/'sinkable.h',
                '..'/include_dir_proj/'log'/'general'/'loggable.h',
                '..'/include_dir_proj/'log'/'general'/'logger.h',
                '..'/include_dir_proj/'log'/'general'/'console_sink.h',

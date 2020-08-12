@@ -23,24 +23,48 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains a sink implementation for general use wich the destination is a 
+ *     file.
  */
 
 #pragma once
 
-#include "sink.h"
+#include "sinkable.h"
 #include "level.h"
 
 #include <string>
 
 namespace xcore { namespace log { namespace general
 {
-    class FileSink : public xcore::log::general::Sink
+     /**
+     * @class FileSink file_sink.h <xcore/log/general/file_sink.h>
+     *
+     * @brief A sink implementation for general use wich the destination is a 
+     *     file.
+     */
+    class FileSink : public xcore::log::general::Sinkable
     {
     public:
-        FileSink(std::string path);
+        /**
+         * @brief Construct a new sink object which the destination is a file. 
+         * 
+         * @param[in] name A unique name for the sink that will be built.
+         * 
+         * @param[in] path The file path to which this sink will write the logs. 
+         * 
+         * @param[in] truncate Indicates whether the log file will be truncated.
+         */
+        FileSink(const std::string& name, const std::string& path, bool truncate=false);
 
+    public:
+        virtual const std::string& GetName() override;
+        virtual xcore::log::general::Level GetLevel() override;
         virtual void SetLevel(xcore::log::general::Level level) override;
+        virtual std::shared_ptr<void> GetData() override;
         virtual void Flush() override;
+        
+    private:
+        struct Impl;
+        std::unique_ptr<Impl> m_Impl;
     };
 }}}

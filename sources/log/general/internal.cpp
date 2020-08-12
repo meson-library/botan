@@ -64,3 +64,44 @@ spdlog::level::level_enum xcore::log::general::convert_level(xcore::log::general
 
 	return nativeLevel;
 }
+
+xcore::log::general::Level xcore::log::general::convert_level(spdlog::level::level_enum nativeLevel)
+{
+	xcore::log::general::Level level = xcore::log::general::Level::None;
+
+	switch(nativeLevel)
+	{
+	case spdlog::level::level_enum::off:
+		level = xcore::log::general::Level::None;
+		break;
+
+	case spdlog::level::level_enum::critical:
+		level = xcore::log::general::Level::Fatal;
+		break;
+
+	case spdlog::level::level_enum::err:
+		level = xcore::log::general::Level::Error;
+		break;
+
+	case spdlog::level::level_enum::warn:
+		level = xcore::log::general::Level::Warning;
+		break;
+
+	case spdlog::level::level_enum::info:
+		level = xcore::log::general::Level::Info;
+		break;
+
+	case spdlog::level::level_enum::debug:
+		level = xcore::log::general::Level::Debug;
+		break;
+
+	case spdlog::level::level_enum::trace:
+		level = xcore::log::general::Level::Trace;
+		break;
+
+	default:
+		break;
+	}
+
+	return level;
+}

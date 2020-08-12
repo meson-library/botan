@@ -23,28 +23,67 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains an interface for sinkable types.
  */
 
 #pragma once
 
 #include "level.h"
 
+#include "../../common/common.h"
+
 #include<string>
 #include <memory>
 
 namespace xcore { namespace log { namespace general
 {
-    class Sink
+    /**
+     * @class Sinkable sinkable.h <xcore/log/general/sinkable.h>
+     *
+     * @brief An interface for sinkable types.
+     */
+    class Sinkable
     {
     public:
+        XCORE_DISABLE_COPY_AND_MOVE(Sinkable);
+
+    public:
+        Sinkable() = default;
+        virtual ~Sinkable() = default;
+
+    public:
+        /**
+         * @brief Get the name of this sinkable object.
+         * 
+         * @return const std::string& 
+         */
+        virtual const std::string& GetName() = 0;
+
+        /**
+         * @brief Get the severity level of this sinkable object.
+         * 
+         * @return xcore::log::general::Level 
+         */
+        virtual xcore::log::general::Level GetLevel() = 0;
+
+        /**
+         * @brief Set the maximum severity level that this sink can 
+         *     respond to.
+         * 
+         * @param[in] level The Level to be set.
+         */
         virtual void SetLevel(xcore::log::general::Level level) = 0;
+
+        /**
+         * @brief Get custom data of this object.
+         * 
+         * @return std::shared_ptr<void> 
+         */
+        virtual std::shared_ptr<void> GetData() = 0;
+
+        /**
+         * @brief Flush the buffered log records to the target. 
+         */
         virtual void Flush() = 0;
-
-    protected:
-        std::string           m_Name;
-        std::shared_ptr<void> m_Sink;
-
-        friend class Logger;
     };
 }}}

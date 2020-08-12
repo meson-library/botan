@@ -32,5 +32,5 @@
 #include "log/general/loggable.h"
 #include "log/general/console_sink.h"
 #include "log/general/file_sink.h"
-#include "log/general/sink.h"
+#include "log/general/sinkable.h"
 #include "log/general/level.h"

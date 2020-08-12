@@ -22,23 +22,21 @@
 
 #include "xcore/log/general/logger.h"
 
-#include "internal.h"
-
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/dist_sink.h>
 
-#include <unordered_map>
+#include <algorithm>
+
+#include "internal.h"
 
 
 
 struct xcore::log::general::Logger::Impl
 {
-	std::string Name;
-	xcore::log::general::Level Level;
-	/*std::unordered_map<std::string, std::shared_ptr<xcore::log::general::Sink>> Sinks;*/
+	std::vector<std::shared_ptr<xcore::log::general::Sinkable>> Sinks;
+	std::shared_ptr<spdlog::sinks::dist_sink_mt> SinkRoot;
 
 	std::shared_ptr<spdlog::logger> Logger;
-	std::shared_ptr<spdlog::sinks::dist_sink_mt> SinkRoot;
 };
 
 
@@ -55,52 +53,60 @@ xcore::log::general::Logger::Logger(const std::string& name, xcore::log::general
 	/* Do Nothing! */
 }
 
-xcore::log::general::Logger::Logger(const std::string& name, std::vector<std::unique_ptr<xcore::log::general::Sink>> sinks) :
+xcore::log::general::Logger::Logger(const std::string& name, std::vector<std::shared_ptr<xcore::log::general::Sinkable>> sinks) :
 	xcore::log::general::Logger::Logger(name, xcore::log::general::Level::Trace, std::move(sinks))
 {
 	/* Do Nothing! */
 }
 
-xcore::log::general::Logger::Logger(const std::string& name, xcore::log::general::Level level, std::vector<std::unique_ptr<xcore::log::general::Sink>> sinks) :
-	m_Impl {std::make_unique<Impl>()}
+xcore::log::general::Logger::Logger(const std::string& name, xcore::log::general::Level level, std::vector<std::shared_ptr<xcore::log::general::Sinkable>> sinks) :
+	m_Impl { std::make_unique<Impl>() }
 {
-	m_Impl->Name = name;
-
 	m_Impl->SinkRoot = std::make_shared<spdlog::sinks::dist_sink_mt>();
-	for(auto& sink : sinks)
+
+	m_Impl->Sinks = sinks;
+	for(auto& sink : m_Impl->Sinks)
 	{
-		m_Impl->SinkRoot->add_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink->m_Sink));
-		/*m_Impl->Sinks.insert({sink->m_Name, std::move(sink)});*/
+		m_Impl->SinkRoot->add_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink->GetData()));
 	}
 
-	m_Impl->Logger = std::make_shared<spdlog::logger>(m_Impl->Name, m_Impl->SinkRoot);
+	m_Impl->Logger = std::make_shared<spdlog::logger>(name, m_Impl->SinkRoot);
+	SetLevel(level);
 }
 
 const std::string& xcore::log::general::Logger::GetName()
 {
-	return m_Impl->Name;
+	return m_Impl->Logger->name();
 }
 
 xcore::log::general::Level xcore::log::general::Logger::GetLevel()
 {
-	return m_Impl->Level;
+	return convert_level(m_Impl->Logger->level());
 }
 
 void xcore::log::general::Logger::SetLevel(xcore::log::general::Level level)
 {
-	m_Impl->Level = level;
 	m_Impl->Logger->set_level(convert_level(level));
 }
 
-void xcore::log::general::Logger::AddSink(std::unique_ptr<xcore::log::general::Sink> sink)
+void xcore::log::general::Logger::AddSink(std::shared_ptr<xcore::log::general::Sinkable> sink)
 {
-	/*m_Impl->Sinks.push_back(std::move(sink));*/
-	m_Impl->SinkRoot->add_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink->m_Sink));
+	auto iterator = std::find_if(m_Impl->Sinks.begin(), m_Impl->Sinks.end(), [&] (const auto& item) { return item->GetName() == sink->GetName(); });
+	if(iterator == m_Impl->Sinks.end())
+	{
+		m_Impl->SinkRoot->add_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink->GetData()));
+		m_Impl->Sinks.push_back(sink);
+	}
 }
 
 void xcore::log::general::Logger::RemoveSink(const std::string& name)
 {
-
+	auto iterator = std::find_if(m_Impl->Sinks.begin(), m_Impl->Sinks.end(), [&] (const auto& item) { return item->GetName() == name; });
+	if(iterator != m_Impl->Sinks.end())
+	{
+		m_Impl->SinkRoot->remove_sink(std::static_pointer_cast<spdlog::sinks::sink>((*iterator)->GetData()));
+		m_Impl->Sinks.erase(iterator);
+	}
 }
 
 void xcore::log::general::Logger::Log(xcore::log::general::Level level, const std::string& msg)
@@ -110,5 +116,5 @@ void xcore::log::general::Logger::Log(xcore::log::general::Level level, const st
 
 void xcore::log::general::Logger::Dispose()
 {
-
+	/* Do Nothing! */
 }

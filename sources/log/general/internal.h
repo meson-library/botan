@@ -29,4 +29,5 @@
 namespace xcore { namespace log { namespace general
 {
 	spdlog::level::level_enum convert_level(xcore::log::general::Level level);
+	xcore::log::general::Level convert_level(spdlog::level::level_enum nativeLevel);
 }}}

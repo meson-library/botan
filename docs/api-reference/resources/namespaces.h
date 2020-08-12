@@ -22,11 +22,18 @@
 
 #pragma once
 
+/*
+    The purpose of this file is just to document our namespaces. Should not be 
+    included in any place.
+*/
+#error "For documentation only."
+
+
+
 /**
  * @namespace xcore
  * 
- * @brief The root namespace for te xcore library.
- * 
+ * @brief The root namespace for te xcore library. 
  */
 namespace xcore
 {
@@ -34,7 +41,6 @@ namespace xcore
      * @namespace xcore::dll
      * 
      * @brief Contains a set of resources for shared library manipulations.
-     * 
      */
     namespace dll
     {
@@ -55,7 +61,6 @@ namespace xcore
      *          https://github.com/meson-library/filesystem. The namespace `xcore::fs` is an alias to the original library <br>
      *          namespace that is `ghc::filesystem`. Basicaly the original library consist of a C++11 cross-platform <br>
      *          implementation of the standard `std::filesystem` (Now already included in the C++17 standard).
-     * 
      */
     namespace fs
     {
@@ -74,7 +79,6 @@ namespace xcore
      *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
      *          https://github.com/meson-library/eigen. The namespace `xcore::math` is an alias to the original library <br>
      *          namespace that is `Eigen`.
-     * 
      */
     namespace math
     {
@@ -94,7 +98,6 @@ namespace xcore
      *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
      *          https://github.com/meson-library/eastl. The namespace `xcore::math` is an alias to the original library <br>
      *          namespace that is `eastl`.
-     * 
      */
     namespace stl
     {
@@ -107,17 +110,20 @@ namespace xcore
     * @namespace xcore::log
     * 
     * @brief Contains a set of resources for work with logs.
-    * 
-    * @details This is the start point for log manipulations. <br>
-    *          <br>
-    *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-    *          https://github.com/meson-library/spdlog. The namespace `xcore::log` is an alias to the original library <br>
-    *          namespace that is `spdlog`.
-    * 
     */
     namespace log
     {
+        /**
+        * @namespace xcore::log::general
+        * 
+        * @brief  Contains a logger implementation for general use.
+        * 
+        * @details This is the start point for log manipulations.
+        */
+        namespace general
+        {
 
+        }
     }
 
 
@@ -128,7 +134,6 @@ namespace xcore
     * @brief Contains a set of resources for work with plugins.
     * 
     * @details This is the start point for plugin manipulations.
-    * 
     */
     namespace plugin
     {

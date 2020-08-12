@@ -41,7 +41,6 @@ namespace xcore { namespace plugin
      * @class Plugable plugable.h <xcore/plugin/plugable.h>
      *
      * @brief An interface to plugable libraries, so we can have a native plugin system.
-     *
      */
     class Plugable : public xcore::common::Disposable
     {

@@ -23,16 +23,21 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains an enumeration that represent log severity levels.
  */
 
 #pragma once
 
 namespace xcore { namespace log { namespace general
 {
+    /**
+     * @enum Level level.h <xcore/log/general/level.h>
+     * 
+     * @brief A representation for log severity levels.
+     */
     enum class Level
     {
-        None,
+        None, 
         Fatal,
         Error,
         Warning,

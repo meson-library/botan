@@ -22,24 +22,52 @@
 
 #include "xcore/log/general/file_sink.h"
 
-#include "internal.h"
-
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
-xcore::log::general::FileSink::FileSink(std::string filePath)
+#include "internal.h"
+
+
+
+struct xcore::log::general::FileSink::Impl
 {
-	m_Sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(filePath, true);
+	std::string Name;
+	std::shared_ptr<void> Data;
+};
+
+
+
+xcore::log::general::FileSink::FileSink(const std::string& name, const std::string& path, bool truncate) :
+	m_Impl { std::make_unique<Impl>() }
+{
+	m_Impl->Name = name;
+	m_Impl->Data = std::make_shared<spdlog::sinks::basic_file_sink_mt>(path, truncate);
 }
 
-inline void xcore::log::general::FileSink::SetLevel(xcore::log::general::Level level)
+const std::string& xcore::log::general::FileSink::GetName()
 {
-	auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
-	logSink->set_level(convert_level(level));
+	return m_Impl->Name;
 }
 
-inline void xcore::log::general::FileSink::Flush()
+xcore::log::general::Level xcore::log::general::FileSink::GetLevel()
+{	
+	auto sink = std::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_Impl->Data);
+	return convert_level(sink->level());
+}
+
+void xcore::log::general::FileSink::SetLevel(xcore::log::general::Level level)
 {
-	auto logSink = std::static_pointer_cast<spdlog::sinks::sink>(m_Sink);
-	logSink->flush();
+	auto sink = std::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_Impl->Data);
+	sink->set_level(convert_level(level));
+}
+
+std::shared_ptr<void> xcore::log::general::FileSink::GetData()
+{
+	return m_Impl->Data;
+}
+
+void xcore::log::general::FileSink::Flush()
+{
+	auto sink = std::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_Impl->Data);
+	sink->flush();
 }
