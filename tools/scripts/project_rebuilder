@@ -1,0 +1,4 @@
+#!/bin/bash
+
+project_cleaner "$@"
+project_builder "$@"

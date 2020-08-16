@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 process_cmd()
 {
     local total_args=$#
@@ -37,7 +35,6 @@ process_cmd()
 }
 
 
-
 main()
 {
     local build_ninja_project_arg=$1
@@ -63,7 +60,6 @@ main()
 }
 
 
-
 build_ninja_project()
 {
     local base_path="$1"
@@ -78,7 +74,6 @@ build_ninja_project()
 }
 
 
-
 build_vs2019_project()
 {
     local base_path="$1"
@@ -91,7 +86,6 @@ build_vs2019_project()
         meson install --only-changed -C "$vs2019_project_folder" 
     fi
 }
-
 
 
 show_help() 
@@ -113,7 +107,6 @@ show_help()
     echo "#                                                                     #"
     echo "#######################################################################"
 }
-
 
 
 command_line_args=("$@")

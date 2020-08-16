@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 process_cmd()
 {
     local total_args=$#
@@ -36,7 +34,6 @@ process_cmd()
 }
 
 
-
 main()
 {
     local generate_ninja_project_arg=$1
@@ -63,7 +60,6 @@ main()
 }
 
 
-
 generate_ninja_project()
 {
     local base_path="$1"
@@ -80,7 +76,6 @@ generate_ninja_project()
 }
 
 
-
 generate_vs2019_project()
 {
     local base_path="$1"
@@ -95,7 +90,6 @@ generate_vs2019_project()
             --backend vs2019  --prefix "$vs2019_artifact_folder" -Dbuild_examples=true -Dbuild_docs=true
     fi
 }
-
 
 
 show_help() 
@@ -117,7 +111,6 @@ show_help()
     echo "#                                                                     #"
     echo "#######################################################################"
 }
-
 
 
 command_line_args=("$@")

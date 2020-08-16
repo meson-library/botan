@@ -1,9 +1,8 @@
 #
 # Find the tools tha will be used to generate documentation.
 #
-doxygen = find_program('wrapper-doxygen', required : true)
+doxygen = find_program('wrapper_doxygen', required : true)
 dot = find_program('dot', required : true) 
-
 
 
 #

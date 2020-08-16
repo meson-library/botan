@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 process_cmd()
 {
     local show_help_arg=false
@@ -37,7 +35,6 @@ process_cmd()
 }
 
 
-
 main()
 {
     local workfolder_arg="$1"
@@ -53,7 +50,6 @@ main()
         doxygen "$config_file_arg"
     popd
 }
-
 
 
 show_help() 
@@ -77,7 +73,6 @@ show_help()
     echo "#                                                                     #"
     echo "#######################################################################"
 }
-
 
 
 command_line_args=("$@")
