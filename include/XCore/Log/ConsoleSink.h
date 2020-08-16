@@ -29,20 +29,20 @@
 
 #pragma once
 
-#include "sinkable.h"
-#include "level.h"
+#include "Level.h"
+#include "Sinkable.h"
 
 #include <string>
 
-namespace xcore { namespace log { namespace general
+namespace XCore { namespace Log
 {
     /**
-     * @class ConsoleSink console_sink.h <xcore/log/general/console_sink.h>
+     * @class ConsoleSink ConsoleSink.h <XCore/Log/ConsoleSink.h>
      *
      * @brief A sink implementation for general use wich the destination is a 
      *     console.
      */
-    class ConsoleSink : public xcore::log::general::Sinkable
+    class ConsoleSink : public XCore::Log::Sinkable
     {
     public:
         /**
@@ -54,8 +54,8 @@ namespace xcore { namespace log { namespace general
     
     public:
         virtual const std::string& GetName() override;
-        virtual xcore::log::general::Level GetLevel() override;
-        virtual void SetLevel(xcore::log::general::Level level) override;
+        virtual XCore::Log::Level GetLevel() override;
+        virtual void SetLevel(XCore::Log::Level level) override;
         virtual std::shared_ptr<void> GetData() override;
         virtual void Flush() override;
     
@@ -63,4 +63,4 @@ namespace xcore { namespace log { namespace general
         struct Impl;
         std::unique_ptr<Impl> m_Impl;
     };
-}}}
+}}

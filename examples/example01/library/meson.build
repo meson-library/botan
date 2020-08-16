@@ -1,6 +1,6 @@
 
-example01_library_shared = shared_library('example01_library',
-                                          sources      : ['library.cpp', 'library.h'],
+example01_library_shared = shared_library('Example01Library',
+                                          sources      : ['Library.cpp', 'Library.h'],
                                           cpp_args     : ['-DXCORE_BUILD_SHARED_LIBRARY'],
                                           dependencies : [xcore_dep],
                                           install      : true)

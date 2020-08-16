@@ -29,28 +29,26 @@
 #error "For documentation only."
 
 
-
 /**
- * @namespace xcore
+ * @namespace XCore
  * 
- * @brief The root namespace for te xcore library. 
+ * @brief The root namespace for te XCore library. 
  */
-namespace xcore
+namespace XCore
 {
     /**
-     * @namespace xcore::dll
+     * @namespace XCore::DLL
      * 
      * @brief Contains a set of resources for shared library manipulations.
      */
-    namespace dll
+    namespace DLL
     {
 
     }
 
 
-
     /**
-     * @namespace xcore::fs
+     * @namespace XCore::FS
      * 
      * @brief Contains a set of resources for filesystem manipulation.
      * 
@@ -58,37 +56,35 @@ namespace xcore
      *          file attributes, copy and move files and so on... <br>
      *          <br>
      *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-     *          https://github.com/meson-library/filesystem. The namespace `xcore::fs` is an alias to the original library <br>
+     *          https://github.com/meson-library/filesystem. The namespace `XCore::FS` is an alias to the original library <br>
      *          namespace that is `ghc::filesystem`. Basicaly the original library consist of a C++11 cross-platform <br>
      *          implementation of the standard `std::filesystem` (Now already included in the C++17 standard).
      */
-    namespace fs
+    namespace FS
     {
 
     }
 
 
-
     /**
-     * @namespace xcore::math
+     * @namespace XCore::Math
      * 
      * @brief Contains a set of resources for mathematical manipulation.
      * 
      * @details This is the start point for mathematical manipulations. <br>
      *          <br>
      *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-     *          https://github.com/meson-library/eigen. The namespace `xcore::math` is an alias to the original library <br>
+     *          https://github.com/meson-library/eigen. The namespace `XCore::Math` is an alias to the original library <br>
      *          namespace that is `Eigen`.
      */
-    namespace math
+    namespace Math
     {
 
     }
 
 
-
     /**
-     * @namespace xcore::stl
+     * @namespace XCore::STL
      * 
      * @brief Contains the STL implementation currently in use by our system.
      * 
@@ -96,46 +92,44 @@ namespace xcore
      *          implementation of our compilers or use an implementation from Eletronic Arts (EASTL). <br>
      *          <br>
      *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-     *          https://github.com/meson-library/eastl. The namespace `xcore::math` is an alias to the original library <br>
-     *          namespace that is `eastl`.
+     *          https://github.com/meson-library/eastl. The namespace `XCore::STL` is an alias to the original library <br>
+     *          namespace that is `eastl` or `std` from standard stl implementation.
      */
-    namespace stl
+    namespace STL
     {
 
     }
 
 
-
     /**
-    * @namespace xcore::log
+    * @namespace XCore::Log
     * 
     * @brief Contains a set of resources for work with logs.
     */
-    namespace log
+    namespace Log
     {
         /**
-        * @namespace xcore::log::general
+        * @namespace XCore::Log::Registry
         * 
-        * @brief  Contains a logger implementation for general use.
+        * @brief  Contains our logger implementation.
         * 
         * @details This is the start point for log manipulations.
         */
-        namespace general
+        namespace Registry
         {
 
         }
     }
 
 
-
     /**
-    * @namespace xcore::plugin
+    * @namespace XCore::Plugin
     * 
     * @brief Contains a set of resources for work with plugins.
     * 
     * @details This is the start point for plugin manipulations.
     */
-    namespace plugin
+    namespace Plugin
     {
 
     }

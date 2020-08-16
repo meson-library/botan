@@ -23,14 +23,14 @@
 /**
  * @file
  *
- * @brief Main header for the xcore library.
+ * @brief Main header for the XCore library.
  */
 
 #pragma once
 
-#include "fs.h"
-#include "dll.h"
-#include "stl.h"
-#include "math.h"
-#include "log.h"
-#include "plugin.h"
+#include "DLL.h"
+#include "FS.h"
+#include "Log.h"
+#include "Math.h"
+#include "Plugin.h"
+#include "STL.h"

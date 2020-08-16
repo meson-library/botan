@@ -23,26 +23,44 @@
 /**
  * @file
  *
- * @brief Contains an enumeration that represent log severity levels.
+ * @brief Contains our global log register.
  */
 
-#pragma once
+#include "Loggable.h"
 
-namespace xcore { namespace log { namespace general
-{
+#include <memory>
+#include <string>
+
+namespace XCore { namespace Log { namespace Registry 
+{ 
     /**
-     * @enum Level level.h <xcore/log/general/level.h>
+     * @brief 
      * 
-     * @brief A representation for log severity levels.
+     * @param loggerName 
+     * @return true 
+     * @return false 
      */
-    enum class Level
-    {
-        None, 
-        Fatal,
-        Error,
-        Warning,
-        Info,
-        Debug,
-        Trace
-    };
+    bool Contains(const std::string& loggerName);
+
+    /**
+     * @brief 
+     * 
+     * @param loggerName 
+     * @return XCore::Log::Loggable& 
+     */
+    XCore::Log::Loggable& Get(const std::string& loggerName);
+    
+    /**
+     * @brief 
+     * 
+     * @param loggerName 
+     */
+    void Remove(const std::string& loggerName);
+    
+    /**
+     * @brief 
+     * 
+     * @param logger 
+     */
+    void Add(std::unique_ptr<XCore::Log::Loggable> logger);
 }}}

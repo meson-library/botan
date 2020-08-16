@@ -3,43 +3,45 @@
 #
 includes = ['..'/include_dir_root]
 
-sources = ['dll.cpp',
-           'stl'/'ea.cpp',
-           'log'/'general'/'logger.cpp',
-           'log'/'general'/'console_sink.cpp',
-           'log'/'general'/'file_sink.cpp',
-           'log'/'general'/'internal.cpp',
-           'plugin'/'plugable.cpp']
+sources = ['DLL.cpp',
+           'STL'/'EA.cpp',
+           'Log'/'Logger.cpp',
+           'Log'/'Registry.cpp',
+           'Log'/'ConsoleSink.cpp',
+           'Log'/'FileSink.cpp',
+           'Log'/'Internal.cpp',
+           'Plugin'/'Plugable.cpp']
 
-extra_files = ['..'/include_dir_proj/'xcore.h',
+extra_files = ['..'/include_dir_proj/'XCore.h',
 
-               '..'/include_dir_proj/'fs.h',
-               '..'/include_dir_proj/'dll.h',
-               '..'/include_dir_proj/'math.h',
+               '..'/include_dir_proj/'FS.h',
+               '..'/include_dir_proj/'DLL.h',
+               '..'/include_dir_proj/'Math.h',
                
-               '..'/include_dir_proj/'stl.h',
-               '..'/include_dir_proj/'stl'/'std.h',
-               '..'/include_dir_proj/'stl'/'ea.h',
+               '..'/include_dir_proj/'STL.h',
+               '..'/include_dir_proj/'STL'/'Std.h',
+               '..'/include_dir_proj/'STL'/'EA.h',
 
-               '..'/include_dir_proj/'log.h',
-               '..'/include_dir_proj/'log'/'general'/'level.h',
-               '..'/include_dir_proj/'log'/'general'/'sinkable.h',
-               '..'/include_dir_proj/'log'/'general'/'loggable.h',
-               '..'/include_dir_proj/'log'/'general'/'logger.h',
-               '..'/include_dir_proj/'log'/'general'/'console_sink.h',
-               '..'/include_dir_proj/'log'/'general'/'file_sink.h',
-               '..'/sources_dir/'log'/'general'/'internal.h',
+               '..'/include_dir_proj/'Log.h',
+               '..'/include_dir_proj/'Log'/'Level.h',
+               '..'/include_dir_proj/'Log'/'Sinkable.h',
+               '..'/include_dir_proj/'Log'/'Loggable.h',
+               '..'/include_dir_proj/'Log'/'Logger.h',
+               '..'/include_dir_proj/'Log'/'Registry.h',
+               '..'/include_dir_proj/'Log'/'ConsoleSink.h',
+               '..'/include_dir_proj/'Log'/'FileSink.h',
+               '..'/include_dir_proj/'Log'/'Macros.h',
+               '..'/sources_dir/'Log'/'Internal.h',
 
-                '..'/include_dir_proj/'plugin.h',
-                '..'/include_dir_proj/'plugin'/'plugable.h',
+                '..'/include_dir_proj/'Plugin.h',
+                '..'/include_dir_proj/'Plugin'/'Plugable.h',
 
-               '..'/include_dir_proj/'common'/'common.h',
-               '..'/include_dir_proj/'common'/'asset_info.h',
-               '..'/include_dir_proj/'common'/'semver.h',
-               '..'/include_dir_proj/'common'/'disposable.h']
+               '..'/include_dir_proj/'Common'/'Macros.h',
+               '..'/include_dir_proj/'Common'/'AssetInfo.h',
+               '..'/include_dir_proj/'Common'/'SemVer.h',
+               '..'/include_dir_proj/'Common'/'Disposable.h']
 
 cpp_args = ['-DXCORE_STL_IMPLEMENTATION=' + get_option('stl_implementation')]
-
 
 
 #
@@ -49,7 +51,6 @@ filesystem_dep = subproject('filesystem').get_variable('filesystem_dep')
 eastl_dep      = subproject('eastl').get_variable('eastl_dep')
 eigen_dep      = subproject('eigen').get_variable('eigen_dep')
 spdlog_dep     = subproject('spdlog').get_variable('spdlog_dep')
-
 
 
 #
@@ -82,7 +83,6 @@ xcore_static_dep = declare_dependency(include_directories : includes,
 
 # With this line we, connotatively, export xcore_dep and xcore_static_dep to the outside world.
 xcore_dep = xcore_static_dep
-
 
 
 #

@@ -1,11 +1,10 @@
 #
 # Project info.
 #
-project('xcore', ['cpp'],
-         version         : '0.1.0',
-         license         : ['GPL3'],
-         meson_version   : '>= 0.50.0')
-
+project('XCore', ['cpp'],
+         version       : '0.1.0',
+         license       : ['GPL3'],
+         meson_version : '>= 0.50.0')
 
 
 #
@@ -26,7 +25,6 @@ install_dir_docs       = install_dir_general/'docs'/proj_name
 install_headers_subdir = proj_name
 
 
-
 #
 # Some pre-validations before project setup.
 #
@@ -37,7 +35,6 @@ endif
 if build_machine.system() == 'windows' and meson.get_compiler('cpp').get_id() not in ['msvc']
     error('[' + proj_name + '] Script (meson.build) not prepared for your compiler yet.')
 endif
-
 
 
 #

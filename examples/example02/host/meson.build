@@ -1,5 +1,5 @@
 
-executable('example02_host',
-            sources      : ['host.cpp'],
+executable('Example02Host',
+            sources      : ['Host.cpp'],
             dependencies : [xcore_dep],
             install      : true)

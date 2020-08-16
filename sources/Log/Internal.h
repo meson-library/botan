@@ -20,11 +20,14 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "Library.h"
+#pragma once
 
-#include <stdio.h>
+#include "XCore/Log/level.h"
 
-void display_helloworld_from_shared_library(void)
+#include <spdlog/spdlog.h>
+
+namespace XCore { namespace Log
 {
-    printf("Hello World from shared library.\n");
-}
+	spdlog::level::level_enum ConvertLevel(XCore::Log::Level level);
+	XCore::Log::Level ConvertLevel(spdlog::level::level_enum nativeLevel);
+}}

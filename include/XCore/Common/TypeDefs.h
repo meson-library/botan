@@ -22,40 +22,31 @@
 
 /**
  * @file
+ * 
+ * @brief Contains common type definitions.
  *
- * @brief Contains code about a struct to hold semantic version info.
+ * @details This file contains a common set of type definitions.
  */
 
-#pragma once
+#if defined(XCORE_COMPILER_MSVC) || defined(DOXYGEN)
+    #include <windows.h>
 
-#include "../STL.h"
-
-namespace XCore { namespace Common
-{
     /**
-     * @struct SemVer SemVer.h <XCore/Common/SemVer.h>
+     * @brief A handle to manage a dynamic shared library.
      *
-     * @brief      Struct to hold version info in the <a href="http://semver.org/spec/v2.0.0.html"
-     *             target="_blank">Semantic version standard</a>.
-     *
-     * @todo Validate the construction of instances of this struct with the
-     * standard found at <a href="http://semver.org/spec/v2.0.0.html"
-     * target="_blank">http://semver.org/spec/v2.0.0.html</a>. Right now, the
-     * version info is stored without any validation.
+     * @details On MSVC this macro expands to #HMODULE and
+     *          on GCC expands to `void*`.
      */
-    struct SemVer
-    {
-        SemVer
-        (
-            int major, int minor = 0, int path = 0, XCore::STL::string label = ""
-        ) :
-            Major(major), Minor(minor), Path(path), Label(label) { };
+    typedef HMODULE XCORE_DLL_HANDLER;
 
-        int	               Major;
-        int	               Minor;
-        int	               Path;
-        XCore::STL::string Label;
-    };
-
-    typedef struct SemVer SemVer;
-}}
+    /**
+     * @brief A pointer to a symbol inside a shared library.
+     *
+     * @details On MSVC this macro expands to #FARPROC and
+     *          on GCC expands to `void*`.
+     */
+    typedef FARPROC XCORE_DLL_SYMBOL_POINTER;
+#else
+    typedef void* XCORE_DLL_HANDLER;
+    typedef void* XCORE_DLL_SYMBOL_POINTER;
+#endif

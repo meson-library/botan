@@ -28,10 +28,10 @@
 
 #pragma once
 
-namespace xcore { namespace common
+namespace XCore { namespace Common
 {
     /**
-     * @class Disposable disposable.h <xcore/disposable.h>
+     * @class Disposable Disposable.h <XCore/Common/Disposable.h>
      *
      * @brief An interface to disposable types, so we can do resource cleanup.
      */

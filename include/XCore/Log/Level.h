@@ -20,17 +20,29 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Contains an enumeration that represent log severity levels.
+ */
+
 #pragma once
 
-#include "xcore/xcore.h"
-
-namespace sdk
+namespace XCore { namespace Log
 {
-    class MyPlugin : public xcore::plugin::Plugable
+    /**
+     * @enum Level Level.h <XCore/Log/Level.h>
+     * 
+     * @brief A representation for log severity levels.
+     */
+    enum class Level
     {
-    public:
-        MyPlugin() { };
-
-        virtual const void DisplayHelloWorldFromMyPlugin() = 0;
+        None,       
+        Critical,
+        Error,
+        Warning,
+        Info,
+        Debug,
+        Trace
     };
-}
+}}

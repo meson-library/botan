@@ -20,7 +20,7 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include <xcore/xcore.h>
+#include <XCore/XCore.h>
 
 #include <memory>
 
@@ -29,142 +29,143 @@ int main()
     /*
         Create a console sink with name: "console-sink-01". 
     */
-    xcore::log::general::Level console_sink_01_level = xcore::log::general::Level::Trace;
-    auto console_sink_01 = std::make_shared<xcore::log::general::ConsoleSink>("console-sink-01");
-    console_sink_01->SetLevel(console_sink_01_level);
+    XCore::Log::Level consoleSink01Level = XCore::Log::Level::Trace;
+    auto consoleSink01 = std::make_shared<XCore::Log::ConsoleSink>("console-sink-01");
+    consoleSink01->SetLevel(consoleSink01Level);
 
     /*
         Create a console sink with name: "console-sink-02". 
     */
-    xcore::log::general::Level console_sink_02_level = xcore::log::general::Level::Trace;
-    auto console_sink_02 = std::make_shared<xcore::log::general::ConsoleSink>("console-sink-02");
-    console_sink_02->SetLevel(console_sink_02_level);
+    XCore::Log::Level consoleSink02Level = XCore::Log::Level::Trace;
+    auto consoleSink02 = std::make_shared<XCore::Log::ConsoleSink>("console-sink-02");
+    consoleSink02->SetLevel(consoleSink02Level);
 
     /*
         Create a file sink with name: "file-sink-01". 
     */
-    xcore::log::general::Level file_sink_01_level = xcore::log::general::Level::Trace;
-    auto file_sink_01 = std::make_shared<xcore::log::general::FileSink>("file-sink-01", "file-sink-01.log");
-    file_sink_01->SetLevel(file_sink_01_level);
+    XCore::Log::Level fileSink01Level = XCore::Log::Level::Trace;
+    auto fileSink01 = std::make_shared<XCore::Log::FileSink>("file-sink-01", "file-sink-01.log");
+    fileSink01->SetLevel(fileSink01Level);
 
     /*
         Create a file sink with name: "file-sink-02". 
     */
-    xcore::log::general::Level file_sink_02_level = xcore::log::general::Level::Trace;
-    auto file_sink_02 = std::make_shared<xcore::log::general::FileSink>("file-sink-02", "file-sink-02.log");
-    file_sink_02->SetLevel(file_sink_02_level);
+    XCore::Log::Level fileSink02Level = XCore::Log::Level::Trace;
+    auto fileSink02 = std::make_shared<XCore::Log::FileSink>("file-sink-02", "file-sink-02.log");
+    fileSink02->SetLevel(fileSink02Level);
 
     /*
         Create a compound sink.
     */
-    xcore::log::general::Level compound_console_sink_01_level = xcore::log::general::Level::Trace;
-    auto compound_console_sink_01 = std::make_shared<xcore::log::general::ConsoleSink>("compound-console-sink-01");
-    compound_console_sink_01->SetLevel(compound_console_sink_01_level);
+    XCore::Log::Level compoundConsoleSink01Level = XCore::Log::Level::Trace;
+    auto compoundConsoleSink01 = std::make_shared<XCore::Log::ConsoleSink>("compound-console-sink-01");
+    compoundConsoleSink01->SetLevel(compoundConsoleSink01Level);
 
-    xcore::log::general::Level compound_file_sink_01_level = xcore::log::general::Level::Trace;
-    auto compound_file_sink_01 = std::make_shared<xcore::log::general::FileSink>("compound-file-sink-01", "compound-file-sink-01.log");
-    compound_file_sink_01->SetLevel(compound_file_sink_01_level);
+    XCore::Log::Level compoundFileSink01Level = XCore::Log::Level::Trace;
+    auto compoundFileSink01 = std::make_shared<XCore::Log::FileSink>("compound-file-sink-01", "compound-file-sink-01.log");
+    compoundFileSink01->SetLevel(compoundFileSink01Level);
 
-    std::vector<std::shared_ptr<xcore::log::general::Sinkable>> compound_sinks;
-    compound_sinks.push_back(compound_console_sink_01);
-    compound_sinks.push_back(compound_file_sink_01);
+    std::vector<std::shared_ptr<XCore::Log::Sinkable>> compoundSinks;
+    compoundSinks.push_back(compoundConsoleSink01);
+    compoundSinks.push_back(compoundFileSink01);
 
     /*
         Create a logger with name: "logger-01".
         This log has a console sink with name: "console-sink-01".
     */
-    xcore::log::general::Level logger_01_level = xcore::log::general::Level::Trace;
-    auto logger_01 = std::make_shared<xcore::log::general::Logger>("logger-01", std::vector<std::shared_ptr<xcore::log::general::Sinkable>>{console_sink_01});
-    logger_01->SetLevel(logger_01_level);
+    XCore::Log::Level logger01Level = XCore::Log::Level::Trace;
+    auto logger01 = std::make_shared<XCore::Log::Logger>("logger-01", consoleSink01);
+    logger01->SetLevel(logger01Level);
 
     /*
         Create a logger with name: "logger-02".
         This log has a console sink with name: "console-sink-02".
     */
-    xcore::log::general::Level logger_02_level = xcore::log::general::Level::Trace;
-    auto logger_02 = std::make_shared<xcore::log::general::Logger>("logger-02", std::vector<std::shared_ptr<xcore::log::general::Sinkable>>{console_sink_02});
-    logger_02->SetLevel(logger_02_level);
+    XCore::Log::Level logger02Level = XCore::Log::Level::Trace;
+    auto logger02 = std::make_shared<XCore::Log::Logger>("logger-02", consoleSink02);
+    logger02->SetLevel(logger02Level);
 
     /*
         Create a logger with name: "logger-03".
         This log has a file sink with name: "file-sink-01".
     */
-    xcore::log::general::Level logger_03_level = xcore::log::general::Level::Trace;
-    auto logger_03 = std::make_shared<xcore::log::general::Logger>("logger-03", std::vector<std::shared_ptr<xcore::log::general::Sinkable>>{file_sink_01});
-    logger_03->SetLevel(logger_03_level);
+    XCore::Log::Level logger03Level = XCore::Log::Level::Trace;
+    auto logger03 = std::make_shared<XCore::Log::Logger>("logger-03", fileSink01);
+    logger03->SetLevel(logger03Level);
 
     /*
         Create a logger with name: "logger-04".
         This log has a file sink with name: "file-sink-02".
     */
-    xcore::log::general::Level logger_04_level = xcore::log::general::Level::Trace;
-    auto logger_04 = std::make_shared<xcore::log::general::Logger>("logger-04", std::vector<std::shared_ptr<xcore::log::general::Sinkable>>{file_sink_02});
-    logger_04->SetLevel(logger_04_level);
+    XCore::Log::Level logger04Level = XCore::Log::Level::Trace;
+    auto logger04 = std::make_shared<XCore::Log::Logger>("logger-04", fileSink02);
+    logger04->SetLevel(logger04Level);
 
     /*
         Create a logger with name: "logger-05".
         This log is composed with the following sinks: "compound-console-sink-01", 
         "compound-file-sink-01".  
     */
-    xcore::log::general::Level logger_05_level = xcore::log::general::Level::Trace;
-    auto logger_05 = std::make_shared<xcore::log::general::Logger>("logger-05", compound_sinks);
-    logger_05->SetLevel(logger_05_level);
+    XCore::Log::Level logger05Level = XCore::Log::Level::Trace;
+    auto logger05 = std::make_shared<XCore::Log::Logger>("logger-05", compoundSinks);
+    logger05->SetLevel(logger05Level);
 
     /*
         'logger-01' should display all 7 log messages with the sink 'console-sink-01' on console.
     */
-    logger_01->Log(xcore::log::general::Level::None,    "Log message 1.");
-    logger_01->Log(xcore::log::general::Level::Fatal,   "Log message 2.");
-    logger_01->Log(xcore::log::general::Level::Error,   "Log message 3.");
-    logger_01->Log(xcore::log::general::Level::Warning, "Log message 4.");
-    logger_01->Log(xcore::log::general::Level::Info,    "Log message 5.");
-    logger_01->Log(xcore::log::general::Level::Debug,   "Log message 6.");
-    logger_01->Log(xcore::log::general::Level::Trace,   "Log message 7.");
+    logger01->Log(XCore::Log::Level::None, "Log message 1.");
+    logger01->Log(XCore::Log::Level::Critical, "Log message 2.");
+    logger01->Log(XCore::Log::Level::Error, "Log message 3.");
+    logger01->Log(XCore::Log::Level::Warning, "Log message 4.");
+    logger01->Log(XCore::Log::Level::Info, "Log message 5.");
+    logger01->Log(XCore::Log::Level::Debug, "Log message 6.");
+    logger01->Log(XCore::Log::Level::Trace, "Log message 7.");
 
     /*
-       'logger_02' should display all 7 log messages with the sink 'console-sink-02' on console.
+       'logger02' should display all 7 log messages with the sink 'console-sink-02' on console.
     */
-    logger_02->Log(xcore::log::general::Level::None,    "Log message 1.");
-    logger_02->Log(xcore::log::general::Level::Fatal,   "Log message 2.");
-    logger_02->Log(xcore::log::general::Level::Error,   "Log message 3.");
-    logger_02->Log(xcore::log::general::Level::Warning, "Log message 4.");
-    logger_02->Log(xcore::log::general::Level::Info,    "Log message 5.");
-    logger_02->Log(xcore::log::general::Level::Debug,   "Log message 6.");
-    logger_02->Log(xcore::log::general::Level::Trace,   "Log message 7.");
+    logger02->Log(XCore::Log::Level::None, "Log message 1.");
+    logger02->Log(XCore::Log::Level::Critical,"Log message 2.");
+    logger02->Log(XCore::Log::Level::Error, "Log message 3.");
+    logger02->Log(XCore::Log::Level::Warning, "Log message 4.");
+    logger02->Log(XCore::Log::Level::Info, "Log message 5.");
+    logger02->Log(XCore::Log::Level::Debug, "Log message 6.");
+    logger02->Log(XCore::Log::Level::Trace, "Log message 7.");
 
     /*
        'logger-03' should write all 7 log messages with the sink 'file-sink-01' on file-sink-01.log.
     */
-    logger_03->Log(xcore::log::general::Level::None,    "Log message 1.");
-    logger_03->Log(xcore::log::general::Level::Fatal,   "Log message 2.");
-    logger_03->Log(xcore::log::general::Level::Error,   "Log message 3.");
-    logger_03->Log(xcore::log::general::Level::Warning, "Log message 4.");
-    logger_03->Log(xcore::log::general::Level::Info,    "Log message 5.");
-    logger_03->Log(xcore::log::general::Level::Debug,   "Log message 6.");
-    logger_03->Log(xcore::log::general::Level::Trace,   "Log message 7.");
+    logger03->Log(XCore::Log::Level::None, "Log message 1.");
+    logger03->Log(XCore::Log::Level::Critical, "Log message 2.");
+    logger03->Log(XCore::Log::Level::Error, "Log message 3.");
+    logger03->Log(XCore::Log::Level::Warning, "Log message 4.");
+    logger03->Log(XCore::Log::Level::Info, "Log message 5.");
+    logger03->Log(XCore::Log::Level::Debug, "Log message 6.");
+    logger03->Log(XCore::Log::Level::Trace, "Log message 7.");
 
     /*
        'logger-04' should write all 7 log messages with the sink 'file-sink-02' on file-sink-02.log.
     */
-    logger_04->Log(xcore::log::general::Level::None,    "Log message 1.");
-    logger_04->Log(xcore::log::general::Level::Fatal,   "Log message 2.");
-    logger_04->Log(xcore::log::general::Level::Error,   "Log message 3.");
-    logger_04->Log(xcore::log::general::Level::Warning, "Log message 4.");
-    logger_04->Log(xcore::log::general::Level::Info,    "Log message 5.");
-    logger_04->Log(xcore::log::general::Level::Debug,   "Log message 6.");
-    logger_04->Log(xcore::log::general::Level::Trace,   "Log message 7.");
+    logger04->Log(XCore::Log::Level::None, "Log message 1.");
+    logger04->Log(XCore::Log::Level::Critical, "Log message 2.");
+    logger04->Log(XCore::Log::Level::Error, "Log message 3.");
+    logger04->Log(XCore::Log::Level::Warning, "Log message 4.");
+    logger04->Log(XCore::Log::Level::Info, "Log message 5.");
+    logger04->Log(XCore::Log::Level::Debug, "Log message 6.");
+    logger04->Log(XCore::Log::Level::Trace, "Log message 7.");
 
     /*
-        'logger-05' should display 7 log messages with the sink 'compound-console-sink-01' on console
-         and should write 7 log messages with the sink 'compound-file-sink-01' on compound-file-sink-01.log.
+        'logger-05' should display 7 log messages with the sink 'compound-console-sink-01' on 
+         console and should write 7 log messages with the sink 'compound-file-sink-01' on 
+         compound-file-sink-01.log.
     */
-    logger_05->Log(xcore::log::general::Level::None,    "Log message 1.");
-    logger_05->Log(xcore::log::general::Level::Fatal,   "Log message 2.");
-    logger_05->Log(xcore::log::general::Level::Error,   "Log message 3.");
-    logger_05->Log(xcore::log::general::Level::Warning, "Log message 4.");
-    logger_05->Log(xcore::log::general::Level::Info,    "Log message 5.");
-    logger_05->Log(xcore::log::general::Level::Debug,   "Log message 6.");
-    logger_05->Log(xcore::log::general::Level::Trace,   "Log message 7.");
+    logger05->Log(XCore::Log::Level::None, "Log message 1.");
+    logger05->Log(XCore::Log::Level::Critical, "Log message 2.");
+    logger05->Log(XCore::Log::Level::Error, "Log message 3.");
+    logger05->Log(XCore::Log::Level::Warning, "Log message 4.");
+    logger05->Log(XCore::Log::Level::Info, "Log message 5.");
+    logger05->Log(XCore::Log::Level::Debug, "Log message 6.");
+    logger05->Log(XCore::Log::Level::Trace, "Log message 7.");
 
     return 0;
 }

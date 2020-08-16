@@ -28,9 +28,11 @@
 
 #pragma once
 
-#include "log/general/logger.h"
-#include "log/general/loggable.h"
-#include "log/general/console_sink.h"
-#include "log/general/file_sink.h"
-#include "log/general/sinkable.h"
-#include "log/general/level.h"
+#include "Log/ConsoleSink.h"
+#include "Log/FileSink.h"
+#include "Log/Level.h"
+#include "Log/Loggable.h"
+#include "Log/Logger.h"
+#include "Log/Macros.h"
+#include "Log/Registry.h"
+#include "Log/Sinkable.h"

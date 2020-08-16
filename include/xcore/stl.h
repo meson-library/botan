@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "common/common.h"
+#include "Common/Macros.h"
 
 #if !defined(XCORE_STL_IMPLEMENTATION)
     #error The XCORE_STL_IMPLEMENTATION was not defined.
@@ -39,9 +39,9 @@
 #endif
 
 #if XCORE_STL_IMPLEMENTATION == XCORE_STL || defined(DOXYGEN)
-    #include "stl/std.h"
+    #include "STL/Std.h"
 #endif
 
 #if XCORE_STL_IMPLEMENTATION == XCORE_EASTL || defined(DOXYGEN)
-    #include "stl/ea.h"
+    #include "STL/EA.h"
 #endif

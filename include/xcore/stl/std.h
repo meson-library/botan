@@ -66,7 +66,7 @@
  * @endcond
  */
 
-namespace xcore
+namespace XCore
 {
-	namespace stl = std;
+	namespace STL = std;
 }

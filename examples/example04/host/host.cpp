@@ -20,23 +20,23 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "my_plugin.h"
+#include "MyPlugin.h"
 
-#include <xcore/xcore.h>
+#include <XCore/XCore.h>
 
 #include <iostream>
 
 int main()
 {
-    xcore::stl::string pluginPath = "example04.plugin";
-    XCORE_DLL_HANDLER dll_handler = xcore::dll::load(pluginPath);
-    sdk::MyPlugin* plugin = (sdk::MyPlugin*)XCORE_START_PLUGIN(dll_handler);
+    XCore::STL::string pluginPath = "Example04.plugin";
+    XCORE_DLL_HANDLER dllHandler = XCore::DLL::Load(pluginPath);
+    SDK::MyPlugin* plugin = (SDK::MyPlugin*)XCORE_START_PLUGIN(dllHandler);
 
-    xcore::stl::string pluginUID = plugin->GetPluginUID();
-    xcore::stl::string pluginGroupUID = plugin->GetPluginGroupUID();
-    xcore::common::Semver pluginVersion = plugin->GetPluginVersion();
-    xcore::common::Semver pluginHostVersion = plugin->GetPluginHostVersion();
-    xcore::common::AssetInfo pluginInfo = plugin->GetPluginInfo();
+    XCore::STL::string pluginUID = plugin->GetPluginUID();
+    XCore::STL::string pluginGroupUID = plugin->GetPluginGroupUID();
+    XCore::Common::SemVer pluginVersion = plugin->GetPluginVersion();
+    XCore::Common::SemVer pluginHostVersion = plugin->GetPluginHostVersion();
+    XCore::Common::AssetInfo pluginInfo = plugin->GetPluginInfo();
 
 
     std::cout << std::endl;
@@ -64,6 +64,6 @@ int main()
 
 
     std::cout << std::endl;
-    XCORE_STOP_PLUGIN(dll_handler);
+    XCORE_STOP_PLUGIN(dllHandler);
     std::cout << std::endl;
 }

@@ -201,31 +201,6 @@
 
 
 
-#if defined(XCORE_COMPILER_MSVC) || defined(DOXYGEN)
-    #include <windows.h>
-
-    /**
-     * @brief A handle to manage a dynamic shared library.
-     *
-     * @details On MSVC this macro expands to #HMODULE and
-     *          on GCC expands to `void*`.
-     */
-    typedef HMODULE XCORE_DLL_HANDLER;
-
-    /**
-     * @brief A pointer to a symbol inside a shared library.
-     *
-     * @details On MSVC this macro expands to #FARPROC and
-     *          on GCC expands to `void*`.
-     */
-    typedef FARPROC XCORE_DLL_SYMBOL_POINTER;
-#else
-    typedef void* XCORE_DLL_HANDLER;
-    typedef void* XCORE_DLL_SYMBOL_POINTER;
-#endif
-
-
-
 /**
  * @brief Represent the default STL implementation.
  */
@@ -373,3 +348,10 @@
 #define XCORE_DISABLE_COPY_AND_MOVE(TypeName) \
     explicit TypeName(const TypeName& typeName) = delete; \
     TypeName & operator=(const TypeName & typeName) = delete
+
+
+
+/**
+ * Include our a common set of type definitions.
+ */
+#include "TypeDefs.h"

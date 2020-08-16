@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "../common/common.h"
+#include "../Common/Macros.h"
 
 /**
  * @cond
@@ -40,6 +40,19 @@
 #include<EASTL/array.h>
 #include<EASTL/bitset.h>
 #include<EASTL/bitvector.h>
+#include<EASTL/bonus/adaptors.h>
+#include<EASTL/bonus/call_traits.h>
+#include<EASTL/bonus/compressed_pair.h>
+#include<EASTL/bonus/fixed_ring_buffer.h>
+#include<EASTL/bonus/fixed_tuple_vector.h>
+#include<EASTL/bonus/intrusive_sdlist.h>
+#include<EASTL/bonus/intrusive_slist.h>
+#include<EASTL/bonus/list_map.h>
+#include<EASTL/bonus/lru_cache.h>
+#include<EASTL/bonus/ring_buffer.h>
+#include<EASTL/bonus/sort_extra.h>
+#include<EASTL/bonus/sparse_matrix.h>
+#include<EASTL/bonus/tuple_vector.h>
 #include<EASTL/chrono.h>
 #include<EASTL/core_allocator.h>
 #include<EASTL/core_allocator_adapter.h>
@@ -108,26 +121,13 @@
 #include<EASTL/vector_set.h>
 #include<EASTL/version.h>
 #include<EASTL/weak_ptr.h>
-#include<EASTL/bonus/adaptors.h>
-#include<EASTL/bonus/call_traits.h>
-#include<EASTL/bonus/compressed_pair.h>
-#include<EASTL/bonus/fixed_ring_buffer.h>
-#include<EASTL/bonus/fixed_tuple_vector.h>
-#include<EASTL/bonus/intrusive_sdlist.h>
-#include<EASTL/bonus/intrusive_slist.h>
-#include<EASTL/bonus/list_map.h>
-#include<EASTL/bonus/lru_cache.h>
-#include<EASTL/bonus/ring_buffer.h>
-#include<EASTL/bonus/sort_extra.h>
-#include<EASTL/bonus/sparse_matrix.h>
-#include<EASTL/bonus/tuple_vector.h>
 /**
  * @endcond
  */
 
-namespace xcore
+namespace XCore
 {
-	namespace stl = eastl;
+	namespace STL = eastl;
 }
 
 void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line);

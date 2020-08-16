@@ -20,4 +20,4 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/plugin/plugable.h"
+#include "XCore/Plugin/Plugable.h"

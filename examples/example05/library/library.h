@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include <xcore/xcore.h>
+#include <XCore/XCore.h>
 
 XCORE_EXTERN_C_BEGIN
     XCORE_API void display_helloworld_from_shared_library(void);

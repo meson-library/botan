@@ -20,31 +20,31 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "plugin.h"
+#include "Plugin.h"
 
-const xcore::stl::string Plugin::GetPluginUID()
+const XCore::STL::string Plugin::GetPluginUID()
 {
     return "79896acc-8e99-481d-bc3e-5a7e150ddd71";
 }
 
-const xcore::stl::string Plugin::GetPluginGroupUID()
+const XCore::STL::string Plugin::GetPluginGroupUID()
 {
     return "a7b048fe-179d-459b-86c3-28a1c644b931";
 }
 
-const xcore::common::AssetInfo Plugin::GetPluginInfo()
+const XCore::Common::AssetInfo Plugin::GetPluginInfo()
 {
-    return xcore::common::AssetInfo("Plugin Demo", "XNerv", "GPL3", "A demo plugin.");
+    return XCore::Common::AssetInfo("Plugin Demo", "XNerv", "GPL3", "A demo plugin.");
 }
 
-const xcore::common::Semver Plugin::GetPluginVersion()
+const XCore::Common::SemVer Plugin::GetPluginVersion()
 {
-    return xcore::common::Semver(1, 2, 3, "z");
+    return XCore::Common::SemVer(1, 2, 3, "z");
 }
 
-const xcore::common::Semver Plugin::GetPluginHostVersion()
+const XCore::Common::SemVer Plugin::GetPluginHostVersion()
 {
-    return xcore::common::Semver(1, 2, 3, "build.1");
+    return XCore::Common::SemVer(1, 2, 3, "build.1");
 }
 
 void Plugin::Dispose()

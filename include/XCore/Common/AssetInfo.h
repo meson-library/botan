@@ -20,14 +20,36 @@
 // |
 // +---------------------------------------------------------------------------
 
+/**
+ * @file
+ *
+ * @brief Contains code about a struct to hold asset info.
+ */
+
 #pragma once
 
-#include "xcore/log/general/level.h"
+#include "../STL.h"
 
-#include <spdlog/spdlog.h>
-
-namespace xcore { namespace log { namespace general
+namespace XCore { namespace Common
 {
-	spdlog::level::level_enum convert_level(xcore::log::general::Level level);
-	xcore::log::general::Level convert_level(spdlog::level::level_enum nativeLevel);
-}}}
+    /**
+     * @struct AssetInfo AssetInfo.h <XCore/Common/AssetInfo.h>
+     *
+     * @brief Struct to hold basic asset info.
+     */
+    struct AssetInfo
+    {
+        AssetInfo
+        (
+            XCore::STL::string name, XCore::STL::string author = "", XCore::STL::string license = "", XCore::STL::string description = ""
+        ) :
+            Name(name), Author(author), License(license), Description(description) { };
+
+        XCore::STL::string Name;
+        XCore::STL::string Author;
+        XCore::STL::string License;
+        XCore::STL::string Description;
+    };
+
+    typedef struct AssetInfo AssetInfo;
+}}

@@ -28,17 +28,17 @@
 
 #pragma once
 
-#include "level.h"
+#include "../Common/Macros.h"
+#include "Level.h"
 
-#include "../../common/common.h"
-
-#include<string>
 #include <memory>
+#include <string>
 
-namespace xcore { namespace log { namespace general
+
+namespace XCore { namespace Log
 {
     /**
-     * @class Sinkable sinkable.h <xcore/log/general/sinkable.h>
+     * @class Sinkable Sinkable.h <XCore/Log/Sinkable.h>
      *
      * @brief An interface for sinkable types.
      */
@@ -62,9 +62,9 @@ namespace xcore { namespace log { namespace general
         /**
          * @brief Get the severity level of this sinkable object.
          * 
-         * @return xcore::log::general::Level 
+         * @return XCore::Log::Level 
          */
-        virtual xcore::log::general::Level GetLevel() = 0;
+        virtual XCore::Log::Level GetLevel() = 0;
 
         /**
          * @brief Set the maximum severity level that this sink can 
@@ -72,7 +72,7 @@ namespace xcore { namespace log { namespace general
          * 
          * @param[in] level The Level to be set.
          */
-        virtual void SetLevel(xcore::log::general::Level level) = 0;
+        virtual void SetLevel(XCore::Log::Level level) = 0;
 
         /**
          * @brief Get custom data of this object.
@@ -86,4 +86,4 @@ namespace xcore { namespace log { namespace general
          */
         virtual void Flush() = 0;
     };
-}}}
+}}

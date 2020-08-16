@@ -28,10 +28,11 @@
 
 #pragma once
 
-#include "stl.h"
-#include "common/common.h"
+#include "Common/Macros.h"
+#include "STL.h"
 
-namespace xcore { namespace dll
+
+namespace XCore { namespace DLL
 {
     /**
      * @brief      Load a shared library at runtime.
@@ -47,7 +48,7 @@ namespace xcore { namespace dll
      *             [HMODULE](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751(v=vs.85).aspx)
      *             and in *nix is of type <b>void *</b>
      */
-    XCORE_DLL_HANDLER load(const xcore::stl::string& path);
+    XCORE_DLL_HANDLER Load(const XCore::STL::string& path);
 
     /**
      * @brief      Unload a shared library at runtime.
@@ -56,7 +57,7 @@ namespace xcore { namespace dll
      *
      * @return     true if success, otherwise false.
      */
-    bool unload(XCORE_DLL_HANDLER handler);
+    bool Unload(XCORE_DLL_HANDLER handler);
 
     /**
      * @brief      Get a symbol pointer from the loaded shared library.
@@ -71,5 +72,5 @@ namespace xcore { namespace dll
      *             [FARPROC](https://msdn.microsoft.com/en-us/library/windows/desktop/ms633571(v=vs.85).aspx)
      *             and in *nix is of type <b>void *</b>
      */
-    XCORE_DLL_SYMBOL_POINTER get_symbol_pointer(XCORE_DLL_HANDLER handler, const xcore::stl::string& symbolName);
+    XCORE_DLL_SYMBOL_POINTER GetSymbolPointer(XCORE_DLL_HANDLER handler, const XCore::STL::string& symbolName);
 }}

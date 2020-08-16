@@ -20,13 +20,13 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/dll.h"
+#include "XCore/DLL.h"
 
 #if defined(XCORE_OS_FAMILY_UNIX)
 #include <dlfcn.h>
 #endif
 
-XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
+XCORE_DLL_HANDLER XCore::DLL::Load(const XCore::STL::string& path)
 {
 #if defined(XCORE_COMPILER_MSVC)
 	XCORE_DLL_HANDLER handler = LoadLibraryA(path.c_str());
@@ -37,7 +37,7 @@ XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
 	return handler;
 }
 
-bool xcore::dll::unload(XCORE_DLL_HANDLER handler)
+bool XCore::DLL::Unload(XCORE_DLL_HANDLER handler)
 {
 #if defined(XCORE_COMPILER_MSVC)
 	if(FreeLibrary(handler) == 0)
@@ -60,7 +60,7 @@ bool xcore::dll::unload(XCORE_DLL_HANDLER handler)
 #endif
 }
 
-XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER handler, const xcore::stl::string& symbolName)
+XCORE_DLL_SYMBOL_POINTER XCore::DLL::GetSymbolPointer(XCORE_DLL_HANDLER handler, const XCore::STL::string& symbolName)
 {
 #if defined(XCORE_COMPILER_MSVC)
 	XCORE_DLL_SYMBOL_POINTER symbolPointer = GetProcAddress(handler, symbolName.c_str());

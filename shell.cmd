@@ -1,8 +1,6 @@
 @ECHO OFF
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-
-
 :PROCESS_CMD
     SET "current_folder=%~dp0"
     
@@ -45,7 +43,6 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 EXIT /B 0
 
 
-
 :MAIN
     ECHO.
     ECHO.PREPARING THE ENVIRONMENT BEFORE STARTING SHELL.
@@ -57,18 +54,18 @@ EXIT /B 0
     ECHO.
 
     ECHO.Some useful commands available in this shell:
-    ECHO.* project-generator - Command used to generate projects (ninja and(or) vs2019).
-    ECHO.* project-builder   - Command used to build projects.
-    ECHO.* project-cleaner   - Command used to clean projects.
-    ECHO.* project-rebuilder - Command used to rebuild projects.
+    ECHO.* project_generator - Command used to generate projects (ninja and(or) vs2019).
+    ECHO.* project_builder   - Command used to build projects.
+    ECHO.* project_cleaner   - Command used to clean projects.
+    ECHO.* project_rebuilder - Command used to rebuild projects.
     ECHO.
     ECHO.Important: You can start this script with '--help' to see more startup options.
 
     bash.exe --minimal-search-path
+    
     ECHO.ENDING SHELL...
     ECHO.
 EXIT /B 0
-
 
 
 :LOAD_TOOLS
@@ -83,7 +80,6 @@ EXIT /B 0
         SET "PATH=%tools_script_folder%;%PATH%"
     )
 EXIT /B 0
-
 
 
 :SHOW_HELP

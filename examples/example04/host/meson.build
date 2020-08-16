@@ -1,6 +1,6 @@
 
-executable('example04_host',
-            sources      : ['host.cpp', 'my_plugin.h'],
+executable('Example04Host',
+            sources      : ['Host.cpp', 'MyPlugin.h'],
             dependencies : [xcore_dep],
             install      : true)
 

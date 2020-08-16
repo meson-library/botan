@@ -20,36 +20,17 @@
 // |
 // +---------------------------------------------------------------------------
 
-/**
- * @file
- *
- * @brief Contains code about a struct to hold asset info.
- */
-
 #pragma once
 
-#include "../stl.h"
+#include "XCore/XCore.h"
 
-namespace xcore { namespace common
+namespace SDK
 {
-    /**
-     * @struct AssetInfo asset_info.h <xcore/asset_info.h>
-     *
-     * @brief Struct to hold basic asset info.
-     */
-    struct AssetInfo
+    class MyPlugin : public XCore::Plugin::Plugable
     {
-        AssetInfo
-        (
-            xcore::stl::string name, xcore::stl::string author = "", xcore::stl::string license = "", xcore::stl::string description = ""
-        ) :
-            Name(name), Author(author), License(license), Description(description) { };
+    public:
+        MyPlugin() { };
 
-        xcore::stl::string Name;
-        xcore::stl::string Author;
-        xcore::stl::string License;
-        xcore::stl::string Description;
+        virtual const void DisplayHelloWorldFromMyPlugin() = 0;
     };
-
-    typedef struct AssetInfo AssetInfo;
-}}
+}

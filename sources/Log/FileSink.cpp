@@ -20,16 +20,15 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/log/general/console_sink.h"
-
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-
+#include "XCore/Log/FileSink.h"
 #include "internal.h"
 
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/spdlog.h>
 
 
-struct xcore::log::general::ConsoleSink::Impl
+
+struct XCore::Log::FileSink::Impl
 {
 	std::string Name;
 	std::shared_ptr<void> Data;
@@ -37,37 +36,37 @@ struct xcore::log::general::ConsoleSink::Impl
 
 
 
-xcore::log::general::ConsoleSink::ConsoleSink(const std::string& name) :
-	m_Impl {std::make_unique<Impl>()}
+XCore::Log::FileSink::FileSink(const std::string& name, const std::string& path, bool truncate) :
+	m_Impl { std::make_unique<Impl>() }
 {
 	m_Impl->Name = name;
-	m_Impl->Data = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+	m_Impl->Data = std::make_shared<spdlog::sinks::basic_file_sink_mt>(path, truncate);
 }
 
-const std::string& xcore::log::general::ConsoleSink::GetName()
+const std::string& XCore::Log::FileSink::GetName()
 {
 	return m_Impl->Name;
 }
 
-xcore::log::general::Level xcore::log::general::ConsoleSink::GetLevel()
-{
-	auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
-	return convert_level(sink->level());
+XCore::Log::Level XCore::Log::FileSink::GetLevel()
+{	
+	auto sink = std::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_Impl->Data);
+	return ConvertLevel(sink->level());
 }
 
-void xcore::log::general::ConsoleSink::SetLevel(xcore::log::general::Level level)
+void XCore::Log::FileSink::SetLevel(XCore::Log::Level level)
 {
-	auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
-	sink->set_level(convert_level(level));
+	auto sink = std::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_Impl->Data);
+	sink->set_level(ConvertLevel(level));
 }
 
-std::shared_ptr<void> xcore::log::general::ConsoleSink::GetData()
+std::shared_ptr<void> XCore::Log::FileSink::GetData()
 {
 	return m_Impl->Data;
 }
 
-void xcore::log::general::ConsoleSink::Flush()
+void XCore::Log::FileSink::Flush()
 {
-	auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
+	auto sink = std::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_Impl->Data);
 	sink->flush();
 }

@@ -1,1 +1,1 @@
-# xcore
+# XCore

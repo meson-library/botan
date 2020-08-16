@@ -28,45 +28,45 @@
 
 #pragma once
 
-#include "../dll.h"
-#include "../stl.h"
-#include "../common/disposable.h"
-#include "../common/asset_info.h"
-#include "../common/semver.h"
-#include "../common/common.h"
+#include "../Common/AssetInfo.h"
+#include "../Common/Disposable.h"
+#include "../Common/Macros.h"
+#include "../Common/SemVer.h"
+#include "../DLL.h"
+#include "../STL.h"
 
-namespace xcore { namespace plugin
+namespace XCore { namespace Plugin
 {
     /**
-     * @class Plugable plugable.h <xcore/plugin/plugable.h>
+     * @class Plugable Plugable.h <XCore/Plugin/Plugable.h>
      *
      * @brief An interface to plugable libraries, so we can have a native plugin system.
      */
-    class Plugable : public xcore::common::Disposable
+    class Plugable : public XCore::Common::Disposable
     {
     public:
         Plugable() {};
         virtual ~Plugable() {};
 
-        virtual const xcore::stl::string GetPluginUID() = 0;
-        virtual const xcore::stl::string GetPluginGroupUID() = 0;
-        virtual const xcore::common::AssetInfo   GetPluginInfo() = 0;
-        virtual const xcore::common::Semver      GetPluginVersion() = 0;
-        virtual const xcore::common::Semver      GetPluginHostVersion() = 0;
+        virtual const XCore::STL::string GetPluginUID() = 0;
+        virtual const XCore::STL::string GetPluginGroupUID() = 0;
+        virtual const XCore::Common::AssetInfo   GetPluginInfo() = 0;
+        virtual const XCore::Common::SemVer      GetPluginVersion() = 0;
+        virtual const XCore::Common::SemVer      GetPluginHostVersion() = 0;
     };
 }}
 
 
 
 /**
- * @brief  We must pass a class name (From a class that inherits from `xcore::plugin::Plugable`) to this
+ * @brief  We must pass a class name (From a class that inherits from `XCore::Plugin::Plugable`) to this
  *         macro and it will generate a boilerplate code for the plugin export, startup and stop actions.
  */
 #define XCORE_EXPORT_PLUGIN(PluginClassName) \
     PluginClassName* pluginInstance = NULL; \
     \
     XCORE_EXTERN_C_BEGIN \
-        XCORE_API xcore::plugin::Plugable* xcore_start_plugin() \
+        XCORE_API XCore::Plugin::Plugable* xcore_start_plugin() \
         { \
             if(pluginInstance == NULL) \
             { \
@@ -88,17 +88,17 @@ namespace xcore { namespace plugin
 
 
 
-typedef xcore::plugin::Plugable* (*xcore_start_plugin_function_pointer) (void);
+typedef XCore::Plugin::Plugable* (*xcore_start_plugin_function_pointer) (void);
 typedef void (*xcore_stop_plugin_function_pointer) (void);
 
 
 
 /**
- * @brief We can pass a plugin handler (Obteined by `xcore::dll::load(...)`) to this macro and it will startup and return a reference to the plugin.
+ * @brief We can pass a plugin handler (Obteined by `XCore::DLL::Load(...)`) to this macro and it will startup and return a reference to the plugin.
  */
-#define XCORE_START_PLUGIN(handler) ((xcore_start_plugin_function_pointer) xcore::dll::get_symbol_pointer(handler, "xcore_start_plugin"))()
+#define XCORE_START_PLUGIN(handler) ((xcore_start_plugin_function_pointer) XCore::DLL::GetSymbolPointer(handler, "xcore_start_plugin"))()
 
 /**
- * @brief We can pass a plugin handler (Obteined by `xcore::dll::load(...)`) to this macro and it will stop the plugin.
+ * @brief We can pass a plugin handler (Obteined by `XCore::DLL::Load(...)`) to this macro and it will stop the plugin.
  */
-#define XCORE_STOP_PLUGIN(handler) ((xcore_stop_plugin_function_pointer) xcore::dll::get_symbol_pointer(handler, "xcore_stop_plugin"))()
+#define XCORE_STOP_PLUGIN(handler) ((xcore_stop_plugin_function_pointer) XCore::DLL::GetSymbolPointer(handler, "xcore_stop_plugin"))()

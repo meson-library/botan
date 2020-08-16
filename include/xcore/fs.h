@@ -30,7 +30,7 @@
 
 #include <ghc/filesystem.hpp>
 
-namespace xcore
+namespace XCore
 {
-	namespace fs = ghc::filesystem;
+	namespace FS = ghc::filesystem;
 }
