@@ -10,13 +10,13 @@ project('XCore', ['cpp'],
 #
 # Declare some useful global variables.
 #
-proj_name              = meson.project_name()
+proj_name              = meson.project_name().to_lower()
 root_dir               = meson.current_source_dir()
 root_build_dir         = meson.current_build_dir()
 include_dir_root       = 'include'
-include_dir_proj       = include_dir_root/proj_name 
+include_dir_proj       = include_dir_root/proj_name
 sources_dir            = 'sources'
-examples_dir           = 'examples' 
+examples_dir           = 'examples'
 docs_dir               = 'docs'
 dependencies_dir       = 'subprojects'
 install_dir_general    = 'share'
