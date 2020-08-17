@@ -2,7 +2,7 @@
 # Find the tools tha will be used to generate documentation.
 #
 doxygen = find_program('wrapper_doxygen', required : true)
-dot = find_program('dot', required : true) 
+dot = find_program('dot', required : true)
 
 
 #
@@ -15,11 +15,11 @@ cdata.set('PROJECT_TAGFILE',           proj_name + '.doxytag')
 cdata.set('PROJECT_EXTERNAL_TAGFILES', '')
 cdata.set('PROJECT_ROOT_DIR',          root_dir)
 cdata.set('PROJECT_BUILD_DIR',         root_build_dir)
-cdata.set('PROJECT_INCLUDE_DIR',       '..'/'..'/'..'/'..'/'..'/'..'/'..'/'..'/include_dir_root)
-cdata.set('PROJECT_SOURCES_DIR',       '..'/'..'/'..'/'..'/'..'/'..'/'..'/'..'/sources_dir)
-cdata.set('PROJECT_EXAMPLES_DIR',      '..'/'..'/'..'/'..'/'..'/'..'/'..'/'..'/examples_dir)
-cdata.set('PROJECT_DOCS_DIR',          '..'/'..'/'..'/'..'/'..'/'..'/'..'/'..'/docs_dir)
-cdata.set('PROJECT_DEPENDENCIES_DIR',  '..'/'..'/'..'/'..'/'..'/'..'/'..'/'..'/dependencies_dir)
+cdata.set('PROJECT_INCLUDE_DIR',       '..'/'..'/'..'/'..'/'..'/'..'/include_dir_root)
+cdata.set('PROJECT_SOURCES_DIR',       '..'/'..'/'..'/'..'/'..'/'..'/sources_dir)
+cdata.set('PROJECT_EXAMPLES_DIR',      '..'/'..'/'..'/'..'/'..'/'..'/examples_dir)
+cdata.set('PROJECT_DOCS_DIR',          '..'/'..'/'..'/'..'/'..'/'..'/docs_dir)
+cdata.set('PROJECT_DEPENDENCIES_DIR',  '..'/'..'/'..'/'..'/'..'/'..'/dependencies_dir)
 cdata.set('PROJECT_BRIEF',             '')
 cdata.set('HAVE_DOT',                  dot.found() ? 'YES':'NO')
 
