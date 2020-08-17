@@ -25,5 +25,5 @@
 #include <XCore/XCore.h>
 
 XCORE_EXTERN_C_BEGIN
-    XCORE_API void display_helloworld_from_shared_library(void);
+XCORE_API void display_helloworld_from_shared_library(void);
 XCORE_EXTERN_C_END

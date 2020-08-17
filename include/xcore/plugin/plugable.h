@@ -35,8 +35,7 @@
 #include "../DLL.h"
 #include "../STL.h"
 
-namespace XCore { namespace Plugin
-{
+namespace XCore { namespace Plugin {
     /**
      * @class Plugable Plugable.h <XCore/Plugin/Plugable.h>
      *
@@ -44,61 +43,64 @@ namespace XCore { namespace Plugin
      */
     class Plugable : public XCore::Common::Disposable
     {
-    public:
+      public:
         Plugable() {};
         virtual ~Plugable() {};
 
         virtual const XCore::STL::string GetPluginUID() = 0;
         virtual const XCore::STL::string GetPluginGroupUID() = 0;
-        virtual const XCore::Common::AssetInfo   GetPluginInfo() = 0;
-        virtual const XCore::Common::SemVer      GetPluginVersion() = 0;
-        virtual const XCore::Common::SemVer      GetPluginHostVersion() = 0;
+        virtual const XCore::Common::AssetInfo GetPluginInfo() = 0;
+        virtual const XCore::Common::SemVer GetPluginVersion() = 0;
+        virtual const XCore::Common::SemVer GetPluginHostVersion() = 0;
     };
-}}
-
+}}  // namespace XCore::Plugin
 
 
 /**
  * @brief  We must pass a class name (From a class that inherits from `XCore::Plugin::Plugable`) to this
  *         macro and it will generate a boilerplate code for the plugin export, startup and stop actions.
  */
-#define XCORE_EXPORT_PLUGIN(PluginClassName) \
-    PluginClassName* pluginInstance = NULL; \
-    \
-    XCORE_EXTERN_C_BEGIN \
-        XCORE_API XCore::Plugin::Plugable* xcore_start_plugin() \
-        { \
-            if(pluginInstance == NULL) \
-            { \
-                pluginInstance = new PluginClassName(); \
-            } \
-            return pluginInstance; \
-        }; \
-        \
-        XCORE_API void xcore_stop_plugin(void) \
-        { \
-            if(pluginInstance != NULL) \
-            { \
-                pluginInstance->Dispose(); \
-                delete pluginInstance; \
-                pluginInstance = NULL; \
-            } \
-        }; \
+#define XCORE_EXPORT_PLUGIN(PluginClassName)                                                       \
+    PluginClassName* pluginInstance = NULL;                                                        \
+                                                                                                   \
+    XCORE_EXTERN_C_BEGIN                                                                           \
+    XCORE_API XCore::Plugin::Plugable* xcore_start_plugin()                                        \
+    {                                                                                              \
+        if (pluginInstance == NULL)                                                                \
+        {                                                                                          \
+            pluginInstance = new PluginClassName();                                                \
+        }                                                                                          \
+        return pluginInstance;                                                                     \
+    };                                                                                             \
+                                                                                                   \
+    XCORE_API void xcore_stop_plugin(void)                                                         \
+    {                                                                                              \
+        if (pluginInstance != NULL)                                                                \
+        {                                                                                          \
+            pluginInstance->Dispose();                                                             \
+            delete pluginInstance;                                                                 \
+            pluginInstance = NULL;                                                                 \
+        }                                                                                          \
+    };                                                                                             \
     XCORE_EXTERN_C_END
 
 
-
-typedef XCore::Plugin::Plugable* (*xcore_start_plugin_function_pointer) (void);
-typedef void (*xcore_stop_plugin_function_pointer) (void);
-
+typedef XCore::Plugin::Plugable* (*xcore_start_plugin_function_pointer)(void);
+typedef void (*xcore_stop_plugin_function_pointer)(void);
 
 
 /**
- * @brief We can pass a plugin handler (Obteined by `XCore::DLL::Load(...)`) to this macro and it will startup and return a reference to the plugin.
+ * @brief We can pass a plugin handler (Obteined by `XCore::DLL::Load(...)`) to this macro and it
+ * will startup and return a reference to the plugin.
  */
-#define XCORE_START_PLUGIN(handler) ((xcore_start_plugin_function_pointer) XCore::DLL::GetSymbolPointer(handler, "xcore_start_plugin"))()
+#define XCORE_START_PLUGIN(handler)                                                                \
+    ((xcore_start_plugin_function_pointer)XCore::DLL::GetSymbolPointer(handler,                    \
+                                                                       "xcore_start_plugin"))()
 
 /**
- * @brief We can pass a plugin handler (Obteined by `XCore::DLL::Load(...)`) to this macro and it will stop the plugin.
+ * @brief We can pass a plugin handler (Obteined by `XCore::DLL::Load(...)`) to this macro and it
+ * will stop the plugin.
  */
-#define XCORE_STOP_PLUGIN(handler) ((xcore_stop_plugin_function_pointer) XCore::DLL::GetSymbolPointer(handler, "xcore_stop_plugin"))()
+#define XCORE_STOP_PLUGIN(handler)                                                                 \
+    ((xcore_stop_plugin_function_pointer)XCore::DLL::GetSymbolPointer(handler,                     \
+                                                                      "xcore_stop_plugin"))()

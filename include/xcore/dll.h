@@ -32,8 +32,7 @@
 #include "STL.h"
 
 
-namespace XCore { namespace DLL
-{
+namespace XCore { namespace DLL {
     /**
      * @brief      Load a shared library at runtime.
      *
@@ -72,5 +71,6 @@ namespace XCore { namespace DLL
      *             [FARPROC](https://msdn.microsoft.com/en-us/library/windows/desktop/ms633571(v=vs.85).aspx)
      *             and in *nix is of type <b>void *</b>
      */
-    XCORE_DLL_SYMBOL_POINTER GetSymbolPointer(XCORE_DLL_HANDLER handler, const XCore::STL::string& symbolName);
-}}
+    XCORE_DLL_SYMBOL_POINTER GetSymbolPointer(XCORE_DLL_HANDLER handler,
+                                              const XCore::STL::string& symbolName);
+}}  // namespace XCore::DLL

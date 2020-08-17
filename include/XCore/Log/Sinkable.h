@@ -35,8 +35,7 @@
 #include <string>
 
 
-namespace XCore { namespace Log
-{
+namespace XCore { namespace Log {
     /**
      * @class Sinkable Sinkable.h <XCore/Log/Sinkable.h>
      *
@@ -44,46 +43,46 @@ namespace XCore { namespace Log
      */
     class Sinkable
     {
-    public:
+      public:
         XCORE_DISABLE_COPY_AND_MOVE(Sinkable);
 
-    public:
+      public:
         Sinkable() = default;
         virtual ~Sinkable() = default;
 
-    public:
+      public:
         /**
          * @brief Get the name of this sinkable object.
-         * 
-         * @return const std::string& 
+         *
+         * @return const std::string&
          */
         virtual const std::string& GetName() = 0;
 
         /**
          * @brief Get the severity level of this sinkable object.
-         * 
-         * @return XCore::Log::Level 
+         *
+         * @return XCore::Log::Level
          */
         virtual XCore::Log::Level GetLevel() = 0;
 
         /**
-         * @brief Set the maximum severity level that this sink can 
+         * @brief Set the maximum severity level that this sink can
          *     respond to.
-         * 
+         *
          * @param[in] level The Level to be set.
          */
         virtual void SetLevel(XCore::Log::Level level) = 0;
 
         /**
          * @brief Get custom data of this object.
-         * 
-         * @return std::shared_ptr<void> 
+         *
+         * @return std::shared_ptr<void>
          */
         virtual std::shared_ptr<void> GetData() = 0;
 
         /**
-         * @brief Flush the buffered log records to the target. 
+         * @brief Flush the buffered log records to the target.
          */
         virtual void Flush() = 0;
     };
-}}
+}}  // namespace XCore::Log

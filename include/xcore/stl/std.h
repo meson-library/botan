@@ -31,42 +31,41 @@
 /**
  * @cond
  */
-#include<algorithm>
-#include<any>
-#include<array>
-#include<bitset>
-#include<chrono>
-#include<deque>
-#include<functional>
-#include<hash_map>
-#include<hash_set>
-#include<initializer_list>
-#include<iterator>
-#include<list>
-#include<map>
-#include<memory>
-#include<numeric>
-#include<optional>
-#include<queue>
-#include<random>
-#include<ratio>
-#include<set>
-#include<span>
-#include<stack>
-#include<string>
-#include<string_view>
-#include<type_traits>
-#include<unordered_map>
-#include<unordered_set>
-#include<utility>
-#include<variant>
-#include<vector>
-#include<version>
+#include <algorithm>
+#include <any>
+#include <array>
+#include <bitset>
+#include <chrono>
+#include <deque>
+#include <functional>
+#include <hash_map>
+#include <hash_set>
+#include <initializer_list>
+#include <iterator>
+#include <list>
+#include <map>
+#include <memory>
+#include <numeric>
+#include <optional>
+#include <queue>
+#include <random>
+#include <ratio>
+#include <set>
+#include <span>
+#include <stack>
+#include <string>
+#include <string_view>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <variant>
+#include <vector>
+#include <version>
 /**
  * @endcond
  */
 
-namespace XCore
-{
-	namespace STL = std;
+namespace XCore {
+    namespace STL = std;
 }

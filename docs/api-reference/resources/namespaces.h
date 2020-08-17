@@ -23,7 +23,7 @@
 #pragma once
 
 /*
-    The purpose of this file is just to document our namespaces. Should not be 
+    The purpose of this file is just to document our namespaces. Should not be
     included in any place.
 */
 #error "For documentation only."
@@ -31,106 +31,98 @@
 
 /**
  * @namespace XCore
- * 
- * @brief The root namespace for te XCore library. 
+ *
+ * @brief The root namespace for te XCore library.
  */
-namespace XCore
-{
+namespace XCore {
     /**
      * @namespace XCore::DLL
-     * 
+     *
      * @brief Contains a set of resources for shared library manipulations.
      */
-    namespace DLL
-    {
+    namespace DLL {
 
     }
 
 
     /**
      * @namespace XCore::FS
-     * 
+     *
      * @brief Contains a set of resources for filesystem manipulation.
-     * 
-     * @details This is the start point for filesystem manipulations like read and write to files, list directories, set <br> 
-     *          file attributes, copy and move files and so on... <br>
-     *          <br>
-     *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-     *          https://github.com/meson-library/filesystem. The namespace `XCore::FS` is an alias to the original library <br>
-     *          namespace that is `ghc::filesystem`. Basicaly the original library consist of a C++11 cross-platform <br>
-     *          implementation of the standard `std::filesystem` (Now already included in the C++17 standard).
+     *
+     * @details This is the start point for filesystem manipulations like read and write to files,
+     * list directories, set <br> file attributes, copy and move files and so on... <br> <br> We use
+     * a thirdparty library for this purpose. The original library can be found in the following url
+     * <br> https://github.com/meson-library/filesystem. The namespace `XCore::FS` is an alias to
+     * the original library <br> namespace that is `ghc::filesystem`. Basicaly the original library
+     * consist of a C++11 cross-platform <br> implementation of the standard `std::filesystem` (Now
+     * already included in the C++17 standard).
      */
-    namespace FS
-    {
+    namespace FS {
 
     }
 
 
     /**
      * @namespace XCore::Math
-     * 
+     *
      * @brief Contains a set of resources for mathematical manipulation.
-     * 
+     *
      * @details This is the start point for mathematical manipulations. <br>
      *          <br>
-     *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-     *          https://github.com/meson-library/eigen. The namespace `XCore::Math` is an alias to the original library <br>
-     *          namespace that is `Eigen`.
+     *          We use a thirdparty library for this purpose. The original library can be found in
+     * the following url <br> https://github.com/meson-library/eigen. The namespace `XCore::Math` is
+     * an alias to the original library <br> namespace that is `Eigen`.
      */
-    namespace Math
-    {
+    namespace Math {
 
     }
 
 
     /**
      * @namespace XCore::STL
-     * 
+     *
      * @brief Contains the STL implementation currently in use by our system.
-     * 
-     * @details This namespace contains the STL implementation currently in use by our system. We can use the standard STL <br>
-     *          implementation of our compilers or use an implementation from Eletronic Arts (EASTL). <br>
-     *          <br>
-     *          We use a thirdparty library for this purpose. The original library can be found in the following url <br> 
-     *          https://github.com/meson-library/eastl. The namespace `XCore::STL` is an alias to the original library <br>
-     *          namespace that is `eastl` or `std` from standard stl implementation.
+     *
+     * @details This namespace contains the STL implementation currently in use by our system. We
+     * can use the standard STL <br> implementation of our compilers or use an implementation from
+     * Eletronic Arts (EASTL). <br> <br> We use a thirdparty library for this purpose. The original
+     * library can be found in the following url <br> https://github.com/meson-library/eastl. The
+     * namespace `XCore::STL` is an alias to the original library <br> namespace that is `eastl` or
+     * `std` from standard stl implementation.
      */
-    namespace STL
-    {
+    namespace STL {
 
     }
 
 
     /**
-    * @namespace XCore::Log
-    * 
-    * @brief Contains a set of resources for work with logs.
-    */
-    namespace Log
-    {
+     * @namespace XCore::Log
+     *
+     * @brief Contains a set of resources for work with logs.
+     */
+    namespace Log {
         /**
-        * @namespace XCore::Log::Registry
-        * 
-        * @brief  Contains our logger implementation.
-        * 
-        * @details This is the start point for log manipulations.
-        */
-        namespace Registry
-        {
+         * @namespace XCore::Log::Registry
+         *
+         * @brief  Contains our logger implementation.
+         *
+         * @details This is the start point for log manipulations.
+         */
+        namespace Registry {
 
         }
-    }
+    }  // namespace Log
 
 
     /**
-    * @namespace XCore::Plugin
-    * 
-    * @brief Contains a set of resources for work with plugins.
-    * 
-    * @details This is the start point for plugin manipulations.
-    */
-    namespace Plugin
-    {
+     * @namespace XCore::Plugin
+     *
+     * @brief Contains a set of resources for work with plugins.
+     *
+     * @details This is the start point for plugin manipulations.
+     */
+    namespace Plugin {
 
     }
-}
+}  // namespace XCore

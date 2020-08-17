@@ -28,16 +28,15 @@
 
 #pragma once
 
-namespace XCore { namespace Log
-{
+namespace XCore { namespace Log {
     /**
      * @enum Level Level.h <XCore/Log/Level.h>
-     * 
+     *
      * @brief A representation for log severity levels.
      */
     enum class Level
     {
-        None,       
+        None,
         Critical,
         Error,
         Warning,
@@ -45,4 +44,4 @@ namespace XCore { namespace Log
         Debug,
         Trace
     };
-}}
+}}  // namespace XCore::Log

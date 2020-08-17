@@ -30,7 +30,6 @@
 
 #include <Eigen/Eigen>
 
-namespace XCore
-{
-	namespace Math = Eigen;
+namespace XCore {
+    namespace Math = Eigen;
 }

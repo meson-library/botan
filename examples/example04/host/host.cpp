@@ -23,7 +23,6 @@
 #include "MyPlugin.h"
 
 #include <XCore/XCore.h>
-
 #include <iostream>
 
 int main()
@@ -46,20 +45,23 @@ int main()
     std::cout << "| Plugin UID           : " + std::string(pluginUID.c_str()) << std::endl;
     std::cout << "| Plugin Group UID     : " + std::string(pluginGroupUID.c_str()) << std::endl;
     std::cout << "| Plugin Version       : " + std::to_string(pluginVersion.Major) + "."
-                                             + std::to_string(pluginVersion.Minor) + "."
-                                             + std::to_string(pluginVersion.Path) + "."
-                                             + std::string(pluginVersion.Label.c_str()) << std::endl;
+                     + std::to_string(pluginVersion.Minor) + "." + std::to_string(pluginVersion.Path)
+                     + "." + std::string(pluginVersion.Label.c_str())
+              << std::endl;
     std::cout << "| Plugin Host Version  : " + std::to_string(pluginHostVersion.Major) + "."
-                                             + std::to_string(pluginHostVersion.Minor) + "."
-                                             + std::to_string(pluginHostVersion.Path) + "."
-                                             + std::string(pluginHostVersion.Label.c_str()) << std::endl;
+                     + std::to_string(pluginHostVersion.Minor) + "."
+                     + std::to_string(pluginHostVersion.Path) + "."
+                     + std::string(pluginHostVersion.Label.c_str())
+              << std::endl;
     std::cout << "|------------------------------------------------------------" << std::endl;
     std::cout << "| Plugin Name           : " + std::string(pluginInfo.Name.c_str()) << std::endl;
     std::cout << "| Plugin Author         : " + std::string(pluginInfo.Author.c_str()) << std::endl;
     std::cout << "| Plugin License        : " + std::string(pluginInfo.License.c_str()) << std::endl;
-    std::cout << "| Plugin Description    : " + std::string(pluginInfo.Description.c_str()) << std::endl;
+    std::cout << "| Plugin Description    : " + std::string(pluginInfo.Description.c_str())
+              << std::endl;
     std::cout << "|------------------------------------------------------------" << std::endl;
-    std::cout << "|"; plugin->DisplayHelloWorldFromMyPlugin();
+    std::cout << "|";
+    plugin->DisplayHelloWorldFromMyPlugin();
     std::cout << "|------------------------------------------------------------" << std::endl;
 
 

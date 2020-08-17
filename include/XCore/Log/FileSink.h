@@ -23,7 +23,7 @@
 /**
  * @file
  *
- * @brief Contains a sink implementation for general use wich the destination is a 
+ * @brief Contains a sink implementation for general use wich the destination is a
  *     file.
  */
 
@@ -34,37 +34,36 @@
 
 #include <string>
 
-namespace XCore { namespace Log
-{
-     /**
+namespace XCore { namespace Log {
+    /**
      * @class FileSink FileSink.h <XCore/Log/FileSink.h>
      *
-     * @brief A sink implementation for general use wich the destination is a 
+     * @brief A sink implementation for general use wich the destination is a
      *     file.
      */
     class FileSink : public XCore::Log::Sinkable
     {
-    public:
+      public:
         /**
-         * @brief Construct a new sink object which the destination is a file. 
-         * 
+         * @brief Construct a new sink object which the destination is a file.
+         *
          * @param[in] name A unique name for the sink that will be built.
-         * 
-         * @param[in] path The file path to which this sink will write the logs. 
-         * 
+         *
+         * @param[in] path The file path to which this sink will write the logs.
+         *
          * @param[in] truncate Indicates whether the log file will be truncated.
          */
-        FileSink(const std::string& name, const std::string& path, bool truncate=false);
+        FileSink(const std::string& name, const std::string& path, bool truncate = false);
 
-    public:
+      public:
         virtual const std::string& GetName() override;
         virtual XCore::Log::Level GetLevel() override;
         virtual void SetLevel(XCore::Log::Level level) override;
         virtual std::shared_ptr<void> GetData() override;
         virtual void Flush() override;
-        
-    private:
+
+      private:
         struct Impl;
         std::unique_ptr<Impl> m_Impl;
     };
-}}
+}}  // namespace XCore::Log

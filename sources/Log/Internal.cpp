@@ -26,82 +26,82 @@
 
 spdlog::level::level_enum XCore::Log::ConvertLevel(XCore::Log::Level level)
 {
-	spdlog::level::level_enum nativeLevel = spdlog::level::level_enum::off;
+    spdlog::level::level_enum nativeLevel = spdlog::level::level_enum::off;
 
-	switch(level)
-	{
-	case XCore::Log::Level::None:
-		nativeLevel = spdlog::level::level_enum::off;
-		break;
+    switch (level)
+    {
+    case XCore::Log::Level::None:
+        nativeLevel = spdlog::level::level_enum::off;
+        break;
 
-	case XCore::Log::Level::Critical:
-		nativeLevel = spdlog::level::level_enum::critical;
-		break;
+    case XCore::Log::Level::Critical:
+        nativeLevel = spdlog::level::level_enum::critical;
+        break;
 
-	case XCore::Log::Level::Error:
-		nativeLevel = spdlog::level::level_enum::err;
-		break;
+    case XCore::Log::Level::Error:
+        nativeLevel = spdlog::level::level_enum::err;
+        break;
 
-	case XCore::Log::Level::Warning:
-		nativeLevel = spdlog::level::level_enum::warn;
-		break;
+    case XCore::Log::Level::Warning:
+        nativeLevel = spdlog::level::level_enum::warn;
+        break;
 
-	case XCore::Log::Level::Info:
-		nativeLevel = spdlog::level::level_enum::info;
-		break;
+    case XCore::Log::Level::Info:
+        nativeLevel = spdlog::level::level_enum::info;
+        break;
 
-	case XCore::Log::Level::Debug:
-		nativeLevel = spdlog::level::level_enum::debug;
-		break;
+    case XCore::Log::Level::Debug:
+        nativeLevel = spdlog::level::level_enum::debug;
+        break;
 
-	case XCore::Log::Level::Trace:
-		nativeLevel = spdlog::level::level_enum::trace;
-		break;
+    case XCore::Log::Level::Trace:
+        nativeLevel = spdlog::level::level_enum::trace;
+        break;
 
-	default:
-		break;
-	}
+    default:
+        break;
+    }
 
-	return nativeLevel;
+    return nativeLevel;
 }
 
 XCore::Log::Level XCore::Log::ConvertLevel(spdlog::level::level_enum nativeLevel)
 {
-	XCore::Log::Level level = XCore::Log::Level::None;
+    XCore::Log::Level level = XCore::Log::Level::None;
 
-	switch(nativeLevel)
-	{
-	case spdlog::level::level_enum::off:
-		level = XCore::Log::Level::None;
-		break;
+    switch (nativeLevel)
+    {
+    case spdlog::level::level_enum::off:
+        level = XCore::Log::Level::None;
+        break;
 
-	case spdlog::level::level_enum::critical:
-		level = XCore::Log::Level::Critical;
-		break;
+    case spdlog::level::level_enum::critical:
+        level = XCore::Log::Level::Critical;
+        break;
 
-	case spdlog::level::level_enum::err:
-		level = XCore::Log::Level::Error;
-		break;
+    case spdlog::level::level_enum::err:
+        level = XCore::Log::Level::Error;
+        break;
 
-	case spdlog::level::level_enum::warn:
-		level = XCore::Log::Level::Warning;
-		break;
+    case spdlog::level::level_enum::warn:
+        level = XCore::Log::Level::Warning;
+        break;
 
-	case spdlog::level::level_enum::info:
-		level = XCore::Log::Level::Info;
-		break;
+    case spdlog::level::level_enum::info:
+        level = XCore::Log::Level::Info;
+        break;
 
-	case spdlog::level::level_enum::debug:
-		level = XCore::Log::Level::Debug;
-		break;
+    case spdlog::level::level_enum::debug:
+        level = XCore::Log::Level::Debug;
+        break;
 
-	case spdlog::level::level_enum::trace:
-		level = XCore::Log::Level::Trace;
-		break;
+    case spdlog::level::level_enum::trace:
+        level = XCore::Log::Level::Trace;
+        break;
 
-	default:
-		break;
-	}
+    default:
+        break;
+    }
 
-	return level;
+    return level;
 }

@@ -22,31 +22,31 @@
 
 /**
  * @file
- * 
+ *
  * @brief Contains common type definitions.
  *
  * @details This file contains a common set of type definitions.
  */
 
 #if defined(XCORE_COMPILER_MSVC) || defined(DOXYGEN)
-    #include <windows.h>
+#    include <windows.h>
 
-    /**
-     * @brief A handle to manage a dynamic shared library.
-     *
-     * @details On MSVC this macro expands to #HMODULE and
-     *          on GCC expands to `void*`.
-     */
-    typedef HMODULE XCORE_DLL_HANDLER;
+/**
+ * @brief A handle to manage a dynamic shared library.
+ *
+ * @details On MSVC this macro expands to #HMODULE and
+ *          on GCC expands to `void*`.
+ */
+typedef HMODULE XCORE_DLL_HANDLER;
 
-    /**
-     * @brief A pointer to a symbol inside a shared library.
-     *
-     * @details On MSVC this macro expands to #FARPROC and
-     *          on GCC expands to `void*`.
-     */
-    typedef FARPROC XCORE_DLL_SYMBOL_POINTER;
+/**
+ * @brief A pointer to a symbol inside a shared library.
+ *
+ * @details On MSVC this macro expands to #FARPROC and
+ *          on GCC expands to `void*`.
+ */
+typedef FARPROC XCORE_DLL_SYMBOL_POINTER;
 #else
-    typedef void* XCORE_DLL_HANDLER;
-    typedef void* XCORE_DLL_SYMBOL_POINTER;
+typedef void* XCORE_DLL_HANDLER;
+typedef void* XCORE_DLL_SYMBOL_POINTER;
 #endif

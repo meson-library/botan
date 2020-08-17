@@ -30,8 +30,7 @@
 
 #include "../STL.h"
 
-namespace XCore { namespace Common
-{
+namespace XCore { namespace Common {
     /**
      * @struct AssetInfo AssetInfo.h <XCore/Common/AssetInfo.h>
      *
@@ -39,11 +38,9 @@ namespace XCore { namespace Common
      */
     struct AssetInfo
     {
-        AssetInfo
-        (
-            XCore::STL::string name, XCore::STL::string author = "", XCore::STL::string license = "", XCore::STL::string description = ""
-        ) :
-            Name(name), Author(author), License(license), Description(description) { };
+        AssetInfo(XCore::STL::string name, XCore::STL::string author = "",
+                  XCore::STL::string license = "", XCore::STL::string description = "")
+            : Name(name), Author(author), License(license), Description(description) {};
 
         XCore::STL::string Name;
         XCore::STL::string Author;
@@ -52,4 +49,4 @@ namespace XCore { namespace Common
     };
 
     typedef struct AssetInfo AssetInfo;
-}}
+}}  // namespace XCore::Common

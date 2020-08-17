@@ -23,25 +23,23 @@
 #pragma once
 
 #include <MyPlugin.h>
-
 #include <XCore/XCore.h>
-
 #include <iostream>
 
 class Plugin : public SDK::MyPlugin
 {
-public:
-	Plugin() { };
+  public:
+    Plugin() {};
 
-	const XCore::STL::string GetPluginUID();
-	const XCore::STL::string GetPluginGroupUID();
-	const XCore::Common::AssetInfo GetPluginInfo();
-	const XCore::Common::SemVer GetPluginVersion();
-	const XCore::Common::SemVer GetPluginHostVersion();
+    const XCore::STL::string GetPluginUID();
+    const XCore::STL::string GetPluginGroupUID();
+    const XCore::Common::AssetInfo GetPluginInfo();
+    const XCore::Common::SemVer GetPluginVersion();
+    const XCore::Common::SemVer GetPluginHostVersion();
 
-	void Dispose();
+    void Dispose();
 
-	const void DisplayHelloWorldFromMyPlugin();
+    const void DisplayHelloWorldFromMyPlugin();
 };
 
 XCORE_EXPORT_PLUGIN(Plugin);

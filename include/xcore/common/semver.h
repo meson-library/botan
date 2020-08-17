@@ -30,8 +30,7 @@
 
 #include "../STL.h"
 
-namespace XCore { namespace Common
-{
+namespace XCore { namespace Common {
     /**
      * @struct SemVer SemVer.h <XCore/Common/SemVer.h>
      *
@@ -45,17 +44,14 @@ namespace XCore { namespace Common
      */
     struct SemVer
     {
-        SemVer
-        (
-            int major, int minor = 0, int path = 0, XCore::STL::string label = ""
-        ) :
-            Major(major), Minor(minor), Path(path), Label(label) { };
+        SemVer(int major, int minor = 0, int path = 0, XCore::STL::string label = "")
+            : Major(major), Minor(minor), Path(path), Label(label) {};
 
-        int	               Major;
-        int	               Minor;
-        int	               Path;
+        int Major;
+        int Minor;
+        int Path;
         XCore::STL::string Label;
     };
 
     typedef struct SemVer SemVer;
-}}
+}}  // namespace XCore::Common

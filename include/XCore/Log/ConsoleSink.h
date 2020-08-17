@@ -23,7 +23,7 @@
 /**
  * @file
  *
- * @brief Contains a sink implementation for general use wich de destination is a 
+ * @brief Contains a sink implementation for general use wich de destination is a
  *     console.
  */
 
@@ -34,33 +34,32 @@
 
 #include <string>
 
-namespace XCore { namespace Log
-{
+namespace XCore { namespace Log {
     /**
      * @class ConsoleSink ConsoleSink.h <XCore/Log/ConsoleSink.h>
      *
-     * @brief A sink implementation for general use wich the destination is a 
+     * @brief A sink implementation for general use wich the destination is a
      *     console.
      */
     class ConsoleSink : public XCore::Log::Sinkable
     {
-    public:
+      public:
         /**
          * @brief Construct a new sink object wich the destination is a console.
-         * 
+         *
          * @param[in] name A unique name for the sink that will be built.
          */
         ConsoleSink(const std::string& name);
-    
-    public:
+
+      public:
         virtual const std::string& GetName() override;
         virtual XCore::Log::Level GetLevel() override;
         virtual void SetLevel(XCore::Log::Level level) override;
         virtual std::shared_ptr<void> GetData() override;
         virtual void Flush() override;
-    
-    private:
+
+      private:
         struct Impl;
         std::unique_ptr<Impl> m_Impl;
     };
-}}
+}}  // namespace XCore::Log

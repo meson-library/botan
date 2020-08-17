@@ -25,8 +25,9 @@
 #include "XCore/STL/EA.h"
 
 #if XCORE_STL_IMPLEMENTATION == XCORE_EASTL
-    void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
-    {
-        return new uint8_t[size];
-    }
+void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags,
+                                 const char* file, int line)
+{
+    return new uint8_t[size];
+}
 #endif

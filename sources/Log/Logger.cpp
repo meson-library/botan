@@ -21,93 +21,94 @@
 // +---------------------------------------------------------------------------
 
 #include "XCore/Log/Logger.h"
-#include "Internal.h"
 
-#include <spdlog/sinks/dist_sink.h>
-#include <spdlog/spdlog.h>
+#include "Internal.h"
 
 #include <algorithm>
 #include <shared_mutex>
-
+#include <spdlog/sinks/dist_sink.h>
+#include <spdlog/spdlog.h>
 
 
 struct XCore::Log::Logger::Impl
 {
-	std::unordered_map<std::string, std::shared_ptr<XCore::Log::Sinkable>> Sinks;
-	std::shared_ptr<spdlog::sinks::dist_sink_mt> SinkRoot;
-	std::shared_ptr<spdlog::logger> Logger;
-	std::shared_mutex Mutex;
+    std::unordered_map<std::string, std::shared_ptr<XCore::Log::Sinkable>> Sinks;
+    std::shared_ptr<spdlog::sinks::dist_sink_mt> SinkRoot;
+    std::shared_ptr<spdlog::logger> Logger;
+    std::shared_mutex Mutex;
 };
 
 
-
-XCore::Log::Logger::Logger(const std::string& name) :
-	XCore::Log::Logger::Logger(name, XCore::Log::Level::Trace)
+XCore::Log::Logger::Logger(const std::string& name)
+    : XCore::Log::Logger::Logger(name, XCore::Log::Level::Trace)
 {
-	/* Do Nothing! */
+    /* Do Nothing! */
 }
 
-XCore::Log::Logger::Logger(const std::string& name, XCore::Log::Level level) :
-	XCore::Log::Logger::Logger(name, level, std::vector<std::shared_ptr<XCore::Log::Sinkable>>{})
+XCore::Log::Logger::Logger(const std::string& name, XCore::Log::Level level)
+    : XCore::Log::Logger::Logger(name, level, std::vector<std::shared_ptr<XCore::Log::Sinkable>> {})
 {
-	/* Do Nothing! */
+    /* Do Nothing! */
 }
 
-XCore::Log::Logger::Logger(const std::string& name, std::shared_ptr<XCore::Log::Sinkable> sink) :
-	XCore::Log::Logger::Logger(name, XCore::Log::Level::Trace, std::vector<std::shared_ptr<XCore::Log::Sinkable>>{sink})
+XCore::Log::Logger::Logger(const std::string& name, std::shared_ptr<XCore::Log::Sinkable> sink)
+    : XCore::Log::Logger::Logger(name, XCore::Log::Level::Trace,
+                                 std::vector<std::shared_ptr<XCore::Log::Sinkable>> {sink})
 {
-	/* Do Nothing! */
+    /* Do Nothing! */
 }
 
-XCore::Log::Logger::Logger(const std::string& name, std::vector<std::shared_ptr<XCore::Log::Sinkable>> sinks) :
-	XCore::Log::Logger::Logger(name, XCore::Log::Level::Trace, sinks)
+XCore::Log::Logger::Logger(const std::string& name,
+                           std::vector<std::shared_ptr<XCore::Log::Sinkable>> sinks)
+    : XCore::Log::Logger::Logger(name, XCore::Log::Level::Trace, sinks)
 {
-	/* Do Nothing! */
+    /* Do Nothing! */
 }
 
-XCore::Log::Logger::Logger(const std::string& name, XCore::Log::Level level, std::vector<std::shared_ptr<XCore::Log::Sinkable>> sinks) :
-	m_Impl { std::make_unique<Impl>() }
+XCore::Log::Logger::Logger(const std::string& name, XCore::Log::Level level,
+                           std::vector<std::shared_ptr<XCore::Log::Sinkable>> sinks)
+    : m_Impl {std::make_unique<Impl>()}
 {
-	m_Impl->SinkRoot = std::make_shared<spdlog::sinks::dist_sink_mt>();
+    m_Impl->SinkRoot = std::make_shared<spdlog::sinks::dist_sink_mt>();
 
-	std::for_each(sinks.begin(), sinks.end(), [&] (const auto& sink) 
-	{ 
-		m_Impl->Sinks.emplace(sink->GetName(), sink); 
-	});
+    std::for_each(sinks.begin(), sinks.end(), [&](const auto& sink) {
+        m_Impl->Sinks.emplace(sink->GetName(), sink);
+    });
 
-	for (auto& sink : m_Impl->Sinks)
-	{
-		m_Impl->SinkRoot->add_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink.second->GetData()));
-	}
+    for (auto& sink: m_Impl->Sinks)
+    {
+        m_Impl->SinkRoot->add_sink(
+            std::static_pointer_cast<spdlog::sinks::sink>(sink.second->GetData()));
+    }
 
-	m_Impl->Logger = std::make_shared<spdlog::logger>(name, m_Impl->SinkRoot);
-	SetLevel(level);
+    m_Impl->Logger = std::make_shared<spdlog::logger>(name, m_Impl->SinkRoot);
+    SetLevel(level);
 }
 
 const std::string& XCore::Log::Logger::GetName()
 {
-	return m_Impl->Logger->name();
+    return m_Impl->Logger->name();
 }
 
 XCore::Log::Level XCore::Log::Logger::GetLevel()
 {
-	std::shared_lock<std::shared_mutex> lock(m_Impl->Mutex);
+    std::shared_lock<std::shared_mutex> lock(m_Impl->Mutex);
 
-	return ConvertLevel(m_Impl->Logger->level());
+    return ConvertLevel(m_Impl->Logger->level());
 }
 
 void XCore::Log::Logger::SetLevel(XCore::Log::Level level)
 {
-	std::unique_lock<std::shared_mutex> lock(m_Impl->Mutex);
+    std::unique_lock<std::shared_mutex> lock(m_Impl->Mutex);
 
-	m_Impl->Logger->set_level(ConvertLevel(level));
+    m_Impl->Logger->set_level(ConvertLevel(level));
 }
 
 bool XCore::Log::Logger::ContainsSink(const std::string& name)
 {
     std::shared_lock<std::shared_mutex> lock(m_Impl->Mutex);
 
-    return m_Impl->Sinks.count(name) > 0;    
+    return m_Impl->Sinks.count(name) > 0;
 }
 
 XCore::Log::Sinkable& XCore::Log::Logger::GetSink(const std::string& name)
@@ -127,14 +128,14 @@ XCore::Log::Sinkable& XCore::Log::Logger::GetSink(const std::string& name)
 
 void XCore::Log::Logger::AddSink(std::shared_ptr<XCore::Log::Sinkable> sink)
 {
-	std::unique_lock<std::shared_mutex> lock(m_Impl->Mutex);
+    std::unique_lock<std::shared_mutex> lock(m_Impl->Mutex);
 
-	auto result = m_Impl->Sinks.emplace(sink->GetName(), sink);
-    if(result.second == true)
+    auto result = m_Impl->Sinks.emplace(sink->GetName(), sink);
+    if (result.second == true)
     {
         m_Impl->SinkRoot->add_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink->GetData()));
     }
-	else
+    else
     {
         throw;
     }
@@ -142,16 +143,16 @@ void XCore::Log::Logger::AddSink(std::shared_ptr<XCore::Log::Sinkable> sink)
 
 void XCore::Log::Logger::RemoveSink(const std::string& name)
 {
-	std::unique_lock<std::shared_mutex> lock(m_Impl->Mutex);
+    std::unique_lock<std::shared_mutex> lock(m_Impl->Mutex);
 
-	if(m_Impl->Sinks.count(name) > 0)
-	{
-		auto& sink = m_Impl->Sinks.at(name);
-		m_Impl->SinkRoot->remove_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink->GetData()));
+    if (m_Impl->Sinks.count(name) > 0)
+    {
+        auto& sink = m_Impl->Sinks.at(name);
+        m_Impl->SinkRoot->remove_sink(std::static_pointer_cast<spdlog::sinks::sink>(sink->GetData()));
 
-		m_Impl->Sinks.erase(name);
-	}
-	else
+        m_Impl->Sinks.erase(name);
+    }
+    else
     {
         throw;
     }
@@ -159,12 +160,12 @@ void XCore::Log::Logger::RemoveSink(const std::string& name)
 
 void XCore::Log::Logger::Log(XCore::Log::Level level, const std::string& msg)
 {
-	std::shared_lock<std::shared_mutex> lock(m_Impl->Mutex);
-	
-	m_Impl->Logger->log(ConvertLevel(level), msg);
+    std::shared_lock<std::shared_mutex> lock(m_Impl->Mutex);
+
+    m_Impl->Logger->log(ConvertLevel(level), msg);
 }
 
 void XCore::Log::Logger::Dispose()
 {
-	/* Do Nothing! */
+    /* Do Nothing! */
 }

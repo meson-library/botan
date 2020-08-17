@@ -24,13 +24,12 @@
 
 #include "XCore/XCore.h"
 
-namespace SDK
-{
+namespace SDK {
     class MyPlugin : public XCore::Plugin::Plugable
     {
-    public:
-        MyPlugin() { };
+      public:
+        MyPlugin() {};
 
         virtual const void DisplayHelloWorldFromMyPlugin() = 0;
     };
-}
+}  // namespace SDK

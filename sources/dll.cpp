@@ -23,50 +23,51 @@
 #include "XCore/DLL.h"
 
 #if defined(XCORE_OS_FAMILY_UNIX)
-#include <dlfcn.h>
+#    include <dlfcn.h>
 #endif
 
 XCORE_DLL_HANDLER XCore::DLL::Load(const XCore::STL::string& path)
 {
 #if defined(XCORE_COMPILER_MSVC)
-	XCORE_DLL_HANDLER handler = LoadLibraryA(path.c_str());
+    XCORE_DLL_HANDLER handler = LoadLibraryA(path.c_str());
 #else
-	XCORE_DLL_HANDLER handler = dlopen(path.c_str(), RTLD_LAZY);
+    XCORE_DLL_HANDLER handler = dlopen(path.c_str(), RTLD_LAZY);
 #endif
 
-	return handler;
+    return handler;
 }
 
 bool XCore::DLL::Unload(XCORE_DLL_HANDLER handler)
 {
 #if defined(XCORE_COMPILER_MSVC)
-	if(FreeLibrary(handler) == 0)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+    if (FreeLibrary(handler) == 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 #else
-	if(dlclose(handler) == 0)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+    if (dlclose(handler) == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 #endif
 }
 
-XCORE_DLL_SYMBOL_POINTER XCore::DLL::GetSymbolPointer(XCORE_DLL_HANDLER handler, const XCore::STL::string& symbolName)
+XCORE_DLL_SYMBOL_POINTER XCore::DLL::GetSymbolPointer(XCORE_DLL_HANDLER handler,
+                                                      const XCore::STL::string& symbolName)
 {
 #if defined(XCORE_COMPILER_MSVC)
-	XCORE_DLL_SYMBOL_POINTER symbolPointer = GetProcAddress(handler, symbolName.c_str());
+    XCORE_DLL_SYMBOL_POINTER symbolPointer = GetProcAddress(handler, symbolName.c_str());
 #else
-	XCORE_DLL_SYMBOL_POINTER symbolPointer = dlsym(handler, symbolName.c_str());
+    XCORE_DLL_SYMBOL_POINTER symbolPointer = dlsym(handler, symbolName.c_str());
 #endif
 
-	return symbolPointer;
+    return symbolPointer;
 }

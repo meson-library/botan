@@ -31,36 +31,35 @@
 #include <memory>
 #include <string>
 
-namespace XCore { namespace Log { namespace Registry 
-{ 
+namespace XCore { namespace Log { namespace Registry {
     /**
-     * @brief 
-     * 
-     * @param loggerName 
-     * @return true 
-     * @return false 
+     * @brief
+     *
+     * @param loggerName
+     * @return true
+     * @return false
      */
     bool Contains(const std::string& loggerName);
 
     /**
-     * @brief 
-     * 
-     * @param loggerName 
-     * @return XCore::Log::Loggable& 
+     * @brief
+     *
+     * @param loggerName
+     * @return XCore::Log::Loggable&
      */
     XCore::Log::Loggable& Get(const std::string& loggerName);
-    
+
     /**
-     * @brief 
-     * 
-     * @param loggerName 
+     * @brief
+     *
+     * @param loggerName
      */
     void Remove(const std::string& loggerName);
-    
+
     /**
-     * @brief 
-     * 
-     * @param logger 
+     * @brief
+     *
+     * @param logger
      */
     void Add(std::unique_ptr<XCore::Log::Loggable> logger);
-}}}
+}}}  // namespace XCore::Log::Registry

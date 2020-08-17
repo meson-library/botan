@@ -31,17 +31,17 @@
 #include "Common/Macros.h"
 
 #if !defined(XCORE_STL_IMPLEMENTATION)
-    #error The XCORE_STL_IMPLEMENTATION was not defined.
+#    error The XCORE_STL_IMPLEMENTATION was not defined.
 #endif
 
 #if XCORE_STL_IMPLEMENTATION != XCORE_STL && XCORE_STL_IMPLEMENTATION != XCORE_EASTL
-    #error The value of XCORE_STL_IMPLEMENTATION is inválid.
+#    error The value of XCORE_STL_IMPLEMENTATION is inválid.
 #endif
 
 #if XCORE_STL_IMPLEMENTATION == XCORE_STL || defined(DOXYGEN)
-    #include "STL/Std.h"
+#    include "STL/Std.h"
 #endif
 
 #if XCORE_STL_IMPLEMENTATION == XCORE_EASTL || defined(DOXYGEN)
-    #include "STL/EA.h"
+#    include "STL/EA.h"
 #endif

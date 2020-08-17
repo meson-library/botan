@@ -30,40 +30,28 @@
 
 #include "Level.h"
 
-#define XCORE_LOG_GENERAL1_CRITICAL(logger, ...) \
+#define XCORE_LOG_GENERAL1_CRITICAL(logger, ...)                                                   \
     logger->Log(XCore::Log::Level::Critical, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL1_ERROR(logger, ...) \
-    logger->Log(XCore::Log::Level::Error, __VA_ARGS__)
+#define XCORE_LOG_GENERAL1_ERROR(logger, ...) logger->Log(XCore::Log::Level::Error, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL1_WARNING(logger, ...) \
-    logger->Log(XCore::Log::Level::Warning, __VA_ARGS__)
+#define XCORE_LOG_GENERAL1_WARNING(logger, ...) logger->Log(XCore::Log::Level::Warning, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL1_INFO(logger, ...) \
-    logger->Log(XCore::Log::Level::Info, __VA_ARGS__)
+#define XCORE_LOG_GENERAL1_INFO(logger, ...) logger->Log(XCore::Log::Level::Info, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL1_DEBUG(logger, ...) \
-    logger->Log(XCore::Log::Level::Debug, __VA_ARGS__)
+#define XCORE_LOG_GENERAL1_DEBUG(logger, ...) logger->Log(XCore::Log::Level::Debug, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL1_TRACE(logger, ...) \
-    logger->Log(XCore::Log::Level::Trace, __VA_ARGS__)
+#define XCORE_LOG_GENERAL1_TRACE(logger, ...) logger->Log(XCore::Log::Level::Trace, __VA_ARGS__)
 
 
+#define XCORE_LOG_GENERAL_CRITICAL(...) XCORE_LOG_GENERAL1_CRITICAL(default_logger, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL_CRITICAL(...) \
-    XCORE_LOG_GENERAL1_CRITICAL(default_logger, __VA_ARGS__)
+#define XCORE_LOG_GENERAL_ERROR(...) XCORE_LOG_GENERAL1_ERROR(default_logger, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL_ERROR(...) \
-    XCORE_LOG_GENERAL1_ERROR(default_logger, __VA_ARGS__)
+#define XCORE_LOG_GENERAL_WARNING(...) XCORE_LOG_GENERAL1_WARNING(default_logger, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL_WARNING(...) \
-    XCORE_LOG_GENERAL1_WARNING(default_logger, __VA_ARGS__)
+#define XCORE_LOG_GENERAL_INFO(...) XCORE_LOG_GENERAL1_INFO(default_logger, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL_INFO(...) \
-    XCORE_LOG_GENERAL1_INFO(default_logger, __VA_ARGS__)
+#define XCORE_LOG_GENERAL_DEBUG(...) XCORE_LOG_GENERAL1__DEBUG(default_logger, __VA_ARGS__)
 
-#define XCORE_LOG_GENERAL_DEBUG(...) \
-    XCORE_LOG_GENERAL1__DEBUG(default_logger, __VA_ARGS__)
-
-#define XCORE_LOG_GENERAL_TRACE(...) \
-    XCORE_LOG_GENERAL1_TRACE(default_logger, __VA_ARGS__)
+#define XCORE_LOG_GENERAL_TRACE(...) XCORE_LOG_GENERAL1_TRACE(default_logger, __VA_ARGS__)

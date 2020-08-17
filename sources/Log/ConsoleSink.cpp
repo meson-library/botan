@@ -21,52 +21,50 @@
 // +---------------------------------------------------------------------------
 
 #include "XCore/Log/ConsoleSink.h"
+
 #include "internal.h"
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 
 
-
 struct XCore::Log::ConsoleSink::Impl
 {
-	std::string Name;
-	std::shared_ptr<void> Data;
+    std::string Name;
+    std::shared_ptr<void> Data;
 };
 
 
-
-XCore::Log::ConsoleSink::ConsoleSink(const std::string& name) :
-	m_Impl {std::make_unique<Impl>()}
+XCore::Log::ConsoleSink::ConsoleSink(const std::string& name) : m_Impl {std::make_unique<Impl>()}
 {
-	m_Impl->Name = name;
-	m_Impl->Data = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+    m_Impl->Name = name;
+    m_Impl->Data = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
 }
 
 const std::string& XCore::Log::ConsoleSink::GetName()
 {
-	return m_Impl->Name;
+    return m_Impl->Name;
 }
 
 XCore::Log::Level XCore::Log::ConsoleSink::GetLevel()
 {
-	auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
-	return ConvertLevel(sink->level());
+    auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
+    return ConvertLevel(sink->level());
 }
 
 void XCore::Log::ConsoleSink::SetLevel(XCore::Log::Level level)
 {
-	auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
-	sink->set_level(ConvertLevel(level));
+    auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
+    sink->set_level(ConvertLevel(level));
 }
 
 std::shared_ptr<void> XCore::Log::ConsoleSink::GetData()
 {
-	return m_Impl->Data;
+    return m_Impl->Data;
 }
 
 void XCore::Log::ConsoleSink::Flush()
 {
-	auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
-	sink->flush();
+    auto sink = std::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_Impl->Data);
+    sink->flush();
 }
