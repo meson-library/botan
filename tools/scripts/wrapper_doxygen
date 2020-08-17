@@ -9,15 +9,15 @@ process_cmd()
 
     while [[ $# > 0 ]]; do
         case $1 in
-            -h|--help) 
-                show_help_arg=true 
+            -h|--help)
+                show_help_arg=true
             ;;
             --workfolder)
-                shift   
+                shift
                 workfolder_arg="$1"
             ;;
             --config-file)
-                shift   
+                shift
                 config_file_arg="$1"
             ;;
         esac
@@ -40,24 +40,24 @@ main()
     local workfolder_arg="$1"
     local config_file_arg="$2"
 
-    if [[ $build_for_os == windows ]] 
+    if [[ $build_for_os == windows ]]
     then
         workfolder_arg=`cygpath -u "$workfolder_arg"`
         config_file_arg=`cygpath -w "$config_file_arg"`
     fi
-   
+
     pushd "$workfolder_arg"
         doxygen "$config_file_arg"
     popd
 }
 
 
-show_help() 
+show_help()
 {
     script_name=$(basename "$0")
     echo "#######################################################################"
     echo "#                                                                     #"
-    echo "#                        Doxygen Wrapper                              #"
+    echo "#                        DOXYGEN WRAPPER                              #"
     echo "#                                                                     #"
     echo "# USAGE:                                                              #"
     echo "#     $script_name {-h|--help | --workfolder path --config-file path} #"
@@ -69,7 +69,7 @@ show_help()
     echo "#         executed.                                                   #"
     echo "#                                                                     #"
     echo "#     --config-file    Path to doxygen config file. OBS: Absolute or  #"
-    echo "#         relative to workfolder.                                     #"  
+    echo "#         relative to workfolder.                                     #"
     echo "#                                                                     #"
     echo "#######################################################################"
 }
