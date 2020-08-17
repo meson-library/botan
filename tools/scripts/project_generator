@@ -9,14 +9,14 @@ process_cmd()
 
     while [[ $# > 0 ]]; do
         case $1 in
-            -h|--help) 
-                show_help_arg=true 
+            -h|--help)
+                show_help_arg=true
             ;;
-            --ninja)   
-                generate_ninja_project_arg=true 
+            --ninja)
+                generate_ninja_project_arg=true
             ;;
-            --vs2019)  
-                generate_vs2019_project_arg=true 
+            --vs2019)
+                generate_vs2019_project_arg=true
             ;;
         esac
         shift
@@ -39,18 +39,18 @@ main()
     local generate_ninja_project_arg=$1
     local generate_vs2019_project_arg=$2
 
-    if [[ $build_for_os == windows ]] 
+    if [[ $build_for_os == windows ]]
     then
         current_folder=`cygpath -w "$current_folder"`
     fi
-    
-    local base_path="${current_folder}build/$build_for_os/$build_for_arch/$build_for_type"
+
+    local base_path="${current_folder}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}"
     local projects_folder="projects"
     local artifact_folder="artifact"
-    
+
     if [[ $generate_ninja_project_arg == true ]]
     then
-        generate_ninja_project "$base_path" $projects_folder $artifact_folder 
+        generate_ninja_project "$base_path" $projects_folder $artifact_folder
     fi
 
     if [[ $generate_vs2019_project_arg == true ]]
@@ -68,7 +68,7 @@ generate_ninja_project()
 
     local ninja_project_folder="$base_path/$projects_folder/ninja"
     local ninja_artifact_folder="$base_path/$artifact_folder/ninja"
-    if [[ ! -d $ninja_project_folder ]] 
+    if [[ ! -d $ninja_project_folder ]]
     then
         meson setup "$ninja_project_folder" --buildtype $build_for_type --default-library static \
             --backend ninja --prefix "$ninja_artifact_folder" -Dbuild_examples=true -Dbuild_docs=true
@@ -92,12 +92,12 @@ generate_vs2019_project()
 }
 
 
-show_help() 
+show_help()
 {
     script_name=$(basename "$0")
     echo "#######################################################################"
     echo "#                                                                     #"
-    echo "#                        Project generator                            #"
+    echo "#                        PROJECT GENERATOR                            #"
     echo "#                                                                     #"
     echo "# USAGE:                                                              #"
     echo "#     $script_name {-h|--help | [--ninja] [--vs2019]}            #"

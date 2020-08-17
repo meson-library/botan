@@ -7,17 +7,17 @@ process_cmd()
     local build_ninja_project_arg=false
     local build_vs2019_project_arg=false
 
-    while [[ $# > 0 ]] 
+    while [[ $# > 0 ]]
     do
         case $1 in
-            -h|--help) 
-                show_help_arg=true 
+            -h|--help)
+                show_help_arg=true
             ;;
-            --ninja)   
-                build_ninja_project_arg=true 
+            --ninja)
+                build_ninja_project_arg=true
             ;;
-            --vs2019)  
-                build_vs2019_project_arg=true 
+            --vs2019)
+                build_vs2019_project_arg=true
             ;;
         esac
         shift
@@ -40,22 +40,22 @@ main()
     local build_ninja_project_arg=$1
     local build_vs2019_project_arg=$2
 
-    if [[ $build_for_os == windows ]] 
+    if [[ $build_for_os == windows ]]
     then
         current_folder=`cygpath -w "$current_folder"`
     fi
-    
-    local base_path="${current_folder}build/$build_for_os/$build_for_arch/$build_for_type"
+
+    local base_path="${current_folder}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}"
     local projects_folder=projects
-    
+
     if [[ $build_ninja_project_arg == true ]]
     then
-        build_ninja_project "$base_path" $projects_folder 
+        build_ninja_project "$base_path" $projects_folder
     fi
 
     if [[ $build_vs2019_project_arg == true ]]
     then
-        build_vs2019_project "$base_path" $projects_folder 
+        build_vs2019_project "$base_path" $projects_folder
     fi
 }
 
@@ -66,10 +66,10 @@ build_ninja_project()
     local projects_folder=$2
 
     ninja_project_folder="$base_path/$projects_folder/ninja"
-    if [[ -d $ninja_project_folder ]] 
+    if [[ -d $ninja_project_folder ]]
     then
-        meson compile -C "$ninja_project_folder" 
-        meson install --only-changed -C "$ninja_project_folder" 
+        meson compile -C "$ninja_project_folder"
+        meson install --only-changed -C "$ninja_project_folder"
     fi
 }
 
@@ -80,20 +80,20 @@ build_vs2019_project()
     local projects_folder=$2
 
     vs2019_project_folder="$base_path/$projects_folder/vs2019"
-    if [[ -d $vs2019_project_folder ]] 
+    if [[ -d $vs2019_project_folder ]]
     then
         meson compile -C "$vs2019_project_folder"
-        meson install --only-changed -C "$vs2019_project_folder" 
+        meson install --only-changed -C "$vs2019_project_folder"
     fi
 }
 
 
-show_help() 
+show_help()
 {
     script_name=$(basename "$0")
     echo "#######################################################################"
     echo "#                                                                     #"
-    echo "#                        Project builder                              #"
+    echo "#                        PROJECT BUILDER                              #"
     echo "#                                                                     #"
     echo "# USAGE:                                                              #"
     echo "#     $script_name {-h|--help | [--ninja] [--vs2019]}              #"
