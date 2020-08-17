@@ -3,7 +3,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 
 :PROCESS_CMD
     SET "current_folder=%~dp0"
-    
+
     SET "build_for_os=windows"
     SET "build_for_vs_version=[16.6,)"
     SET "build_for_arch=x64"
@@ -48,7 +48,7 @@ EXIT /B 0
     ECHO.PREPARING THE ENVIRONMENT BEFORE STARTING SHELL.
     ECHO.
     CALL :LOAD_TOOLS
-    
+
     ECHO.
     ECHO.ENVIRONMENT READY FOR USE. STARTING SHELL...
     ECHO.
@@ -58,11 +58,12 @@ EXIT /B 0
     ECHO.* project_builder   - Command used to build projects.
     ECHO.* project_cleaner   - Command used to clean projects.
     ECHO.* project_rebuilder - Command used to rebuild projects.
+    ECHO.* project_formatter - Command used to format source code.
     ECHO.
     ECHO.Important: You can start this script with '--help' to see more startup options.
 
     bash.exe --minimal-search-path
-    
+
     ECHO.ENDING SHELL...
     ECHO.
 EXIT /B 0
@@ -70,6 +71,7 @@ EXIT /B 0
 
 :LOAD_TOOLS
     CALL "tools\toolset\win-utils\setup.cmd" cecho ninja
+    CALL "tools\toolset\win-clang-tools\setup.cmd"
     CALL "tools\toolset\win-doxygen\setup.cmd"
     CALL "tools\toolset\win-meson\setup.cmd"
     CALL "tools\toolset\win-git\setup.cmd" --mode 3
@@ -88,10 +90,10 @@ EXIT /B 0
     ECHO #                                                                     #
     ECHO #                        SHELL COMMAND PROMPT                         #
     ECHO #                                                                     #
-    ECHO #         '%SCRIPT_NAME%' is a utility script that can be used to         # 
-    ECHO #          assist us in the development cicles of this project.       # 
-    ECHO #          All this script does is set up our environment and         # 
-    ECHO #          bring us a unix-like shell where we can play.              # 
+    ECHO #         '%SCRIPT_NAME%' is a utility script that can be used to         #
+    ECHO #          assist us in the development cicles of this project.       #
+    ECHO #          All this script does is set up our environment and         #
+    ECHO #          bring us a unix-like shell where we can play.              #
     ECHO #                                                                     #
     ECHO # USAGE:                                                              #
     ECHO #     %SCRIPT_NAME% {[-h^|--help] ^| [--vs-version "version"]               #
@@ -107,7 +109,7 @@ EXIT /B 0
     ECHO #     -h^|--help    Print this help and exit.                          #
     ECHO #                                                                     #
     ECHO #     --vs-version    A version range for instances of VS to          #
-    ECHO #         find. Example: '[16.6,)' will find a VS with version equal  # 
+    ECHO #         find. Example: '[16.6,)' will find a VS with version equal  #
     ECHO #         to or greater than '16.6'. OBS: Arg must be "quoted". More  #
     ECHO #         info about this version format can be found at the          #
     ECHO #         following url                                               #
@@ -118,7 +120,7 @@ EXIT /B 0
     ECHO #         following values: x64. Default to 'x64'.                    #
     ECHO #                                                                     #
     ECHO #     --build-type    The build type should be one of the             #
-    ECHO #         following values: 'debug', 'release' or 'debugoptimized'.   # 
+    ECHO #         following values: 'debug', 'release' or 'debugoptimized'.   #
     ECHO #         Default to 'debug'.                                         #
     ECHO #                                                                     #
     ECHO #######################################################################

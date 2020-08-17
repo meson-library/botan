@@ -1,0 +1,103 @@
+#!/bin/bash
+
+process_cmd()
+{
+    local total_args=$#
+    local show_help_arg=false
+    local fix_arg=""
+    local view_arg=""
+    local verbose_arg=""
+
+    while [[ $# > 0 ]]
+    do
+        case $1 in
+            -h|--help)
+                show_help_arg=true
+            ;;
+            --fix)
+                fix_arg="-i"
+            ;;
+            --view)
+                view_arg="--dry-run"
+            ;;
+            --verbose)
+                verbose_arg="--verbose"
+            ;;
+        esac
+        shift
+    done
+
+    if [[ $fix_arg != "" && $view_arg != "" ]]
+    then
+        echo "The supplied arguments '--fix' and '--view' are mutually exclusive."
+        exit -1
+    fi
+
+    if [[ $show_help_arg == true ]] || [[ $total_args == 0 ]]
+    then
+        show_help
+    else
+        main $fix_arg $view_arg $verbose_arg
+    fi
+
+    exit 0
+}
+
+
+main()
+{
+    local fix_arg=$1
+    local view_arg=$2
+    local verbose_arg=$3
+
+    if [[ $build_for_os == windows ]]
+    then
+        current_folder=`cygpath -u "$current_folder"`
+    fi
+
+    find $current_folder -type d \( -path "${current_folder}build" -o -path "${current_folder}subprojects" -o -path "${current_folder}tools/toolset" -o -path "${current_folder}tools/scripts" \) -prune \
+        -type f -o -iname *.h -o -iname *.c -o -iname *.cpp \
+        | xargs clang-format --style=file ${fix_arg} ${view_arg} ${verbose_arg} --fallback-style=none
+
+    exit 0
+}
+
+
+show_help()
+{
+    script_name=$(basename "$0")
+    echo "#######################################################################"
+    echo "#                                                                     #"
+    echo "#                        PROJECT FORMATTER                            #"
+    echo "#                                                                     #"
+    echo "#        This script can be used to format all *.c, *.cpp and *.h     #"
+    echo "#        files in this project at once. The beautiful 'clang-format'  #"
+    echo "#        tool is used to do this work.                                #"
+    echo "#                                                                     #"
+    echo "# USAGE:                                                              #"
+    echo "#     $script_name {-h|--help | [--fix|--view] [--verbose]}      #"
+    echo "#                                                                     #"
+    echo "# EXAMPLES:                                                           #"
+    echo "#     $script_name -h                                            #"
+    echo "#     $script_name --view --verbose                              #"
+    echo "#                                                                     #"
+    echo "# ARGUMENTS:                                                          #"
+    echo "#     -h|--help    Print this help and exit.                          #"
+    echo "#                                                                     #"
+    echo "#     --fix    Format the files and save on disc.                     #"
+    echo "#                                                                     #"
+    echo "#     --view    Simulate the formatting of the files, but do not      #"
+    echo "#         save on disk.                                               #"
+    echo "#                                                                     #"
+    echo "#     --verbose    Shows a list of processed files.                   #"
+    echo "#                                                                     #"
+    echo "# A configuration file for the clang format must exist in the path    #"
+    echo "# where this script will be executed. The configuration file must     #"
+    echo "# be called '.clang-format'.                                          #"
+    echo "#                                                                     #"
+    echo "#######################################################################"
+}
+
+
+command_line_args=("$@")
+process_cmd ${command_line_args[@]}
