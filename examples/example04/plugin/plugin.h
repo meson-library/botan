@@ -28,7 +28,7 @@
 
 class Plugin : public SDK::MyPlugin
 {
-  public:
+public:
     Plugin() {};
 
     const XCore::STL::string GetPluginUID();

@@ -26,7 +26,7 @@
 
 class Plugin : public XCore::Plugin::Plugable
 {
-  public:
+public:
     Plugin() {};
 
     const XCore::STL::string GetPluginUID();

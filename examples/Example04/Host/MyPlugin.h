@@ -27,7 +27,7 @@
 namespace SDK {
     class MyPlugin : public XCore::Plugin::Plugable
     {
-      public:
+    public:
         MyPlugin() {};
 
         virtual const void DisplayHelloWorldFromMyPlugin() = 0;

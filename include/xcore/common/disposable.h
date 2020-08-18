@@ -36,16 +36,16 @@ namespace XCore { namespace Common {
      */
     class Disposable
     {
-      public:
+    public:
         /**
          * @brief Method used for resource cleanup.
          */
         virtual void Dispose() = 0;
 
-      protected:
+    protected:
         /**
          * @brief Default destructor.
          */
         ~Disposable() {};
     };
-}}  // namespace XCore::Common
+}}

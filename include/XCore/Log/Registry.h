@@ -62,4 +62,4 @@ namespace XCore { namespace Log { namespace Registry {
      * @param logger
      */
     void Add(std::unique_ptr<XCore::Log::Loggable> logger);
-}}}  // namespace XCore::Log::Registry
+}}}

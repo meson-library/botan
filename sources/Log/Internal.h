@@ -29,4 +29,4 @@
 namespace XCore { namespace Log {
     spdlog::level::level_enum ConvertLevel(XCore::Log::Level level);
     XCore::Log::Level ConvertLevel(spdlog::level::level_enum nativeLevel);
-}}  // namespace XCore::Log
+}}

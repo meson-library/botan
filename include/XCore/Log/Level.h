@@ -44,4 +44,4 @@ namespace XCore { namespace Log {
         Debug,
         Trace
     };
-}}  // namespace XCore::Log
+}}

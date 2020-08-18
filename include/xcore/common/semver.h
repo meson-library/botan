@@ -54,4 +54,4 @@ namespace XCore { namespace Common {
     };
 
     typedef struct SemVer SemVer;
-}}  // namespace XCore::Common
+}}

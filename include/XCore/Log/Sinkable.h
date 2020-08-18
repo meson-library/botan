@@ -34,7 +34,6 @@
 #include <memory>
 #include <string>
 
-
 namespace XCore { namespace Log {
     /**
      * @class Sinkable Sinkable.h <XCore/Log/Sinkable.h>
@@ -43,14 +42,14 @@ namespace XCore { namespace Log {
      */
     class Sinkable
     {
-      public:
+    public:
         XCORE_DISABLE_COPY_AND_MOVE(Sinkable);
 
-      public:
+    public:
         Sinkable() = default;
         virtual ~Sinkable() = default;
 
-      public:
+    public:
         /**
          * @brief Get the name of this sinkable object.
          *
@@ -85,4 +84,4 @@ namespace XCore { namespace Log {
          */
         virtual void Flush() = 0;
     };
-}}  // namespace XCore::Log
+}}

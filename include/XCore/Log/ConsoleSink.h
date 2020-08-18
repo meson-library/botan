@@ -43,7 +43,7 @@ namespace XCore { namespace Log {
      */
     class ConsoleSink : public XCore::Log::Sinkable
     {
-      public:
+    public:
         /**
          * @brief Construct a new sink object wich the destination is a console.
          *
@@ -51,15 +51,15 @@ namespace XCore { namespace Log {
          */
         ConsoleSink(const std::string& name);
 
-      public:
+    public:
         virtual const std::string& GetName() override;
         virtual XCore::Log::Level GetLevel() override;
         virtual void SetLevel(XCore::Log::Level level) override;
         virtual std::shared_ptr<void> GetData() override;
         virtual void Flush() override;
 
-      private:
+    private:
         struct Impl;
         std::unique_ptr<Impl> m_Impl;
     };
-}}  // namespace XCore::Log
+}}

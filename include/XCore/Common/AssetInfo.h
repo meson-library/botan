@@ -49,4 +49,4 @@ namespace XCore { namespace Common {
     };
 
     typedef struct AssetInfo AssetInfo;
-}}  // namespace XCore::Common
+}}

@@ -44,14 +44,14 @@ namespace XCore { namespace Log {
      */
     class Loggable : public XCore::Common::Disposable
     {
-      public:
+    public:
         XCORE_DISABLE_COPY_AND_MOVE(Loggable);
 
-      public:
+    public:
         Loggable() = default;
         virtual ~Loggable() = default;
 
-      public:
+    public:
         /**
          * @brief Get the name of this loggable object.
          *
@@ -117,4 +117,4 @@ namespace XCore { namespace Log {
          */
         virtual void Log(XCore::Log::Level level, const std::string& msg) = 0;
     };
-}}  // namespace XCore::Log
+}}

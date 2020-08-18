@@ -125,4 +125,4 @@ namespace XCore {
     namespace Plugin {
 
     }
-}  // namespace XCore
+}

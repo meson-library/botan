@@ -43,7 +43,7 @@ namespace XCore { namespace Plugin {
      */
     class Plugable : public XCore::Common::Disposable
     {
-      public:
+    public:
         Plugable() {};
         virtual ~Plugable() {};
 
@@ -53,7 +53,7 @@ namespace XCore { namespace Plugin {
         virtual const XCore::Common::SemVer GetPluginVersion() = 0;
         virtual const XCore::Common::SemVer GetPluginHostVersion() = 0;
     };
-}}  // namespace XCore::Plugin
+}}
 
 
 /**

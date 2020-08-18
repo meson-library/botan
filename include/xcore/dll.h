@@ -31,7 +31,6 @@
 #include "Common/Macros.h"
 #include "STL.h"
 
-
 namespace XCore { namespace DLL {
     /**
      * @brief      Load a shared library at runtime.
@@ -73,4 +72,4 @@ namespace XCore { namespace DLL {
      */
     XCORE_DLL_SYMBOL_POINTER GetSymbolPointer(XCORE_DLL_HANDLER handler,
                                               const XCore::STL::string& symbolName);
-}}  // namespace XCore::DLL
+}}

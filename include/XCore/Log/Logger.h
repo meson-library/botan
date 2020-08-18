@@ -43,7 +43,7 @@ namespace XCore { namespace Log {
      */
     class Logger : public XCore::Log::Loggable
     {
-      public:
+    public:
         /**
          * @brief Construct a new Logger object.
          *
@@ -129,7 +129,7 @@ namespace XCore { namespace Log {
         Logger(const std::string& name, XCore::Log::Level level,
                std::vector<std::shared_ptr<XCore::Log::Sinkable>> sinks);
 
-      public:
+    public:
         virtual const std::string& GetName() override;
         virtual XCore::Log::Level GetLevel() override;
         virtual void SetLevel(XCore::Log::Level level) override;
@@ -140,8 +140,8 @@ namespace XCore { namespace Log {
         virtual void Log(XCore::Log::Level level, const std::string& msg) override;
         virtual void Dispose() override;
 
-      private:
+    private:
         struct Impl;
         std::unique_ptr<Impl> m_Impl;
     };
-}}  // namespace XCore::Log
+}}
