@@ -23,49 +23,14 @@
 /**
  * @file
  *
- * @brief Contains the standard STL implementation.
+ * @brief
  */
 
 #pragma once
 
-/**
- * @cond
- */
-#include <algorithm>
-#include <any>
-#include <array>
-#include <bitset>
-#include <chrono>
-#include <deque>
-#include <functional>
-#include <hash_map>
-#include <hash_set>
-#include <initializer_list>
-#include <iterator>
-#include <list>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <optional>
-#include <queue>
-#include <random>
-#include <ratio>
-#include <set>
-#include <span>
-#include <stack>
-#include <string>
-#include <string_view>
-#include <type_traits>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <variant>
-#include <vector>
-#include <version>
-/**
- * @endcond
- */
-
-namespace XCore {
-    namespace STL = std;
-}
+#include "Common/Core.h"
+#include "Common/Macros.h"
+#include "Common/TypeAlias.h"
+#include "Common/Types/AssetInfo.h"
+#include "Common/Types/Disposable.h"
+#include "Common/Types/SemVer.h"

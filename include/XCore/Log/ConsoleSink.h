@@ -23,16 +23,14 @@
 /**
  * @file
  *
- * @brief Contains a sink implementation for general use wich de destination is a
+ * @brief Contains a sink implementation for general use wich the destination is a
  *     console.
  */
 
 #pragma once
 
-#include "Level.h"
+#include "../Common.h"
 #include "Sinkable.h"
-
-#include <string>
 
 namespace XCore { namespace Log {
     /**
@@ -49,17 +47,17 @@ namespace XCore { namespace Log {
          *
          * @param[in] name A unique name for the sink that will be built.
          */
-        ConsoleSink(const std::string& name);
+        ConsoleSink(const core::stl::string& name);
 
     public:
-        virtual const std::string& GetName() override;
+        virtual core::stl::string GetName() override;
         virtual XCore::Log::Level GetLevel() override;
-        virtual void SetLevel(XCore::Log::Level level) override;
-        virtual std::shared_ptr<void> GetData() override;
-        virtual void Flush() override;
+        virtual void              SetLevel(XCore::Log::Level level) override;
+        virtual void              Flush() override;
+        virtual void*             GetData() override;
 
     private:
         struct Impl;
-        std::unique_ptr<Impl> m_Impl;
+        core::stl::unique_ptr<Impl> m_Impl;
     };
 }}

@@ -28,11 +28,8 @@
 
 #pragma once
 
-#include "../Common/Macros.h"
+#include "../Common.h"
 #include "Level.h"
-
-#include <memory>
-#include <string>
 
 namespace XCore { namespace Log {
     /**
@@ -46,16 +43,16 @@ namespace XCore { namespace Log {
         XCORE_DISABLE_COPY_AND_MOVE(Sinkable);
 
     public:
-        Sinkable() = default;
+        Sinkable()          = default;
         virtual ~Sinkable() = default;
 
     public:
         /**
          * @brief Get the name of this sinkable object.
          *
-         * @return const std::string&
+         * @return core::stl::string
          */
-        virtual const std::string& GetName() = 0;
+        virtual core::stl::string GetName() = 0;
 
         /**
          * @brief Get the severity level of this sinkable object.
@@ -73,15 +70,15 @@ namespace XCore { namespace Log {
         virtual void SetLevel(XCore::Log::Level level) = 0;
 
         /**
-         * @brief Get custom data of this object.
-         *
-         * @return std::shared_ptr<void>
-         */
-        virtual std::shared_ptr<void> GetData() = 0;
-
-        /**
          * @brief Flush the buffered log records to the target.
          */
         virtual void Flush() = 0;
+
+        /**
+         * @brief Get custom data of this object.
+         *
+         * @return void*
+         */
+        virtual void* GetData() = 0;
     };
 }}

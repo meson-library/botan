@@ -28,13 +28,9 @@
 
 #pragma once
 
-#include "../Common/Disposable.h"
-#include "../Common/Macros.h"
+#include "../Common.h"
 #include "Level.h"
 #include "Sinkable.h"
-
-#include <memory>
-#include <string>
 
 namespace XCore { namespace Log {
     /**
@@ -42,22 +38,22 @@ namespace XCore { namespace Log {
      *
      * @brief An interface for loggable types.
      */
-    class Loggable : public XCore::Common::Disposable
+    class Loggable : public XCore::Common::Types::Disposable
     {
     public:
         XCORE_DISABLE_COPY_AND_MOVE(Loggable);
 
     public:
-        Loggable() = default;
+        Loggable()          = default;
         virtual ~Loggable() = default;
 
     public:
         /**
          * @brief Get the name of this loggable object.
          *
-         * @return const std::string&
+         * @return core::stl::string&
          */
-        virtual const std::string& GetName() = 0;
+        virtual core::stl::string GetName() = 0;
 
         /**
          * @brief Get the severity level of this loggable object.
@@ -82,7 +78,7 @@ namespace XCore { namespace Log {
          * @return true
          * @return false
          */
-        virtual bool ContainsSink(const std::string& name) = 0;
+        virtual bool ContainsSink(const core::stl::string& name) = 0;
 
         /**
          * @brief Get a sink from this logabble object.
@@ -91,21 +87,21 @@ namespace XCore { namespace Log {
          *
          * @return XCore::Log::Sinkable&
          */
-        virtual XCore::Log::Sinkable& GetSink(const std::string& name) = 0;
+        virtual XCore::Log::Sinkable& GetSink(const core::stl::string& name) = 0;
 
         /**
          * @brief Add a sink to this logabble object.
          *
          * @param[in] sink The Sink to be added.
          */
-        virtual void AddSink(std::shared_ptr<XCore::Log::Sinkable> sink) = 0;
+        virtual void AddSink(core::stl::shared_ptr<XCore::Log::Sinkable> sink) = 0;
 
         /**
          * @brief Remove a sink from this logabble object.
          *
          * @param[in] name The name of the Sink to be removed.
          */
-        virtual void RemoveSink(const std::string& name) = 0;
+        virtual void RemoveSink(const core::stl::string& name) = 0;
 
         /**
          * @brief Log a message with a defined severity level with this loggable
@@ -115,6 +111,6 @@ namespace XCore { namespace Log {
          *
          * @param[in] msg The message to be logged.
          */
-        virtual void Log(XCore::Log::Level level, const std::string& msg) = 0;
+        virtual void Log(XCore::Log::Level level, const core::stl::string& msg) = 0;
     };
 }}

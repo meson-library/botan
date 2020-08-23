@@ -23,30 +23,29 @@
 /**
  * @file
  *
- * @brief Contains common type definitions.
- *
- * @details This file contains a common set of type definitions.
+ * @brief Contains an interface for disposable types.
  */
 
-#if defined(XCORE_COMPILER_MSVC) || defined(DOXYGEN)
-#    include <windows.h>
+#pragma once
 
-/**
- * @brief A handle to manage a dynamic shared library.
- *
- * @details On MSVC this macro expands to #HMODULE and
- *          on GCC expands to `void*`.
- */
-typedef HMODULE XCORE_DLL_HANDLER;
+namespace XCore { namespace Common { namespace Types {
+    /**
+     * @class Disposable Disposable.h <XCore/Common/Disposable.h>
+     *
+     * @brief An interface to disposable types, so we can do resource cleanup.
+     */
+    class Disposable
+    {
+    public:
+        /**
+         * @brief Method used for resource cleanup.
+         */
+        virtual void Dispose() = 0;
 
-/**
- * @brief A pointer to a symbol inside a shared library.
- *
- * @details On MSVC this macro expands to #FARPROC and
- *          on GCC expands to `void*`.
- */
-typedef FARPROC XCORE_DLL_SYMBOL_POINTER;
-#else
-typedef void* XCORE_DLL_HANDLER;
-typedef void* XCORE_DLL_SYMBOL_POINTER;
-#endif
+    protected:
+        /**
+         * @brief Default destructor.
+         */
+        ~Disposable() {};
+    };
+}}}

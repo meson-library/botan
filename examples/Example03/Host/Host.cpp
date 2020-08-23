@@ -25,15 +25,15 @@
 
 int main()
 {
-    XCore::STL::string pluginPath = "Example03Plugin.dll";
-    XCORE_DLL_HANDLER dllHandler = XCore::DLL::Load(pluginPath);
-    XCore::Plugin::Plugable* plugin = XCORE_START_PLUGIN(dllHandler);
+    core::stl::string        pluginPath = "Example03Plugin.dll";
+    XCORE_DLL_HANDLER        dllHandler = XCore::DLL::Load(pluginPath);
+    XCore::Plugin::Plugable* plugin     = XCORE_START_PLUGIN(dllHandler);
 
-    XCore::STL::string pluginUID = plugin->GetPluginUID();
-    XCore::STL::string pluginGroupUID = plugin->GetPluginGroupUID();
-    XCore::Common::SemVer pluginVersion = plugin->GetPluginVersion();
-    XCore::Common::SemVer pluginHostVersion = plugin->GetPluginHostVersion();
-    XCore::Common::AssetInfo pluginInfo = plugin->GetPluginInfo();
+    core::stl::string               pluginUID         = plugin->GetPluginUID();
+    core::stl::string               pluginGroupUID    = plugin->GetPluginGroupUID();
+    XCore::Common::Types::SemVer    pluginVersion     = plugin->GetPluginVersion();
+    XCore::Common::Types::SemVer    pluginHostVersion = plugin->GetPluginHostVersion();
+    XCore::Common::Types::AssetInfo pluginInfo        = plugin->GetPluginInfo();
 
     std::cout << std::endl;
     std::cout << " ------------------------------------------------------------" << std::endl;

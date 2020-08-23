@@ -24,29 +24,29 @@
 
 #include <iostream>
 
-const XCore::STL::string Plugin::GetPluginUID()
+const core::stl::string Plugin::GetPluginUID()
 {
     return "79896acc-8e99-481d-bc3e-5a7e150ddd71";
 }
 
-const XCore::STL::string Plugin::GetPluginGroupUID()
+const core::stl::string Plugin::GetPluginGroupUID()
 {
     return "a7b048fe-179d-459b-86c3-28a1c644b931";
 }
 
-const XCore::Common::AssetInfo Plugin::GetPluginInfo()
+const XCore::Common::Types::AssetInfo Plugin::GetPluginInfo()
 {
-    return XCore::Common::AssetInfo("Plugin Demo", "XNerv", "GPL3", "A demo plugin.");
+    return XCore::Common::Types::AssetInfo("Plugin Demo", "XNerv", "GPL3", "A demo plugin.");
 }
 
-const XCore::Common::SemVer Plugin::GetPluginVersion()
+const XCore::Common::Types::SemVer Plugin::GetPluginVersion()
 {
-    return XCore::Common::SemVer(1, 2, 3, "z");
+    return XCore::Common::Types::SemVer(1, 2, 3, "z");
 }
 
-const XCore::Common::SemVer Plugin::GetPluginHostVersion()
+const XCore::Common::Types::SemVer Plugin::GetPluginHostVersion()
 {
-    return XCore::Common::SemVer(1, 2, 3, "build.1");
+    return XCore::Common::Types::SemVer(1, 2, 3, "build.1");
 }
 
 void Plugin::Dispose()

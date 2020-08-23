@@ -23,12 +23,12 @@
 /**
  * @file
  *
- * @brief Contains the Eletronic Arts STL implementation (EASTL).
+ * @brief
  */
 
 #pragma once
 
-#include "../Common/Macros.h"
+#include "Macros.h"
 
 /**
  * @cond
@@ -125,9 +125,59 @@
  * @endcond
  */
 
-namespace XCore {
-    namespace STL = eastl;
+namespace core {
+    namespace stl = eastl;
 }
 
-void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags,
-                                 const char* file, int line);
+void* XCORE_CDECL operator new[](
+    size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line);
+
+void* XCORE_CDECL operator new[](size_t      size,
+                                 size_t      alignment,
+                                 size_t      alignmentOffset,
+                                 const char* name,
+                                 int         flags,
+                                 unsigned    debugFlags,
+                                 const char* file,
+                                 int         line);
+
+
+/**
+ * @cond
+ */
+#include <ghc/filesystem.hpp>
+/**
+ * @endcond
+ */
+
+namespace core {
+    namespace filesystem = ghc::filesystem;
+}
+
+
+/**
+ * @cond
+ */
+#include <memory>
+/**
+ * @endcond
+ */
+
+namespace core { namespace utils { namespace converters {
+    template<typename T>
+    core::stl::shared_ptr<T> to_core_ptr(std::shared_ptr<T>& from_source_shared_ptr)
+    {
+        return core::stl::shared_ptr<T>(from_source_shared_ptr.get(),
+                                        [from_source_shared_ptr](T*) mutable {
+                                            from_source_shared_ptr.reset();
+                                        });
+    }
+
+    template<typename T>
+    std::shared_ptr<T> to_std_ptr(core::stl::shared_ptr<T>& ptr)
+    {
+        return std::shared_ptr<T>(ptr.get(), [ptr](T*) mutable {
+            ptr.reset();
+        });
+    }
+}}}

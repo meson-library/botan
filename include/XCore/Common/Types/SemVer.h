@@ -28,14 +28,14 @@
 
 #pragma once
 
-#include "../STL.h"
+#include "../Core.h"
 
-namespace XCore { namespace Common {
+namespace XCore { namespace Common { namespace Types {
     /**
      * @struct SemVer SemVer.h <XCore/Common/SemVer.h>
      *
-     * @brief      Struct to hold version info in the <a href="http://semver.org/spec/v2.0.0.html"
-     *             target="_blank">Semantic version standard</a>.
+     * @brief      Struct to hold version info in the <a
+     * href="http://semver.org/spec/v2.0.0.html" target="_blank">Semantic version standard</a>.
      *
      * @todo Validate the construction of instances of this struct with the
      * standard found at <a href="http://semver.org/spec/v2.0.0.html"
@@ -44,14 +44,14 @@ namespace XCore { namespace Common {
      */
     struct SemVer
     {
-        SemVer(int major, int minor = 0, int path = 0, XCore::STL::string label = "")
+        SemVer(int major, int minor = 0, int path = 0, core::stl::string label = "")
             : Major(major), Minor(minor), Path(path), Label(label) {};
 
-        int Major;
-        int Minor;
-        int Path;
-        XCore::STL::string Label;
+        int               Major;
+        int               Minor;
+        int               Path;
+        core::stl::string Label;
     };
 
     typedef struct SemVer SemVer;
-}}
+}}}

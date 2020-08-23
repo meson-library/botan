@@ -146,7 +146,7 @@
 #elif defined(XCORE_COMPILER_GCC)
 #    define XCORE_SYMBOL_IMPORT __attribute__((visibility("default")))
 #    define XCORE_SYMBOL_EXPORT __attribute__((visibility("default")))
-#    define XCORE_SYMBOL_LOCAL __attribute__((visibility("hidden")))
+#    define XCORE_SYMBOL_LOCAL  __attribute__((visibility("hidden")))
 
 #    define XCORE_CURRENT_FUNCTION __PRETTY_FUNCTION__
 #endif
@@ -230,8 +230,8 @@
  */
 #    define XCORE_FASTCALL
 #elif defined(XCORE_COMPILER_MSVC)
-#    define XCORE_STDCALL __stdcall
-#    define XCORE_CDECL __cdecl
+#    define XCORE_STDCALL  __stdcall
+#    define XCORE_CDECL    __cdecl
 #    define XCORE_FASTCALL __fastcall
 #elif defined(XCORE_COMPILER_GCC)
 #    define XCORE_STDCALL __attribute__((stdcall))
@@ -286,10 +286,10 @@
  */
 #    define XCORE_ALIGNOF(x)
 #elif defined(XCORE_COMPILER_MSVC)
-#    define XCORE_ALIGN(x) __declspec(align(x))
+#    define XCORE_ALIGN(x)   __declspec(align(x))
 #    define XCORE_ALIGNOF(x) __alignof(x)
 #elif defined(XCORE_COMPILER_GCC)
-#    define XCORE_ALIGN(x) __attribute__((aligned(x)))
+#    define XCORE_ALIGN(x)   __attribute__((aligned(x)))
 #    define XCORE_ALIGNOF(x) __alignof__(x)
 #endif
 
@@ -339,9 +339,3 @@
 #define XCORE_DISABLE_COPY_AND_MOVE(TypeName)                                                      \
     explicit TypeName(const TypeName& typeName) = delete;                                          \
     TypeName& operator=(const TypeName& typeName) = delete
-
-
-/**
- * Include our a common set of type definitions.
- */
-#include "TypeDefs.h"

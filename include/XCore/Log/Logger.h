@@ -32,9 +32,6 @@
 #include "Loggable.h"
 #include "Sinkable.h"
 
-#include <memory>
-#include <vector>
-
 namespace XCore { namespace Log {
     /**
      * @class Logger Logger.h <XCore/Log/logger.h>
@@ -53,7 +50,7 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const std::string& name);
+        Logger(const core::stl::string& name);
 
         /**
          * @brief Construct a new Logger object.
@@ -63,7 +60,7 @@ namespace XCore { namespace Log {
          * @param[in] level The maximum severity level that this logger can
          *     respond to.
          */
-        Logger(const std::string& name, XCore::Log::Level level);
+        Logger(const core::stl::string& name, XCore::Log::Level level);
 
         /**
          * @brief Construct a new Logger object.
@@ -78,7 +75,7 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const std::string& name, std::shared_ptr<XCore::Log::Sinkable> sink);
+        Logger(const core::stl::string& name, core::stl::shared_ptr<XCore::Log::Sinkable> sink);
 
         /**
          * @brief Construct a new Logger object.
@@ -96,8 +93,9 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const std::string& name, XCore::Log::Level level,
-               std::shared_ptr<XCore::Log::Sinkable> sink);
+        Logger(const core::stl::string&                    name,
+               XCore::Log::Level                           level,
+               core::stl::shared_ptr<XCore::Log::Sinkable> sink);
 
         /**
          * @brief Construct a new Logger object.
@@ -112,7 +110,8 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const std::string& name, std::vector<std::shared_ptr<XCore::Log::Sinkable>> sinks);
+        Logger(const core::stl::string&                                       name,
+               core::stl::vector<core::stl::shared_ptr<XCore::Log::Sinkable>> sinks);
 
         /**
          * @brief Construct a new Logger object.
@@ -126,22 +125,23 @@ namespace XCore { namespace Log {
          *     this logger and will redirect to an appropriate destination,
          *     such as file or console.
          */
-        Logger(const std::string& name, XCore::Log::Level level,
-               std::vector<std::shared_ptr<XCore::Log::Sinkable>> sinks);
+        Logger(const core::stl::string&                                       name,
+               XCore::Log::Level                                              level,
+               core::stl::vector<core::stl::shared_ptr<XCore::Log::Sinkable>> sinks);
 
     public:
-        virtual const std::string& GetName() override;
-        virtual XCore::Log::Level GetLevel() override;
-        virtual void SetLevel(XCore::Log::Level level) override;
-        virtual bool ContainsSink(const std::string& name) override;
-        virtual XCore::Log::Sinkable& GetSink(const std::string& name) override;
-        virtual void AddSink(std::shared_ptr<XCore::Log::Sinkable> sink) override;
-        virtual void RemoveSink(const std::string& name) override;
-        virtual void Log(XCore::Log::Level level, const std::string& msg) override;
+        virtual core::stl::string     GetName() override;
+        virtual XCore::Log::Level     GetLevel() override;
+        virtual void                  SetLevel(XCore::Log::Level level) override;
+        virtual bool                  ContainsSink(const core::stl::string& name) override;
+        virtual XCore::Log::Sinkable& GetSink(const core::stl::string& name) override;
+        virtual void AddSink(core::stl::shared_ptr<XCore::Log::Sinkable> sink) override;
+        virtual void RemoveSink(const core::stl::string& name) override;
+        virtual void Log(XCore::Log::Level level, const core::stl::string& msg) override;
         virtual void Dispose() override;
 
     private:
         struct Impl;
-        std::unique_ptr<Impl> m_Impl;
+        core::stl::unique_ptr<Impl> m_Impl;
     };
 }}

@@ -31,11 +31,11 @@ class Plugin : public SDK::MyPlugin
 public:
     Plugin() {};
 
-    const XCore::STL::string GetPluginUID();
-    const XCore::STL::string GetPluginGroupUID();
-    const XCore::Common::AssetInfo GetPluginInfo();
-    const XCore::Common::SemVer GetPluginVersion();
-    const XCore::Common::SemVer GetPluginHostVersion();
+    const core::stl::string               GetPluginUID();
+    const core::stl::string               GetPluginGroupUID();
+    const XCore::Common::Types::AssetInfo GetPluginInfo();
+    const XCore::Common::Types::SemVer    GetPluginVersion();
+    const XCore::Common::Types::SemVer    GetPluginHostVersion();
 
     void Dispose();
 

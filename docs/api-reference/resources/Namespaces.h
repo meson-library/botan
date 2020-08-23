@@ -26,7 +26,7 @@
     The purpose of this file is just to document our namespaces. Should not be
     included in any place.
 */
-#error "For documentation only."
+#error "For namespaces documentation only. This file must not be included in any other file!"
 
 
 /**
@@ -105,9 +105,9 @@ namespace XCore {
         /**
          * @namespace XCore::Log::Registry
          *
-         * @brief  Contains our logger implementation.
+         * @brief  Contains a global registry for working with loggers.
          *
-         * @details This is the start point for log manipulations.
+         * @details This is the start point for logger manipulations.
          */
         namespace Registry {
 

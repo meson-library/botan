@@ -23,43 +23,43 @@
 /**
  * @file
  *
- * @brief Contains our global log register.
+ * @brief Contains a global registry for working with loggers.
  */
 
+#include "../Common.h"
 #include "Loggable.h"
-
-#include <memory>
-#include <string>
 
 namespace XCore { namespace Log { namespace Registry {
     /**
-     * @brief
+     * @brief Checks whether this registry contains a logger with the given name.
      *
-     * @param loggerName
+     * @param loggerName The logger name (case insensitive).
+     *
      * @return true
      * @return false
      */
-    bool Contains(const std::string& loggerName);
+    bool Contains(const core::stl::string& loggerName);
 
     /**
-     * @brief
+     * @brief Get from this registry a logger with the given name.
      *
-     * @param loggerName
+     * @param loggerName The logger name (case insensitive).
+     *
      * @return XCore::Log::Loggable&
      */
-    XCore::Log::Loggable& Get(const std::string& loggerName);
+    XCore::Log::Loggable& Get(const core::stl::string& loggerName);
 
     /**
-     * @brief
+     * @brief Remove from this registry a logger with the given name.
      *
-     * @param loggerName
+     * @param loggerName The logger name (case insensitive).
      */
-    void Remove(const std::string& loggerName);
+    void Remove(const core::stl::string& loggerName);
 
     /**
-     * @brief
+     * @brief Add the supplied logger to this registry.
      *
-     * @param logger
+     * @param logger The logger to be added.
      */
-    void Add(std::unique_ptr<XCore::Log::Loggable> logger);
+    void Add(core::stl::unique_ptr<XCore::Log::Loggable> logger);
 }}}

@@ -22,12 +22,22 @@
 
 #pragma once
 
-#include "XCore/STL/EA.h"
+#include "XCore/Common/Core.h"
 
-#if XCORE_STL_IMPLEMENTATION == XCORE_EASTL
-void* XCORE_CDECL operator new[](size_t size, const char* name, int flags, unsigned debugFlags,
-                                 const char* file, int line)
+void* XCORE_CDECL operator new[](
+    size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
 {
     return new uint8_t[size];
 }
-#endif
+
+void* XCORE_CDECL operator new[](size_t      size,
+                                 size_t      alignment,
+                                 size_t      alignmentOffset,
+                                 const char* name,
+                                 int         flags,
+                                 unsigned    debugFlags,
+                                 const char* file,
+                                 int         line)
+{
+    return new uint8_t[size];
+}

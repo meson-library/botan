@@ -28,12 +28,8 @@
 
 #pragma once
 
-#include "../Common/AssetInfo.h"
-#include "../Common/Disposable.h"
-#include "../Common/Macros.h"
-#include "../Common/SemVer.h"
+#include "../Common.h"
 #include "../DLL.h"
-#include "../STL.h"
 
 namespace XCore { namespace Plugin {
     /**
@@ -41,17 +37,17 @@ namespace XCore { namespace Plugin {
      *
      * @brief An interface to plugable libraries, so we can have a native plugin system.
      */
-    class Plugable : public XCore::Common::Disposable
+    class Plugable : public XCore::Common::Types::Disposable
     {
     public:
         Plugable() {};
         virtual ~Plugable() {};
 
-        virtual const XCore::STL::string GetPluginUID() = 0;
-        virtual const XCore::STL::string GetPluginGroupUID() = 0;
-        virtual const XCore::Common::AssetInfo GetPluginInfo() = 0;
-        virtual const XCore::Common::SemVer GetPluginVersion() = 0;
-        virtual const XCore::Common::SemVer GetPluginHostVersion() = 0;
+        virtual const core::stl::string               GetPluginUID()         = 0;
+        virtual const core::stl::string               GetPluginGroupUID()    = 0;
+        virtual const XCore::Common::Types::AssetInfo GetPluginInfo()        = 0;
+        virtual const XCore::Common::Types::SemVer    GetPluginVersion()     = 0;
+        virtual const XCore::Common::Types::SemVer    GetPluginHostVersion() = 0;
     };
 }}
 

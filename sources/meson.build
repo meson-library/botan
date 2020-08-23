@@ -4,7 +4,7 @@
 includes = ['..'/include_dir_root]
 
 sources = ['DLL.cpp',
-           'STL'/'EA.cpp',
+           'Common'/'Core.cpp',
            'Log'/'Logger.cpp',
            'Log'/'Registry.cpp',
            'Log'/'ConsoleSink.cpp',
@@ -17,10 +17,6 @@ extra_files = ['..'/include_dir_proj/'XCore.h',
                '..'/include_dir_proj/'FS.h',
                '..'/include_dir_proj/'DLL.h',
                '..'/include_dir_proj/'Math.h',
-               
-               '..'/include_dir_proj/'STL.h',
-               '..'/include_dir_proj/'STL'/'Std.h',
-               '..'/include_dir_proj/'STL'/'EA.h',
 
                '..'/include_dir_proj/'Log.h',
                '..'/include_dir_proj/'Log'/'Level.h',
@@ -33,15 +29,16 @@ extra_files = ['..'/include_dir_proj/'XCore.h',
                '..'/include_dir_proj/'Log'/'Macros.h',
                '..'/sources_dir/'Log'/'Internal.h',
 
-                '..'/include_dir_proj/'Plugin.h',
-                '..'/include_dir_proj/'Plugin'/'Plugable.h',
+               '..'/include_dir_proj/'Plugin.h',
+               '..'/include_dir_proj/'Plugin'/'Plugable.h',
 
+               '..'/include_dir_proj/'Common.h',
+               '..'/include_dir_proj/'Common'/'Core.h',
                '..'/include_dir_proj/'Common'/'Macros.h',
-               '..'/include_dir_proj/'Common'/'AssetInfo.h',
-               '..'/include_dir_proj/'Common'/'SemVer.h',
-               '..'/include_dir_proj/'Common'/'Disposable.h']
-
-cpp_args = ['-DXCORE_STL_IMPLEMENTATION=' + get_option('stl_implementation')]
+               '..'/include_dir_proj/'Common'/'TypeAlias.h',
+               '..'/include_dir_proj/'Common'/'Types'/'AssetInfo.h',
+               '..'/include_dir_proj/'Common'/'Types'/'SemVer.h',
+               '..'/include_dir_proj/'Common'/'Types'/'Disposable.h']
 
 
 #
@@ -72,12 +69,10 @@ xcore_static = static_library(static_lib_name,
                               include_directories : includes,
                               sources             : sources,
                               extra_files         : extra_files,
-                              cpp_args            : cpp_args,
                               dependencies        : [filesystem_dep, eastl_dep, eigen_dep, spdlog_dep],
                               install             : true)
 
 xcore_static_dep = declare_dependency(include_directories : includes,
-                                      compile_args        : cpp_args,
                                       link_with           : xcore_static,
                                       dependencies        : [filesystem_dep, eastl_dep, eigen_dep, spdlog_dep])
 

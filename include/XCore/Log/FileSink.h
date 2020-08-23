@@ -32,8 +32,6 @@
 #include "Level.h"
 #include "Sinkable.h"
 
-#include <string>
-
 namespace XCore { namespace Log {
     /**
      * @class FileSink FileSink.h <XCore/Log/FileSink.h>
@@ -53,17 +51,17 @@ namespace XCore { namespace Log {
          *
          * @param[in] truncate Indicates whether the log file will be truncated.
          */
-        FileSink(const std::string& name, const std::string& path, bool truncate = false);
+        FileSink(const core::stl::string& name, const core::stl::string& path, bool truncate = false);
 
     public:
-        virtual const std::string& GetName() override;
+        virtual core::stl::string GetName() override;
         virtual XCore::Log::Level GetLevel() override;
-        virtual void SetLevel(XCore::Log::Level level) override;
-        virtual std::shared_ptr<void> GetData() override;
-        virtual void Flush() override;
+        virtual void              SetLevel(XCore::Log::Level level) override;
+        virtual void              Flush() override;
+        virtual void*             GetData() override;
 
     private:
         struct Impl;
-        std::unique_ptr<Impl> m_Impl;
+        core::stl::unique_ptr<Impl> m_Impl;
     };
 }}

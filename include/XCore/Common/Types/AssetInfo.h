@@ -23,25 +23,32 @@
 /**
  * @file
  *
- * @brief Contains the STL implementation currently in use by the system.
+ * @brief Contains code about a struct to hold asset info.
  */
 
 #pragma once
 
-#include "Common/Macros.h"
+#include "../Core.h"
 
-#if !defined(XCORE_STL_IMPLEMENTATION)
-#    error The XCORE_STL_IMPLEMENTATION was not defined.
-#endif
+namespace XCore { namespace Common { namespace Types {
+    /**
+     * @struct AssetInfo AssetInfo.h <XCore/Common/AssetInfo.h>
+     *
+     * @brief Struct to hold basic asset info.
+     */
+    struct AssetInfo
+    {
+        AssetInfo(core::stl::string name,
+                  core::stl::string author      = "",
+                  core::stl::string license     = "",
+                  core::stl::string description = "")
+            : Name(name), Author(author), License(license), Description(description) {};
 
-#if XCORE_STL_IMPLEMENTATION != XCORE_STL && XCORE_STL_IMPLEMENTATION != XCORE_EASTL
-#    error The value of XCORE_STL_IMPLEMENTATION is inválid.
-#endif
+        core::stl::string Name;
+        core::stl::string Author;
+        core::stl::string License;
+        core::stl::string Description;
+    };
 
-#if XCORE_STL_IMPLEMENTATION == XCORE_STL || defined(DOXYGEN)
-#    include "STL/Std.h"
-#endif
-
-#if XCORE_STL_IMPLEMENTATION == XCORE_EASTL || defined(DOXYGEN)
-#    include "STL/EA.h"
-#endif
+    typedef struct AssetInfo AssetInfo;
+}}}

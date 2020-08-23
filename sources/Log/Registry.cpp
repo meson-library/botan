@@ -25,19 +25,21 @@
 #include <shared_mutex>
 #include <unordered_map>
 
-namespace {
-    std::unordered_map<std::string, std::unique_ptr<XCore::Log::Loggable>> loggers;
-    std::shared_mutex mutex;
-}  // namespace
 
-bool XCore::Log::Registry::Contains(const std::string& loggerName)
+namespace {
+    core::stl::unordered_map<core::stl::string, core::stl::unique_ptr<XCore::Log::Loggable>> loggers;
+    std::shared_mutex                                                                        mutex;
+}
+
+
+bool XCore::Log::Registry::Contains(const core::stl::string& loggerName)
 {
     std::shared_lock<std::shared_mutex> lock(mutex);
 
     return loggers.count(loggerName) > 0;
 }
 
-XCore::Log::Loggable& XCore::Log::Registry::Get(const std::string& loggerName)
+XCore::Log::Loggable& XCore::Log::Registry::Get(const core::stl::string& loggerName)
 {
     std::shared_lock<std::shared_mutex> lock(mutex);
 
@@ -52,7 +54,7 @@ XCore::Log::Loggable& XCore::Log::Registry::Get(const std::string& loggerName)
     }
 }
 
-void XCore::Log::Registry::Remove(const std::string& loggerName)
+void XCore::Log::Registry::Remove(const core::stl::string& loggerName)
 {
     std::unique_lock<std::shared_mutex> lock(mutex);
 
@@ -63,11 +65,11 @@ void XCore::Log::Registry::Remove(const std::string& loggerName)
     }
 }
 
-void XCore::Log::Registry::Add(std::unique_ptr<Loggable> logger)
+void XCore::Log::Registry::Add(core::stl::unique_ptr<Loggable> logger)
 {
     std::unique_lock<std::shared_mutex> lock(mutex);
 
-    auto result = loggers.insert(std::make_pair(logger->GetName(), std::move(logger)));
+    auto result = loggers.insert(core::stl::make_pair(logger->GetName(), core::stl::move(logger)));
     if (result.second == false)
     {
         throw;
