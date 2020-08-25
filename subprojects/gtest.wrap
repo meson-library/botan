@@ -1,0 +1,4 @@
+[wrap-git]
+directory = gtest
+url = https://github.com/meson-library/gtest.git
+revision = v1.10.0

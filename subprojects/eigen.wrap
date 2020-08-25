@@ -1,0 +1,4 @@
+[wrap-git]
+directory = eigen
+url = https://github.com/meson-library/eigen.git
+revision = v3.3.7
