@@ -1,8 +1,8 @@
-option('stl_implementation',
-        description : 'Choose what stl implementation to use.',
-        type        : 'combo',
-        choices     : ['XCORE_STL', 'XCORE_EASTL'],
-        value       : 'XCORE_EASTL')
+
+option('build_tests',
+        description : 'Build the tests.',
+        type        : 'boolean',
+        value       : false)
 
 option('build_examples',
         description : 'Build the example programs.',

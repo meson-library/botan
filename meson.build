@@ -17,6 +17,7 @@ include_dir_root       = 'include'
 include_dir_proj       = include_dir_root/proj_name
 sources_dir            = 'sources'
 examples_dir           = 'examples'
+tests_dir              = 'tests'
 docs_dir               = 'docs'
 dependencies_dir       = 'subprojects'
 install_dir_general    = 'share'
@@ -41,5 +42,6 @@ endif
 # Delegate the rest of configuration to the rigth place.
 #
 subdir(sources_dir)
+subdir(tests_dir)
 subdir(examples_dir)
 subdir(docs_dir)
