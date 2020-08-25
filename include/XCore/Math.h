@@ -23,7 +23,7 @@
 /**
  * @file
  *
- * @brief Contains a set of resources for mathematical manipulation.
+ * @brief Contains a set of resources for work with math.
  */
 
 #pragma once

@@ -23,14 +23,10 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains a set of common resources.
  */
 
 #pragma once
 
 #include "Common/Core.h"
-#include "Common/Macros.h"
-#include "Common/TypeAlias.h"
-#include "Common/Types/AssetInfo.h"
-#include "Common/Types/Disposable.h"
-#include "Common/Types/SemVer.h"
+#include "Common/Types.h"

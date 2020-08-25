@@ -4,12 +4,19 @@
 includes = ['..'/include_dir_root]
 
 sources = ['DLL.cpp',
-           'Common'/'Core.cpp',
+
+           'Common'/'Core'/'STL.cpp',
+           'Common'/'Core'/'Utils.cpp',
+           'Common'/'Core'/'Platform'/'Windows.cpp',
+           'Common'/'Core'/'Platform'/'Linux.cpp',
+           'Common'/'Core'/'Platform'/'OSX.cpp',
+
            'Log'/'Logger.cpp',
            'Log'/'Registry.cpp',
            'Log'/'ConsoleSink.cpp',
            'Log'/'FileSink.cpp',
            'Log'/'Internal.cpp',
+
            'Plugin'/'Plugable.cpp']
 
 extra_files = ['..'/include_dir_proj/'XCore.h',
@@ -34,11 +41,19 @@ extra_files = ['..'/include_dir_proj/'XCore.h',
 
                '..'/include_dir_proj/'Common.h',
                '..'/include_dir_proj/'Common'/'Core.h',
-               '..'/include_dir_proj/'Common'/'Macros.h',
-               '..'/include_dir_proj/'Common'/'TypeAlias.h',
+               '..'/include_dir_proj/'Common'/'Types.h',
                '..'/include_dir_proj/'Common'/'Types'/'AssetInfo.h',
                '..'/include_dir_proj/'Common'/'Types'/'SemVer.h',
-               '..'/include_dir_proj/'Common'/'Types'/'Disposable.h']
+               '..'/include_dir_proj/'Common'/'Types'/'Disposable.h',
+
+               '..'/include_dir_proj/'Common'/'Core'/'Utils.h',
+               '..'/include_dir_proj/'Common'/'Core'/'STL.h',
+               '..'/include_dir_proj/'Common'/'Core'/'Macros.h',
+               '..'/include_dir_proj/'Common'/'Core'/'FileSystem.h',
+               '..'/include_dir_proj/'Common'/'Core'/'Platform.h',
+               '..'/include_dir_proj/'Common'/'Core'/'Platform'/'Linux.h',
+               '..'/include_dir_proj/'Common'/'Core'/'Platform'/'OSX.h',
+               '..'/include_dir_proj/'Common'/'Core'/'Platform'/'Windows.h']
 
 
 #

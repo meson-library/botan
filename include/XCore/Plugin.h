@@ -23,7 +23,7 @@
 /**
  * @file
  *
- * @brief Contains a set of resources for plugin creation and manipulation.
+ * @brief Contains a set of resources for work with plugins.
  */
 
 #pragma once

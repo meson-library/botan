@@ -34,13 +34,12 @@ namespace XCore { namespace Common { namespace Types {
     /**
      * @struct SemVer SemVer.h <XCore/Common/SemVer.h>
      *
-     * @brief      Struct to hold version info in the <a
-     * href="http://semver.org/spec/v2.0.0.html" target="_blank">Semantic version standard</a>.
+     * @brief Struct to hold version info in the <a href="http://semver.org/spec/v2.0.0.html"
+     * target="_blank">Semantic version standard</a>.
      *
-     * @todo Validate the construction of instances of this struct with the
-     * standard found at <a href="http://semver.org/spec/v2.0.0.html"
-     * target="_blank">http://semver.org/spec/v2.0.0.html</a>. Right now, the
-     * version info is stored without any validation.
+     * @todo Validate the construction of instances of this struct with the standard found at <a
+     * href="http://semver.org/spec/v2.0.0.html" target="_blank">http://semver.org/spec/v2.0.0.html</a>.
+     * Right now, the version info is stored without any validation.
      */
     struct SemVer
     {

@@ -1,0 +1,48 @@
+// +---------------------------------------------------------------------------
+// |
+// |   XCore GPL Source Code
+// |   Copyright (c) 2020 XNerv Ltda (http://xnerv.com). All rights reserved.
+// |
+// |   This file is part of the XCore GPL Source Code.
+// |
+// |   XCore Source Code is free software: you can redistribute it and/or
+// |   modify it under the terms of the GNU General Public License
+// |   as published by the Free Software Foundation, either version 3
+// |   of the License, or (at your option) any later version.
+// |
+// |   XCore Source Code is distributed in the hope that it will be useful,
+// |   but WITHOUT ANY WARRANTY; without even the implied warranty of
+// |   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// |   GNU General Public License for more details.
+// |
+// |   You should have received a copy of the GNU General Public License
+// |   along with XCore Source Code. If not, see <http://www.gnu.org/licenses/>.
+// |
+// +---------------------------------------------------------------------------
+
+/**
+ * @file
+ *
+ * @brief This header is responsible for switching between platforms.
+ */
+
+#pragma once
+
+#include "Macros.h"
+
+#if !defined(XCORE_OS_FAMILY_WINDOWS) && !defined(XCORE_OS_FAMILY_LINUX)                           \
+    && !defined(XCORE_OS_FAMILY_OSX)
+#    error "Unsupported platform!"
+#endif
+
+#if defined(XCORE_OS_FAMILY_WINDOWS) || defined(DOXYGEN)
+#    include "Platform/Windows.h"
+#endif
+
+#if defined(XCORE_OS_FAMILY_LINUX) || defined(DOXYGEN)
+#    include "Platform/Linux.h"
+#endif
+
+#if defined(XCORE_OS_FAMILY_OSX) || defined(DOXYGEN)
+#    include "Platform/OSX.h"
+#endif

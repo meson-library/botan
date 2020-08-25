@@ -20,8 +20,6 @@
 // |
 // +---------------------------------------------------------------------------
 
-#pragma once
-
 #include "internal.h"
 
 spdlog::level::level_enum XCore::Log::ConvertLevel(XCore::Log::Level level)

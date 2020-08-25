@@ -53,8 +53,8 @@ namespace XCore { namespace Plugin {
 
 
 /**
- * @brief  We must pass a class name (From a class that inherits from `XCore::Plugin::Plugable`) to this
- *         macro and it will generate a boilerplate code for the plugin export, startup and stop actions.
+ * @brief We must pass a class name (From a class that inherits from `XCore::Plugin::Plugable`) to
+ * this macro and it will generate a boilerplate code for the plugin export, startup and stop actions.
  */
 #define XCORE_EXPORT_PLUGIN(PluginClassName)                                                       \
     PluginClassName* pluginInstance = NULL;                                                        \

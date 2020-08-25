@@ -29,12 +29,13 @@
 #include <spdlog/sinks/dist_sink.h>
 #include <spdlog/spdlog.h>
 
+
 struct XCore::Log::Logger::Impl
 {
     core::stl::unordered_map<core::stl::string, core::stl::shared_ptr<XCore::Log::Sinkable>> Sinks;
-    std::shared_ptr<spdlog::sinks::dist_sink_mt> SinkRoot;
-    std::shared_ptr<spdlog::logger>              Logger;
-    std::shared_mutex                            Mutex;
+    core::stl::shared_ptr<spdlog::sinks::dist_sink_mt> SinkRoot;
+    core::stl::shared_ptr<spdlog::logger>              Logger;
+    std::shared_mutex                                  Mutex;
 };
 
 
@@ -72,7 +73,7 @@ XCore::Log::Logger::Logger(const core::stl::string&                             
                            core::stl::vector<core::stl::shared_ptr<XCore::Log::Sinkable>> sinks)
     : m_Impl {core::stl::make_unique<Impl>()}
 {
-    m_Impl->SinkRoot = std::make_shared<spdlog::sinks::dist_sink_mt>();
+    m_Impl->SinkRoot = core::stl::make_shared<spdlog::sinks::dist_sink_mt>();
 
     core::stl::for_each(sinks.begin(), sinks.end(), [&](const auto& sink) {
         m_Impl->Sinks.emplace(sink->GetName(), sink);
@@ -85,7 +86,8 @@ XCore::Log::Logger::Logger(const core::stl::string&                             
             std::shared_ptr<spdlog::sinks::sink>(std::shared_ptr<void>(), sink_ptr));
     }
 
-    m_Impl->Logger = std::make_shared<spdlog::logger>(name.c_str(), m_Impl->SinkRoot);
+    m_Impl->Logger = core::stl::make_shared<spdlog::logger>(
+        name.c_str(), core::utils::stl::to_std_ptr(m_Impl->SinkRoot));
     SetLevel(level);
 }
 

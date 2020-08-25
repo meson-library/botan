@@ -23,12 +23,11 @@
 /**
  * @file
  *
- * @brief Contains a common set of shared codes.
+ * @brief Contains a common set of typedef(s) and macro definitions.
  *
- * @details This file contains a common set of shared codes, typedef(s)
- *          and macro definitions, shared among all other source files.
- *          Common codes you will find here are macros for data alignment,
- *          architecture and operational system identification and so on...
+ * @details This file contains a common set of typedef(s) and macro definitions shared among all
+ * other source files. You will find here macros for data alignment, architecture and operational
+ * system identification and so on...
  */
 
 #pragma once
@@ -195,17 +194,6 @@
  * @endcode
  */
 #define XCORE_STRINGIFY_MACRO(ARG) XCORE_STRINGIFY_IDENTIFIER(ARG)
-
-
-/**
- * @brief Represent the default STL implementation.
- */
-#define XCORE_STL 1
-
-/**
- * @brief Represent the EASTL implementation.
- */
-#define XCORE_EASTL 2
 
 
 #if defined(DOXYGEN)

@@ -23,7 +23,7 @@
 /**
  * @file
  *
- * @brief Contains a set of resources for filesystem manipulation.
+ * @brief Contains a set of resources for work with filesystem.
  */
 
 #pragma once
