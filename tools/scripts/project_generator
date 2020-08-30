@@ -71,7 +71,7 @@ generate_ninja_project()
     if [[ ! -d $ninja_project_folder ]]
     then
         meson setup "$ninja_project_folder" --buildtype $build_for_type --default-library static \
-            --backend ninja --prefix "$ninja_artifact_folder" -Dbuild_examples=true -Dbuild_docs=true
+            --backend ninja --prefix "$ninja_artifact_folder" -Dbuild_examples=true -Dbuild_docs=false -Dbuild_tests=true
     fi
 }
 
@@ -87,7 +87,7 @@ generate_vs2019_project()
     if [[ ! -d $vs2019_project_folder ]]
     then
         meson setup "$vs2019_project_folder" --buildtype $build_for_type  --default-library static \
-            --backend vs2019  --prefix "$vs2019_artifact_folder" -Dbuild_examples=true -Dbuild_docs=true
+            --backend vs2019  --prefix "$vs2019_artifact_folder" -Dbuild_examples=true -Dbuild_docs=false -Dbuild_tests=true
     fi
 }
 

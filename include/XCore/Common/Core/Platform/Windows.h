@@ -84,4 +84,11 @@ namespace core { namespace platform {
      */
     XCORE_DLL_SYMBOL_POINTER get_symbol_pointer_from_dll(XCORE_DLL_HANDLER        handler,
                                                          const core::stl::string& symbolName);
+
+    /**
+     * @brief Get a new guid as byte array. The returned guid is variant 1 of Version 4 (random).
+     *
+     * @return core::stl::array<unsigned char, 16>
+     */
+    core::stl::array<unsigned char, 16> get_guid();
 }}

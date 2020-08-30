@@ -43,8 +43,8 @@ namespace XCore { namespace Plugin {
         Plugable() {};
         virtual ~Plugable() {};
 
-        virtual const core::stl::string               GetPluginUID()         = 0;
-        virtual const core::stl::string               GetPluginGroupUID()    = 0;
+        virtual const XCore::Common::Types::Guid      GetPluginUID()         = 0;
+        virtual const XCore::Common::Types::Guid      GetPluginGroupUID()    = 0;
         virtual const XCore::Common::Types::AssetInfo GetPluginInfo()        = 0;
         virtual const XCore::Common::Types::SemVer    GetPluginVersion()     = 0;
         virtual const XCore::Common::Types::SemVer    GetPluginHostVersion() = 0;

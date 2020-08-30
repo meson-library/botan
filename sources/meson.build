@@ -5,6 +5,8 @@ includes = ['..'/include_dir_root]
 
 sources = ['DLL.cpp',
 
+           'Common'/'Types'/'Guid.cpp',
+
            'Common'/'Core'/'STL.cpp',
            'Common'/'Core'/'Utils.cpp',
            'Common'/'Core'/'Platform'/'Windows.cpp',
@@ -45,6 +47,7 @@ extra_files = ['..'/include_dir_proj/'XCore.h',
                '..'/include_dir_proj/'Common'/'Types'/'AssetInfo.h',
                '..'/include_dir_proj/'Common'/'Types'/'SemVer.h',
                '..'/include_dir_proj/'Common'/'Types'/'Disposable.h',
+               '..'/include_dir_proj/'Common'/'Types'/'Guid.h',
 
                '..'/include_dir_proj/'Common'/'Core'/'Utils.h',
                '..'/include_dir_proj/'Common'/'Core'/'STL.h',

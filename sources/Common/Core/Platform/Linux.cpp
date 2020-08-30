@@ -23,7 +23,9 @@
 #include "XCore/Common/Core/Platform/Linux.h"
 
 #if defined(XCORE_OS_FAMILY_LINUX)
+
 #    include <dlfcn.h>
+#    include <uuid/uuid.h>
 
 XCORE_DLL_HANDLER core::platform::load_dll(const core::stl::string& path)
 {
@@ -48,6 +50,13 @@ XCORE_DLL_SYMBOL_POINTER core::platform::get_symbol_pointer_from_dll(XCORE_DLL_H
 {
     XCORE_DLL_SYMBOL_POINTER symbolPointer = dlsym(handler, symbolName.c_str());
     return symbolPointer;
+}
+
+core::stl::array<unsigned char, 16> core::platform::get_guid()
+{
+    uuid_t id;
+    uuid_generate(id);
+    return id;
 }
 
 #endif

@@ -29,8 +29,8 @@ int main()
     XCORE_DLL_HANDLER        dllHandler = XCore::DLL::Load(pluginPath);
     XCore::Plugin::Plugable* plugin     = XCORE_START_PLUGIN(dllHandler);
 
-    core::stl::string               pluginUID         = plugin->GetPluginUID();
-    core::stl::string               pluginGroupUID    = plugin->GetPluginGroupUID();
+    XCore::Common::Types::Guid      pluginUID         = plugin->GetPluginUID();
+    XCore::Common::Types::Guid      pluginGroupUID    = plugin->GetPluginGroupUID();
     XCore::Common::Types::SemVer    pluginVersion     = plugin->GetPluginVersion();
     XCore::Common::Types::SemVer    pluginHostVersion = plugin->GetPluginHostVersion();
     XCore::Common::Types::AssetInfo pluginInfo        = plugin->GetPluginInfo();
@@ -39,8 +39,9 @@ int main()
     std::cout << " ------------------------------------------------------------" << std::endl;
     std::cout << "| Loaded plugin : " + std::string(pluginPath.c_str()) << std::endl;
     std::cout << "|------------------------------------------------------------" << std::endl;
-    std::cout << "| Plugin UID           : " + std::string(pluginUID.c_str()) << std::endl;
-    std::cout << "| Plugin Group UID     : " + std::string(pluginGroupUID.c_str()) << std::endl;
+    std::cout << "| Plugin UID           : " + std::string(pluginUID.ToString().c_str()) << std::endl;
+    std::cout << "| Plugin Group UID     : " + std::string(pluginGroupUID.ToString().c_str())
+              << std::endl;
     std::cout << "| Plugin Version       : " + std::to_string(pluginVersion.Major) + "."
                      + std::to_string(pluginVersion.Minor) + "." + std::to_string(pluginVersion.Path)
                      + "." + std::string(pluginVersion.Label.c_str())

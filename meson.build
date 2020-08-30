@@ -4,7 +4,7 @@
 project('XCore', ['cpp'],
          version       : '0.1.0',
          license       : ['GPL3'],
-         meson_version : '>= 0.50.0')
+         meson_version : '>= 0.55.0')
 
 
 #

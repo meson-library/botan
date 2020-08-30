@@ -24,6 +24,8 @@
 
 #if defined(XCORE_OS_FAMILY_WINDOWS)
 
+#    include <objbase.h>
+
 XCORE_DLL_HANDLER core::platform::load_dll(const core::stl::string& path)
 {
     XCORE_DLL_HANDLER handler = LoadLibraryA(path.c_str());
@@ -49,4 +51,31 @@ XCORE_DLL_SYMBOL_POINTER core::platform::get_symbol_pointer_from_dll(XCORE_DLL_H
     return symbolPointer;
 }
 
+core::stl::array<unsigned char, 16> core::platform::get_guid()
+{
+    GUID newId;
+    CoCreateGuid(&newId);
+
+    core::stl::array<unsigned char, 16> bytes = {(unsigned char)((newId.Data1 >> 24) & 0xFF),
+                                                 (unsigned char)((newId.Data1 >> 16) & 0xFF),
+                                                 (unsigned char)((newId.Data1 >> 8) & 0xFF),
+                                                 (unsigned char)((newId.Data1) & 0xff),
+
+                                                 (unsigned char)((newId.Data2 >> 8) & 0xFF),
+                                                 (unsigned char)((newId.Data2) & 0xff),
+
+                                                 (unsigned char)((newId.Data3 >> 8) & 0xFF),
+                                                 (unsigned char)((newId.Data3) & 0xFF),
+
+                                                 (unsigned char)newId.Data4[0],
+                                                 (unsigned char)newId.Data4[1],
+                                                 (unsigned char)newId.Data4[2],
+                                                 (unsigned char)newId.Data4[3],
+                                                 (unsigned char)newId.Data4[4],
+                                                 (unsigned char)newId.Data4[5],
+                                                 (unsigned char)newId.Data4[6],
+                                                 (unsigned char)newId.Data4[7]};
+
+    return bytes;
+}
 #endif

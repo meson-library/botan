@@ -21,3 +21,14 @@
 // +---------------------------------------------------------------------------
 
 #include "XCore/Common/Core/Utils.h"
+
+
+core::stl::string core::utils::stl::to_core_string(const std::string& input)
+{
+    return core::stl::string(input.c_str());
+}
+
+std::string core::utils::stl::to_std_string(const core::stl::string& input)
+{
+    return std::string(input.c_str());
+}

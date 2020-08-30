@@ -34,19 +34,21 @@
 
 namespace core { namespace utils { namespace stl {
     template<typename T>
-    core::stl::shared_ptr<T> to_core_ptr(std::shared_ptr<T>& from_source_shared_ptr)
+    core::stl::shared_ptr<T> to_core_ptr(std::shared_ptr<T>& input)
     {
-        return core::stl::shared_ptr<T>(from_source_shared_ptr.get(),
-                                        [from_source_shared_ptr](T*) mutable {
-                                            from_source_shared_ptr.reset();
-                                        });
+        return core::stl::shared_ptr<T>(input.get(), [input](T*) mutable {
+            input.reset();
+        });
     }
 
     template<typename T>
-    std::shared_ptr<T> to_std_ptr(core::stl::shared_ptr<T>& ptr)
+    std::shared_ptr<T> to_std_ptr(core::stl::shared_ptr<T>& input)
     {
-        return std::shared_ptr<T>(ptr.get(), [ptr](T*) mutable {
-            ptr.reset();
+        return std::shared_ptr<T>(input.get(), [input](T*) mutable {
+            input.reset();
         });
     }
+
+    core::stl::string to_core_string(const std::string& input);
+    std::string to_std_string(const core::stl::string& input);
 }}}

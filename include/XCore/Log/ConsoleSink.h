@@ -58,6 +58,6 @@ namespace XCore { namespace Log {
 
     private:
         struct Impl;
-        core::stl::unique_ptr<Impl> m_Impl;
+        core::stl::unique_ptr<Impl> m_impl;
     };
 }}

@@ -20,9 +20,4 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include <Library.h>
-
-int main()
-{
-    display_helloworld_from_shared_library();
-}
+#pragma once

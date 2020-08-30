@@ -22,14 +22,14 @@
 
 #include "Plugin.h"
 
-const core::stl::string Plugin::GetPluginUID()
+const XCore::Common::Types::Guid Plugin::GetPluginUID()
 {
-    return "79896acc-8e99-481d-bc3e-5a7e150ddd71";
+    return XCore::Common::Types::Guid("79896acc-8e99-481d-bc3e-5a7e150ddd71");
 }
 
-const core::stl::string Plugin::GetPluginGroupUID()
+const XCore::Common::Types::Guid Plugin::GetPluginGroupUID()
 {
-    return "a7b048fe-179d-459b-86c3-28a1c644b931";
+    return XCore::Common::Types::Guid("a7b048fe-179d-459b-86c3-28a1c644b931");
 }
 
 const XCore::Common::Types::AssetInfo Plugin::GetPluginInfo()

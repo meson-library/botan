@@ -21,12 +21,19 @@
 // +---------------------------------------------------------------------------
 
 #include <XCore/XCore.h>
-
+#include <iostream>
 int main()
 {
+    // auto guid   = XCore::Common::Types::newGuid();
+    // auto sdsd   = guid.ToString();
+    // auto sdsd_c = sdsd.c_str();
+
+    XCore::Common::Types::Guid guid = XCore::Common::Types::Guid();
+    XCore::Common::Types::Guid::TryParse("de54da2b-25e2-4e63-b470-aabdc2964666", guid);
+
     /*
-        Create a console sink with name: "console-sink-01".
-    */
+         Create a console sink with name: "console-sink-01".
+     */
     XCore::Log::Level consoleSink01Level = XCore::Log::Level::Trace;
     auto consoleSink01 = core::stl::make_shared<XCore::Log::ConsoleSink>("console-sink-01");
     consoleSink01->SetLevel(consoleSink01Level);

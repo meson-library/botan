@@ -29,8 +29,8 @@ class Plugin : public XCore::Plugin::Plugable
 public:
     Plugin() {};
 
-    const core::stl::string               GetPluginUID();
-    const core::stl::string               GetPluginGroupUID();
+    const XCore::Common::Types::Guid      GetPluginUID();
+    const XCore::Common::Types::Guid      GetPluginGroupUID();
     const XCore::Common::Types::AssetInfo GetPluginInfo();
     const XCore::Common::Types::SemVer    GetPluginVersion();
     const XCore::Common::Types::SemVer    GetPluginHostVersion();
