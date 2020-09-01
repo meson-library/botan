@@ -20,9 +20,11 @@ examples_dir           = 'examples'
 tests_dir              = 'tests'
 docs_dir               = 'docs'
 dependencies_dir       = 'subprojects'
-install_dir_general    = 'share'
-install_dir_licenses   = install_dir_general/'licenses'/proj_name
-install_dir_docs       = install_dir_general/'docs'/proj_name
+install_dir_share      = 'share'
+install_dir_licenses   = install_dir_share/'licenses'/proj_name
+install_dir_docs       = install_dir_share/'docs'/proj_name
+install_dir_tests      = 'bin'/tests_dir
+install_dir_tests_data = install_dir_tests/'data'
 install_headers_subdir = proj_name
 
 

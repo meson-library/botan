@@ -25,49 +25,49 @@
 #include <XCore/XCore.h>
 #include <gtest/gtest.h>
 
-TEST(CommonTypesMainTests, NewGuidShouldNotBeEmpty)
+TEST(CommonTypesTests, NewGuidShouldNotBeEmptyTest)
 {
     auto guid01 = XCore::Common::Types::Guid::NewGuid();
     EXPECT_FALSE(guid01.IsEmpty());
 }
 
-TEST(CommonTypesMainTests, GuidShouldBeEmpty)
+TEST(CommonTypesTests, GuidShouldBeEmptyTest)
 {
     XCore::Common::Types::Guid guid;
     EXPECT_TRUE(guid.IsEmpty());
     EXPECT_STRCASEEQ(guid.ToString().c_str(), "00000000-0000-0000-0000-000000000000");
 }
 
-TEST(CommonTypesMainTests, GuidShouldNotBeEmpty)
+TEST(CommonTypesTests, GuidShouldNotBeEmptyTest)
 {
     XCore::Common::Types::Guid guid("591b22fd-3812-4195-a95e-a8597e80fda3");
     EXPECT_FALSE(guid.IsEmpty());
     ASSERT_STRCASENE(guid.ToString().c_str(), "00000000-0000-0000-0000-000000000000");
 }
 
-TEST(CommonTypesMainTests, GuidShouldBe_FFA8F07B32194945B6A3FFF9CEE5D469)
+TEST(CommonTypesTests, GuidShouldBe_FFA8F07B32194945B6A3FFF9CEE5D469_Test)
 {
     XCore::Common::Types::Guid guid("ffa8f07b-3219-4945-b6a3-fff9cee5d469");
     EXPECT_STRCASEEQ(guid.ToString().c_str(), "ffa8f07b-3219-4945-b6a3-fff9cee5d469");
 }
 
-TEST(CommonTypesMainTests, GuidShouldThrowWhenConstructorWithEmptyArg)
+TEST(CommonTypesTests, GuidShouldThrowWhenConstructorWithEmptyArgTest)
 {
     EXPECT_THROW(XCore::Common::Types::Guid guid(""), std::runtime_error);
 }
 
-TEST(CommonTypesMainTests, GuidShouldThrowWhenConstructorWithMalformedArg)
+TEST(CommonTypesTests, GuidShouldThrowWhenConstructorWithMalformedArgTest)
 {
     EXPECT_THROW(XCore::Common::Types::Guid guid("-3219-4945-b6a3-fff9cee5d469"), std::runtime_error);
 }
 
-TEST(CommonTypesMainTests, GuidTryParseShouldReturnTrueWhenParseValidArg)
+TEST(CommonTypesTests, GuidTryParseShouldReturnTrueWhenParseValidArgTest)
 {
     XCore::Common::Types::Guid guid;
     EXPECT_TRUE(XCore::Common::Types::Guid::TryParse("0ef3013f-c739-4d6c-9190-1a0bfc647762", guid));
 }
 
-TEST(CommonTypesMainTests, GuidTryParseShouldReturnValidGuidWhenParseValidArg)
+TEST(CommonTypesTests, GuidTryParseShouldReturnValidGuidWhenParseValidArgTest)
 {
     XCore::Common::Types::Guid guid;
     XCore::Common::Types::Guid::TryParse("2a7179d5-bf22-43ff-9783-08d695043671", guid);
@@ -75,7 +75,7 @@ TEST(CommonTypesMainTests, GuidTryParseShouldReturnValidGuidWhenParseValidArg)
     EXPECT_EQ(guid, XCore::Common::Types::Guid::Guid("2a7179d5-bf22-43ff-9783-08d695043671"));
 }
 
-TEST(CommonTypesMainTests, GuidCopyTest)
+TEST(CommonTypesTests, GuidCopyTest)
 {
     auto guid01 = XCore::Common::Types::Guid::Guid("a76c8778-e88c-41d8-ba1f-0e03e01fb7d6");
 
@@ -84,7 +84,7 @@ TEST(CommonTypesMainTests, GuidCopyTest)
     EXPECT_EQ(guid02, guid01);
 }
 
-TEST(CommonTypesMainTests, GuidMoveTest)
+TEST(CommonTypesTests, GuidMoveTest)
 {
     auto guid01 = XCore::Common::Types::Guid::Guid("f5c68663-7a6a-48d8-a94a-2b7167499bcc");
     auto guid02(std::move(guid01));
@@ -92,7 +92,7 @@ TEST(CommonTypesMainTests, GuidMoveTest)
     EXPECT_EQ(guid02, guid01);
 }
 
-TEST(CommonTypesMainTests, GuidEqualityTest)
+TEST(CommonTypesTests, GuidEqualityTest)
 {
     auto guid01 = XCore::Common::Types::Guid::Guid("c5edddf9-7ce0-470a-a457-488676bfaef4");
     auto guid02 = XCore::Common::Types::Guid::Guid("c5edddf9-7ce0-470a-a457-488676bfaef4");
@@ -104,13 +104,13 @@ TEST(CommonTypesMainTests, GuidEqualityTest)
     EXPECT_TRUE(guid01 != guid03);
 }
 
-TEST(CommonTypesMainTests, GuidToStringShouldReturnValidValue)
+TEST(CommonTypesTests, GuidToStringShouldReturnValidValueTest)
 {
     XCore::Common::Types::Guid guid01;
     auto guid02 = XCore::Common::Types::Guid::Guid("a76c8778-e88c-41d8-ba1f-0e03e01fb7d6");
     auto guid03 = XCore::Common::Types::Guid::Guid("d58adcc9-5035-46e7-916a-e6905ec08c3f");
 
-    EXPECT_EQ(guid01.ToString(), "00000000-0000-0000-0000-000000000000");
-    EXPECT_EQ(guid02.ToString(), "a76c8778-e88c-41d8-ba1f-0e03e01fb7d6");
-    EXPECT_EQ(guid03.ToString(), "d58adcc9-5035-46e7-916a-e6905ec08c3f");
+    EXPECT_STRCASEEQ(guid01.ToString().c_str(), "00000000-0000-0000-0000-000000000000");
+    EXPECT_STRCASEEQ(guid02.ToString().c_str(), "a76c8778-e88c-41d8-ba1f-0e03e01fb7d6");
+    EXPECT_STRCASEEQ(guid03.ToString().c_str(), "d58adcc9-5035-46e7-916a-e6905ec08c3f");
 }

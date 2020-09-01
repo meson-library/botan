@@ -1,9 +1,5 @@
 
-DLLTest = executable('DLLTest',
-                      sources      : ['DLLTest.cpp'],
-                      dependencies : [gtest_main_dep])
+sources      += [files('DLLTest.cpp')]
+dependencies += []
 
-test('Tests for the DLL module',
-      DLLTest,
-      suite: 'DLL',
-      protocol:'gtest')
+subdir('ExampleDLL')

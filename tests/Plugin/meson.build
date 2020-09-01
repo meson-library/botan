@@ -1,9 +1,5 @@
 
-PluginTest = executable('PluginTest',
-                         sources      : ['PluginTest.cpp'],
-                         dependencies : [gtest_main_dep])
+sources      += [files('PluginTest.cpp')]
+dependencies += []
 
-test('Tests for the Plugin module',
-      PluginTest,
-      suite: 'Plugin',
-      protocol:'gtest')
+subdir('ExamplePlugin')

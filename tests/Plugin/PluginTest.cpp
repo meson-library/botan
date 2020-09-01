@@ -21,3 +21,59 @@
 // +---------------------------------------------------------------------------
 
 #pragma once
+
+#include <XCore/XCore.h>
+#include <gtest/gtest.h>
+
+TEST(PluginTests, CheckIfPluginWasStarted)
+{
+    XCORE_DLL_HANDLER handler = XCore::DLL::Load("data/ExamplePlugin.dll");
+
+    XCORE_START_PLUGIN(handler);
+    EXPECT_TRUE(XCORE_IS_PLUGIN_STARTED(handler));
+}
+
+TEST(PluginTests, CheckIfPluginWasStopped)
+{
+    XCORE_DLL_HANDLER handler = XCore::DLL::Load("data/ExamplePlugin.dll");
+
+    XCORE_START_PLUGIN(handler);
+    XCORE_STOP_PLUGIN(handler);
+    EXPECT_TRUE(XCORE_IS_PLUGIN_STOPPED(handler));
+}
+
+TEST(PluginTests, WhenTryingToStartExistentPluginTheReturnedPluginPointerShouldNotBeNull)
+{
+    XCORE_DLL_HANDLER handler = XCore::DLL::Load("data/ExamplePlugin.dll");
+
+    XCore::Plugin::Plugable* plugin = XCORE_START_PLUGIN(handler);
+    EXPECT_TRUE(plugin != nullptr);
+}
+
+TEST(PluginTests, ShouldThrowWhenTryingToStartNonexistentPlugin)
+{
+    XCORE_DLL_HANDLER handler = XCore::DLL::Load("data/NonexistentExamplePlugin.dll");
+
+    EXPECT_THROW(XCORE_START_PLUGIN(handler), std::runtime_error);
+}
+
+TEST(PluginTests, ShouldThrowWhenTryingToStopNonexistentPlugin)
+{
+    XCORE_DLL_HANDLER handler = XCore::DLL::Load("data/NonexistentExamplePlugin.dll");
+
+    EXPECT_THROW(XCORE_STOP_PLUGIN(handler), std::runtime_error);
+}
+
+TEST(PluginTests, ShouldThrowWhenTryingToCheckIfIsStartedNonexistentPlugin)
+{
+    XCORE_DLL_HANDLER handler = XCore::DLL::Load("data/NonexistentExamplePlugin.dll");
+
+    EXPECT_THROW(XCORE_IS_PLUGIN_STARTED(handler), std::runtime_error);
+}
+
+TEST(PluginTests, ShouldThrowWhenTryingToCheckIfIsStoppedNonexistentPlugin)
+{
+    XCORE_DLL_HANDLER handler = XCore::DLL::Load("data/NonexistentExamplePlugin.dll");
+
+    EXPECT_THROW(XCORE_IS_PLUGIN_STOPPED(handler), std::runtime_error);
+}
