@@ -28,7 +28,7 @@ XCORE_DLL_HANDLER XCore::DLL::Load(const core::stl::string& path)
     return handler;
 }
 
-bool XCore::DLL::Unload(XCORE_DLL_HANDLER handler)
+bool XCore::DLL::Unload(XCORE_DLL_HANDLER& handler)
 {
     bool status = core::platform::unload_dll(handler);
     return status;

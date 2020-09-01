@@ -32,14 +32,16 @@ XCORE_DLL_HANDLER core::platform::load_dll(const core::stl::string& path)
     return handler;
 }
 
-bool core::platform::unload_dll(XCORE_DLL_HANDLER handler)
+bool core::platform::unload_dll(XCORE_DLL_HANDLER& handler)
 {
-    if (FreeLibrary(handler) == 0)
+    BOOL retval = FreeLibrary(handler);
+    if (retval == 0)
     {
         return false;
     }
     else
     {
+        handler = nullptr;
         return true;
     }
 }

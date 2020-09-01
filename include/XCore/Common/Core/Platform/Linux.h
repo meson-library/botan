@@ -62,7 +62,7 @@ namespace core { namespace platform {
      *
      * @return true if success, otherwise false.
      */
-    bool unload_dll(XCORE_DLL_HANDLER handler);
+    bool unload_dll(XCORE_DLL_HANDLER& handler);
 
     /**
      * @brief Get a symbol pointer from the loaded shared library.

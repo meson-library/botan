@@ -49,7 +49,7 @@ namespace XCore { namespace DLL {
      *
      * @return true if success, otherwise false.
      */
-    bool Unload(XCORE_DLL_HANDLER handler);
+    bool Unload(XCORE_DLL_HANDLER& handler);
 
     /**
      * @brief Get a symbol pointer from the loaded shared library.
