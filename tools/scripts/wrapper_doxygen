@@ -28,7 +28,7 @@ process_cmd()
     then
         show_help
     else
-        main "$workfolder_arg" "$config_file_arg"
+        main
     fi
 
     exit 0
@@ -37,9 +37,6 @@ process_cmd()
 
 main()
 {
-    local workfolder_arg="$1"
-    local config_file_arg="$2"
-
     if [[ $build_for_os == windows ]]
     then
         workfolder_arg=`cygpath -u "$workfolder_arg"`

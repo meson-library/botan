@@ -26,9 +26,8 @@ process_cmd()
     if [[ $show_help_arg == true ]] || [[ $total_args == 0 ]]
     then
         show_help
-    elif [[ $build_ninja_project_arg == true ]] || [[ $build_vs2019_project_arg == true ]]
-    then
-        main $build_ninja_project_arg $build_vs2019_project_arg
+    else
+        main
     fi
 
     exit 0
@@ -37,53 +36,43 @@ process_cmd()
 
 main()
 {
-    local build_ninja_project_arg=$1
-    local build_vs2019_project_arg=$2
+    if [[ $build_ninja_project_arg == true && $build_vs2019_project_arg == true ]]
+    then
+        echo "The supplied arguments '--ninja' and '--vs2019' are mutually exclusive."
+        exit -1
+    fi
 
     if [[ $build_for_os == windows ]]
     then
-        current_folder=`cygpath -w "$current_folder"`
+        root_path=`cygpath -w "$root_path"`
     fi
 
-    local base_path="${current_folder}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}"
-    local projects_folder=projects
+    local base_path="${root_path}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}_${build_for_link}"
+    local projects_folder="projects"
 
     if [[ $build_ninja_project_arg == true ]]
     then
-        build_ninja_project "$base_path" $projects_folder
-    fi
-
-    if [[ $build_vs2019_project_arg == true ]]
+        local project_type='ninja'
+        build_project
+    elif [[ $build_vs2019_project_arg == true ]]
     then
-        build_vs2019_project "$base_path" $projects_folder
-    fi
-}
-
-
-build_ninja_project()
-{
-    local base_path="$1"
-    local projects_folder=$2
-
-    ninja_project_folder="$base_path/$projects_folder/ninja"
-    if [[ -d $ninja_project_folder ]]
-    then
-        meson compile -C "$ninja_project_folder"
-        meson install --only-changed -C "$ninja_project_folder"
+        local project_type='vs2019'
+        build_project
+    else
+        echo 'An invalid argument was supplied!'
     fi
 }
 
 
-build_vs2019_project()
+build_project()
 {
-    local base_path="$1"
-    local projects_folder=$2
-
-    vs2019_project_folder="$base_path/$projects_folder/vs2019"
-    if [[ -d $vs2019_project_folder ]]
+    project_path="$base_path/$projects_folder/$project_type"
+    if [[ -d $project_path ]]
     then
-        meson compile -C "$vs2019_project_folder"
-        meson install --only-changed -C "$vs2019_project_folder"
+        meson compile -C "$project_path"
+        meson install --only-changed -C "$project_path"
+    else
+        echo 'Project not configured. First configure the project before executing this command.'
     fi
 }
 

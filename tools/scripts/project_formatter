@@ -37,7 +37,7 @@ process_cmd()
     then
         show_help
     else
-        main $fix_arg $view_arg $verbose_arg
+        main
     fi
 
     exit 0
@@ -46,16 +46,12 @@ process_cmd()
 
 main()
 {
-    local fix_arg=$1
-    local view_arg=$2
-    local verbose_arg=$3
-
     if [[ $build_for_os == windows ]]
     then
-        current_folder=`cygpath -u "$current_folder"`
+        root_path=`cygpath -u "$root_path"`
     fi
 
-    find $current_folder -type d \( -path "${current_folder}build" -o -path "${current_folder}subprojects" -o -path "${current_folder}tools/toolset" -o -path "${current_folder}tools/scripts" \) -prune \
+    find $root_path -type d \( -path "${root_path}build" -o -path "${root_path}subprojects" -o -path "${root_path}tools/toolset" -o -path "${root_path}tools/scripts" \) -prune \
         -type f -o -iname *.h -o -iname *.c -o -iname *.cpp \
         | xargs clang-format --style=file ${fix_arg} ${view_arg} ${verbose_arg} --fallback-style=none
 

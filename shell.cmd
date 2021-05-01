@@ -2,12 +2,14 @@
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 :PROCESS_CMD
-    SET "current_folder=%~dp0"
+    SET "script_name=%~n0%~x0"
+    SET "root_path=%~dp0"
 
     SET "build_for_os=windows"
     SET "build_for_vs_version=[16.6,)"
     SET "build_for_arch=x64"
     SET "build_for_type=debug"
+    SET "build_for_link=shared"
     SET "help_val=false"
     :LOOP
         SET current_arg=%1
@@ -28,6 +30,10 @@ SETLOCAL ENABLEDELAYEDEXPANSION
         IF [%current_arg%] EQU [--build-type] (
             SHIFT
             CALL SET "build_for_type=%%1"
+        )
+        IF [%current_arg%] EQU [--build-link] (
+            SHIFT
+            CALL SET "build_for_link=%%1"
         )
         SHIFT
     IF NOT "%~1"=="" GOTO :LOOP
@@ -50,17 +56,37 @@ EXIT /B 0
     CALL :LOAD_TOOLS
 
     ECHO.
+    ECHO.****************************************************
+    ECHO.*                  ENVIRONMENT
+    ECHO.*
+    ECHO.*    OPERATIONAL SYSTEM: %build_for_os%
+    ECHO.*    ARCHITECTURE      : %build_for_arch%
+    ECHO.*    TYPE              : %build_for_type%
+    ECHO.*    LINK              : %build_for_link%
+    ECHO.*    VS VERSION        : %build_for_vs_version%
+    ECHO.*
+    cecho *                         {navy}              (o_{default}{\n}
+    cecho *                         {navy}      c_   \\\_\{default}{\n}
+    cecho *                         {navy}    \\)    ^<____){default}{\n}
+    ECHO.****************************************************
+    ECHO.
+
     ECHO.ENVIRONMENT READY FOR USE. STARTING SHELL...
     ECHO.
 
     ECHO.Some useful commands available in this shell:
-    ECHO.* project_generator - Command used to generate projects (ninja and(or) vs2019).
-    ECHO.* project_builder   - Command used to build projects.
-    ECHO.* project_cleaner   - Command used to clean projects.
-    ECHO.* project_rebuilder - Command used to rebuild projects.
-    ECHO.* project_formatter - Command used to format source code.
+    ECHO.    project_configurator # Command used to configure project.
+    ECHO.    project_builder      # Command used to build project.
+    ECHO.    project_cleaner      # Command used to clean project.
+    ECHO.    project_rebuilder    # Command used to rebuild project.
+    ECHO.    project_formatter    # Command used to format source code.
     ECHO.
-    ECHO.Important: You can start this script with '--help' to see more startup options.
+
+    ECHO.Important:
+    ECHO.     * You can start the above useful commands with the '--help'
+    ECHO.       argument to see more options.
+    ECHO.     * You can start this script '%SCRIPT_NAME%' with the '--help'
+    ECHO.       argument to see more options.
 
     bash.exe --minimal-search-path
 
@@ -77,7 +103,7 @@ EXIT /B 0
     CALL "tools\toolset\win-git\setup.cmd" --mode 3
     CALL "tools\toolset\win-msvc\setup.cmd" --vs-version "%build_for_vs_version%" --arch %build_for_arch%
 
-    SET "tools_script_folder=%current_folder%tools\scripts"
+    SET "tools_script_folder=%root_path%tools\scripts"
     IF "!PATH:%tools_script_folder%=!" EQU "%PATH%" (
         SET "PATH=%tools_script_folder%;%PATH%"
     )
@@ -85,7 +111,6 @@ EXIT /B 0
 
 
 :SHOW_HELP
-    SET "script_name=%~n0%~x0"
     ECHO #######################################################################
     ECHO #                                                                     #
     ECHO #                        SHELL COMMAND PROMPT                         #
@@ -97,13 +122,15 @@ EXIT /B 0
     ECHO #                                                                     #
     ECHO # USAGE:                                                              #
     ECHO #     %SCRIPT_NAME% {[-h^|--help] ^| [--vs-version "version"]               #
-    ECHO #         [--build-arch arch] [--build-type type]}                    #
+    ECHO #         [--build-arch arch] [--build-type type]                     #
+    ECHO #         [--build-link link]}                                        #
     ECHO #                                                                     #
     ECHO # EXAMPLES:                                                           #
     ECHO #     %script_name%                                                       #
     ECHO #     %script_name% -h                                                    #
     ECHO #     %script_name% --vs-version "[15.0,]" --build-arch x64               #
     ECHO #     %script_name% --build-type release                                  #
+    ECHO #     %script_name% --build-link static                                   #
     ECHO #                                                                     #
     ECHO # ARGUMENTS:                                                          #
     ECHO #     -h^|--help    Print this help and exit.                          #
@@ -117,11 +144,15 @@ EXIT /B 0
     ECHO #         to '[16.6,)'.                                               #
     ECHO #                                                                     #
     ECHO #     --build-arch    The build architecture should be one of the     #
-    ECHO #         following values: x64. Default to 'x64'.                    #
+    ECHO #         following values: 'x64'. Default to 'x64'.                  #
     ECHO #                                                                     #
     ECHO #     --build-type    The build type should be one of the             #
     ECHO #         following values: 'debug', 'release' or 'debugoptimized'.   #
     ECHO #         Default to 'debug'.                                         #
+    echo #                                                                     #
+    echo #     --build-link    The linkage type should be one of the           #
+    ECHO #         following values: 'static', 'shared' or 'both'. Default     #
+    ECHO #         to 'shared'.                                                #
     ECHO #                                                                     #
     ECHO #######################################################################
 EXIT /B 0

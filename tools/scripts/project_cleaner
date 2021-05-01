@@ -30,9 +30,8 @@ process_cmd()
     if [[ $show_help_arg == true ]] || [[ $total_args == 0 ]]
     then
         show_help
-    elif [[ $clean_ninja_project_arg == true ]] || [[ $clean_vs2019_project_arg == true ]]
-    then
-        main $clean_ninja_project_arg $clean_vs2019_project_arg $remove_artifacts_arg
+    else
+        main
     fi
 
     exit 0
@@ -41,69 +40,55 @@ process_cmd()
 
 main()
 {
-    local clean_ninja_project_arg=$1
-    local clean_vs2019_project_arg=$2
-    local remove_artifacts_arg=$3
+    if [[ $clean_ninja_project_arg == true && $clean_vs2019_project_arg == true ]]
+    then
+        echo "The supplied arguments '--ninja' and '--vs2019' are mutually exclusive."
+        exit -1
+    fi
+
+    if [[ $clean_ninja_project_arg == false && $clean_vs2019_project_arg == false && $remove_artifacts_arg == true ]]
+    then
+        echo "When passing the '-r|--remove-artifacts' argument we need to pass the type of project we want to affect. They can be '--ninja' or '--vs2019'."
+        exit -1
+    fi
 
     if [[ $build_for_os == windows ]]
     then
-        current_folder=`cygpath -w "$current_folder"`
+        root_path=`cygpath -w "$root_path"`
     fi
 
-    local base_path="${current_folder}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}"
+    local base_path="${root_path}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}_${build_for_link}"
     local projects_folder="projects"
     local artifact_folder="artifact"
 
     if [[ $clean_ninja_project_arg == true ]]
     then
-        clean_ninja_project "$base_path" $projects_folder $artifact_folder $remove_artifacts_arg
-    fi
-
-    if [[ $clean_vs2019_project_arg == true ]]
+        local project_type='ninja'
+        clean_project
+    elif [[ $clean_vs2019_project_arg == true ]]
     then
-        clean_vs2019_project "$base_path" $projects_folder $artifact_folder $remove_artifacts_arg
-    fi
-}
-
-
-clean_ninja_project()
-{
-    local base_path="$1"
-    local projects_folder=$2
-    local artifact_folder=$3
-    local remove_artifacts_arg=$4
-
-    local ninja_project_folder="$base_path/$projects_folder/ninja"
-    local ninja_artifact_folder="$base_path/$artifact_folder/ninja"
-    if [[ -d $ninja_project_folder ]]
-    then
-        meson compile -C "$ninja_project_folder" --clean
-
-        if [[ -d $ninja_artifact_folder ]] && [[ $remove_artifacts_arg == true ]]
-        then
-            rm -rf "$ninja_artifact_folder"
-        fi
+        local project_type='vs2019'
+        clean_project
+    else
+        echo 'An invalid argument was supplied!'
     fi
 }
 
 
-clean_vs2019_project()
+clean_project()
 {
-    local base_path="$1"
-    local projects_folder=$2
-    local artifact_folder=$3
-    local remove_artifacts_arg=$4
-
-    local vs2019_project_folder="$base_path/$projects_folder/vs2019"
-    local vs2019_artifact_folder="$base_path/$artifact_folder/vs2019"
-    if [[ -d $vs2019_project_folder ]]
+    local project_path="$base_path/$projects_folder/$project_type"
+    local artifact_path="$base_path/$artifact_folder/$project_type"
+    if [[ -d $project_path ]]
     then
-        meson compile -C "$vs2019_project_folder" --clean
+        meson compile -C "$project_path" --clean
 
-        if [[ -d $vs2019_artifact_folder ]] && [[ $remove_artifacts_arg == true ]]
+        if [[ -d $artifact_path ]] && [[ $remove_artifacts_arg == true ]]
         then
-            rm -rf "$vs2019_artifact_folder"
+            rm -rf "$artifact_path"
         fi
+    else
+        echo 'Project not configured. First configure the project before executing this command.'
     fi
 }
 
@@ -116,18 +101,24 @@ show_help()
     echo "#                        PROJECT CLEANER                              #"
     echo "#                                                                     #"
     echo "# USAGE:                                                              #"
-    echo "#     $script_name {-h|--help | [-r|--remove-artifacts] [--ninja]  #"
-    echo "#         [--vs2019]}                                                 #"
+    echo "#     $script_name {-h|--help | [--ninja [-r|--remove-artifacts]]  #"
+    echo "#                      [--vs2019 [-r|--remove-artifacts]]}            #"
+    echo "#                                                                     #"
+    echo "# EXAMPLES:                                                           #"
+    echo "#     $script_name -h                                              #"
+    echo "#     $script_name --ninja                                         #"
+    echo "#     $script_name --ninja  -r                                     #"
+    echo "#     $script_name --ninja  --remove-artifacts                     #"
     echo "#                                                                     #"
     echo "# ARGUMENTS:                                                          #"
     echo "#     -h|--help    Print this help and exit.                          #"
     echo "#                                                                     #"
-    echo "#     -r|--remove-artifacts    Remove the corresponding artifacts     #"
-    echo "#         directory.                                                  #"
-    echo "#                                                                     #"
     echo "#     --ninja    Clean Ninja projects.                                #"
     echo "#                                                                     #"
     echo "#     --vs2019    Clean Visual Studio 2019 projects.                  #"
+    echo "#                                                                     #"
+    echo "#     -r|--remove-artifacts    Remove the corresponding artifacts     #"
+    echo "#         directory.                                                  #"
     echo "#                                                                     #"
     echo "#######################################################################"
 }
