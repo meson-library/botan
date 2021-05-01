@@ -30,34 +30,34 @@
 
 struct XCore::Log::FileSink::Impl
 {
-    core::stl::string           Name;
-    core::stl::shared_ptr<void> Data;
+    xcore::stl::string           Name;
+    xcore::stl::shared_ptr<void> Data;
 };
 
 
-XCore::Log::FileSink::FileSink(const core::stl::string& name,
-                               const core::stl::string& path,
+XCore::Log::FileSink::FileSink(const xcore::stl::string& name,
+                               const xcore::stl::string& path,
                                bool                     truncate)
-    : m_impl {core::stl::make_unique<Impl>()}
+    : m_impl {xcore::stl::make_unique<Impl>()}
 {
     m_impl->Name = name;
-    m_impl->Data = core::stl::make_shared<spdlog::sinks::basic_file_sink_mt>(path.c_str(), truncate);
+    m_impl->Data = xcore::stl::make_shared<spdlog::sinks::basic_file_sink_mt>(path.c_str(), truncate);
 }
 
-core::stl::string XCore::Log::FileSink::GetName()
+xcore::stl::string XCore::Log::FileSink::GetName()
 {
     return m_impl->Name;
 }
 
 XCore::Log::Level XCore::Log::FileSink::GetLevel()
 {
-    auto sink = core::stl::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_impl->Data);
+    auto sink = xcore::stl::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_impl->Data);
     return ConvertLevel(sink->level());
 }
 
 void XCore::Log::FileSink::SetLevel(XCore::Log::Level level)
 {
-    auto sink = core::stl::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_impl->Data);
+    auto sink = xcore::stl::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_impl->Data);
     sink->set_level(ConvertLevel(level));
 }
 
@@ -68,6 +68,6 @@ void* XCore::Log::FileSink::GetData()
 
 void XCore::Log::FileSink::Flush()
 {
-    auto sink = core::stl::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_impl->Data);
+    auto sink = xcore::stl::static_pointer_cast<spdlog::sinks::basic_file_sink_mt>(m_impl->Data);
     sink->flush();
 }

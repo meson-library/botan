@@ -28,5 +28,5 @@
 
 #pragma once
 
-#include "Common/Core.h"
 #include "Common/Types.h"
+#include "Common/support.h"

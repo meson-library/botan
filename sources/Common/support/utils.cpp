@@ -20,15 +20,15 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "XCore/Common/Core/Utils.h"
+#include "XCore/Common/support/utils.h"
 
 
-core::stl::string core::utils::stl::to_core_string(const std::string& input)
+xcore::stl::string xcore::utils::stl::to_xcore_string(const std::string& input)
 {
-    return core::stl::string(input.c_str());
+    return xcore::stl::string(input.c_str());
 }
 
-std::string core::utils::stl::to_std_string(const core::stl::string& input)
+std::string xcore::utils::stl::to_std_string(const xcore::stl::string& input)
 {
     return std::string(input.c_str());
 }

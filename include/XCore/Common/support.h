@@ -28,7 +28,8 @@
 
 #pragma once
 
-#include "Types/AssetInfo.h"
-#include "Types/Disposable.h"
-#include "Types/Guid.h"
-#include "Types/SemVer.h"
+#include "support/filesystem.h"
+#include "support/macros.h"
+#include "support/platform.h"
+#include "support/stl.h"
+#include "support/utils.h"

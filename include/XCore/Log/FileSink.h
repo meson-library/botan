@@ -51,10 +51,10 @@ namespace XCore { namespace Log {
          *
          * @param[in] truncate Indicates whether the log file will be truncated.
          */
-        FileSink(const core::stl::string& name, const core::stl::string& path, bool truncate = false);
+        FileSink(const xcore::stl::string& name, const xcore::stl::string& path, bool truncate = false);
 
     public:
-        virtual core::stl::string GetName() override;
+        virtual xcore::stl::string GetName() override;
         virtual XCore::Log::Level GetLevel() override;
         virtual void              SetLevel(XCore::Log::Level level) override;
         virtual void              Flush() override;
@@ -62,6 +62,6 @@ namespace XCore { namespace Log {
 
     private:
         struct Impl;
-        core::stl::unique_ptr<Impl> m_impl;
+        xcore::stl::unique_ptr<Impl> m_impl;
     };
 }}

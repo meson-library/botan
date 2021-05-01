@@ -50,9 +50,9 @@ namespace XCore { namespace Log {
         /**
          * @brief Get the name of this sinkable object.
          *
-         * @return core::stl::string
+         * @return xcore::stl::string
          */
-        virtual core::stl::string GetName() = 0;
+        virtual xcore::stl::string GetName() = 0;
 
         /**
          * @brief Get the severity level of this sinkable object.

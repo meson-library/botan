@@ -20,22 +20,43 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "XCore/Common/Core/STL.h"
+#include "XCore/Common/support/platform/linux.h"
 
-void* XCORE_CDECL operator new[](
-    size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
+#if defined(XCORE_OS_FAMILY_LINUX)
+
+#    include <dlfcn.h>
+#    include <uuid/uuid.h>
+
+XCORE_DLL_HANDLER xcore::platform::load_dll(const xcore::stl::string& path)
 {
-    return new uint8_t[size];
+    XCORE_DLL_HANDLER handler = dlopen(path.c_str(), RTLD_LAZY);
+    return handler;
 }
 
-void* XCORE_CDECL operator new[](size_t      size,
-                                 size_t      alignment,
-                                 size_t      alignmentOffset,
-                                 const char* name,
-                                 int         flags,
-                                 unsigned    debugFlags,
-                                 const char* file,
-                                 int         line)
+bool xcore::platform::unload_dll(XCORE_DLL_HANDLER handler)
 {
-    return new uint8_t[size];
+    if (dlclose(handler) == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
+
+XCORE_DLL_SYMBOL_POINTER xcore::platform::get_symbol_pointer_from_dll(XCORE_DLL_HANDLER handler,
+                                                                     const xcore::stl::string& symbolName)
+{
+    XCORE_DLL_SYMBOL_POINTER symbolPointer = dlsym(handler, symbolName.c_str());
+    return symbolPointer;
+}
+
+xcore::stl::array<unsigned char, 16> xcore::platform::get_guid()
+{
+    uuid_t id;
+    uuid_generate(id);
+    return id;
+}
+
+#endif

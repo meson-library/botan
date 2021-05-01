@@ -20,15 +20,10 @@
 // |
 // +---------------------------------------------------------------------------
 
-/**
- * @file
- *
- * @brief
- */
+#include "XCore/Common/support/platform/osx.h"
 
-#pragma once
+#if defined(XCORE_OS_FAMILY_OSX)
 
-#include "Types/AssetInfo.h"
-#include "Types/Disposable.h"
-#include "Types/Guid.h"
-#include "Types/SemVer.h"
+/* OSX implementations goes here. */
+
+#endif

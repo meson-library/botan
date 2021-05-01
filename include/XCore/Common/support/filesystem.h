@@ -23,12 +23,19 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains a set of resources for work with filesystem
  */
 
 #pragma once
 
-#include "Types/AssetInfo.h"
-#include "Types/Disposable.h"
-#include "Types/Guid.h"
-#include "Types/SemVer.h"
+/**
+ * @cond
+ */
+#include <ghc/filesystem.hpp>
+/**
+ * @endcond
+ */
+
+namespace xcore {
+    namespace filesystem = ghc::filesystem;
+}

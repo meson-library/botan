@@ -7,11 +7,11 @@ sources = ['DLL.cpp',
 
            'Common'/'Types'/'Guid.cpp',
 
-           'Common'/'Core'/'STL.cpp',
-           'Common'/'Core'/'Utils.cpp',
-           'Common'/'Core'/'Platform'/'Windows.cpp',
-           'Common'/'Core'/'Platform'/'Linux.cpp',
-           'Common'/'Core'/'Platform'/'OSX.cpp',
+           'Common'/'support'/'stl.cpp',
+           'Common'/'support'/'utils.cpp',
+           'Common'/'support'/'platform'/'windows.cpp',
+           'Common'/'support'/'platform'/'linux.cpp',
+           'Common'/'support'/'platform'/'osx.cpp',
 
            'Log'/'Logger.cpp',
            'Log'/'Registry.cpp',
@@ -42,21 +42,21 @@ extra_files = ['..'/include_dir_proj/'XCore.h',
                '..'/include_dir_proj/'Plugin'/'Plugable.h',
 
                '..'/include_dir_proj/'Common.h',
-               '..'/include_dir_proj/'Common'/'Core.h',
+               '..'/include_dir_proj/'Common'/'support.h',
                '..'/include_dir_proj/'Common'/'Types.h',
                '..'/include_dir_proj/'Common'/'Types'/'AssetInfo.h',
                '..'/include_dir_proj/'Common'/'Types'/'SemVer.h',
                '..'/include_dir_proj/'Common'/'Types'/'Disposable.h',
                '..'/include_dir_proj/'Common'/'Types'/'Guid.h',
 
-               '..'/include_dir_proj/'Common'/'Core'/'Utils.h',
-               '..'/include_dir_proj/'Common'/'Core'/'STL.h',
-               '..'/include_dir_proj/'Common'/'Core'/'Macros.h',
-               '..'/include_dir_proj/'Common'/'Core'/'FileSystem.h',
-               '..'/include_dir_proj/'Common'/'Core'/'Platform.h',
-               '..'/include_dir_proj/'Common'/'Core'/'Platform'/'Linux.h',
-               '..'/include_dir_proj/'Common'/'Core'/'Platform'/'OSX.h',
-               '..'/include_dir_proj/'Common'/'Core'/'Platform'/'Windows.h']
+               '..'/include_dir_proj/'Common'/'support'/'utils.h',
+               '..'/include_dir_proj/'Common'/'support'/'stl.h',
+               '..'/include_dir_proj/'Common'/'support'/'macros.h',
+               '..'/include_dir_proj/'Common'/'support'/'filesystem.h',
+               '..'/include_dir_proj/'Common'/'support'/'platform.h',
+               '..'/include_dir_proj/'Common'/'support'/'platform'/'linux.h',
+               '..'/include_dir_proj/'Common'/'support'/'platform'/'osx.h',
+               '..'/include_dir_proj/'Common'/'support'/'platform'/'windows.h']
 
 
 #

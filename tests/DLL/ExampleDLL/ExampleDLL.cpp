@@ -24,7 +24,7 @@
 #include <stdio.h>
 
 XCORE_EXTERN_C_BEGIN
-XCORE_SYMBOL_EXPORT char* get_helloworld_from_shared_library(void)
+XCORE_API char* get_helloworld_from_shared_library(void)
 {
     return "Hello World from shared library.\n";
 }

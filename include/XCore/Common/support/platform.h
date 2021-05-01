@@ -23,12 +23,26 @@
 /**
  * @file
  *
- * @brief
+ * @brief This header is responsible for switching between platforms.
  */
 
 #pragma once
 
-#include "Types/AssetInfo.h"
-#include "Types/Disposable.h"
-#include "Types/Guid.h"
-#include "Types/SemVer.h"
+#include "macros.h"
+
+#if !defined(XCORE_OS_FAMILY_WINDOWS) && !defined(XCORE_OS_FAMILY_LINUX)                           \
+    && !defined(XCORE_OS_FAMILY_OSX)
+#    error "Unsupported platform!"
+#endif
+
+#if defined(XCORE_OS_FAMILY_WINDOWS) || defined(DOXYGEN)
+#    include "platform/windows.h"
+#endif
+
+#if defined(XCORE_OS_FAMILY_LINUX) || defined(DOXYGEN)
+#    include "platform/linux.h"
+#endif
+
+#if defined(XCORE_OS_FAMILY_OSX) || defined(DOXYGEN)
+#    include "platform/osx.h"
+#endif

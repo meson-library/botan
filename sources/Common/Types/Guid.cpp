@@ -30,18 +30,18 @@ namespace XCore { namespace Common { namespace Types {
     {
     }
 
-    XCore::Common::Types::Guid::Guid(const core::stl::string& input)
+    XCore::Common::Types::Guid::Guid(const xcore::stl::string& input)
     {
         if (!Guid::TryParse(input, *this))
         {
             throw std::runtime_error(
                 "Provided string in invalid format. Guid should contain 32 digits with 4 "
                 "dashes. Example: \"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\". Provided string: "
-                + core::utils::stl::to_std_string(input));
+                + xcore::utils::stl::to_std_string(input));
         }
     }
 
-    XCore::Common::Types::Guid::Guid(const core::stl::array<unsigned char, 16>& input)
+    XCore::Common::Types::Guid::Guid(const xcore::stl::array<unsigned char, 16>& input)
         : m_bytes(input)
     {
     }
@@ -99,12 +99,12 @@ namespace XCore { namespace Common { namespace Types {
 
     XCore::Common::Types::Guid XCore::Common::Types::Guid::NewGuid()
     {
-        return core::platform::get_guid();
+        return xcore::platform::get_guid();
     }
 
-    bool XCore::Common::Types::Guid::TryParse(const core::stl::string& input, Guid& result)
+    bool XCore::Common::Types::Guid::TryParse(const xcore::stl::string& input, Guid& result)
     {
-        core::stl::array<unsigned char, 16> bytes;
+        xcore::stl::array<unsigned char, 16> bytes;
         char                                charOne             = '\0';
         char                                charTwo             = '\0';
         bool                                lookingForFirstChar = true;
@@ -150,12 +150,12 @@ namespace XCore { namespace Common { namespace Types {
         return *this == empty;
     }
 
-    const core::stl::array<unsigned char, 16>& XCore::Common::Types::Guid::ToByteArray() const
+    const xcore::stl::array<unsigned char, 16>& XCore::Common::Types::Guid::ToByteArray() const
     {
         return m_bytes;
     }
 
-    core::stl::string XCore::Common::Types::Guid::ToString() const
+    xcore::stl::string XCore::Common::Types::Guid::ToString() const
     {
         char one[10], two[6], three[6], four[6], five[14];
 
@@ -172,8 +172,8 @@ namespace XCore { namespace Common { namespace Types {
                  m_bytes[13],
                  m_bytes[14],
                  m_bytes[15]);
-        const core::stl::string sep("-");
-        core::stl::string       out(one);
+        const xcore::stl::string sep("-");
+        xcore::stl::string       out(one);
 
         out += sep + two;
         out += sep + three;

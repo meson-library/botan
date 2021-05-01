@@ -23,24 +23,37 @@
 /**
  * @file
  *
- * @brief Contains a set of resources for work with shared library.
+ * @brief Contains specific code for Linux platform.
  */
 
 #pragma once
 
-#include "Common.h"
+#include "../stl.h"
 
-namespace XCore { namespace DLL {
+/**
+ * @brief A handle to a shared library.
+ *
+ * @details On a POSIX compliant system this typedef represents `void*`.
+ */
+typedef void* XCORE_DLL_HANDLER;
+
+/**
+ * @brief A pointer to a symbol inside a shared library.
+ *
+ * @details On a POSIX compliant system this typedef represents `void*`.
+ */
+typedef void* XCORE_DLL_SYMBOL_POINTER;
+
+
+namespace xcore { namespace platform {
     /**
      * @brief Load a shared library at runtime.
      *
-     * @details Load a shared library at runtime in a cross platform manner.
-     *
      * @param[in] path A path to the shared library to be loaded.
      *
-     * @return An handle to the loaded shared library. If the function fails, the return value is `NULL`.
+     * @return A shared library handler as `XCORE_DLL_HANDLER`.
      */
-    XCORE_DLL_HANDLER Load(const xcore::stl::string& path);
+    XCORE_DLL_HANDLER load_dll(const xcore::stl::string& path);
 
     /**
      * @brief Unload a shared library at runtime.
@@ -49,16 +62,25 @@ namespace XCore { namespace DLL {
      *
      * @return true if success, otherwise false.
      */
-    bool Unload(XCORE_DLL_HANDLER& handler);
+    bool unload_dll(XCORE_DLL_HANDLER& handler);
 
     /**
      * @brief Get a symbol pointer from the loaded shared library.
      *
      * @param[in] handler A shared library handler.
+     *
      * @param[in] symbolName A symbol name exported from the shared library (variable or function).
      *
-     * @return A symbol pointer from the shared library. If the function fails, the return value is `NULL`.
+     * @return A symbol pointer from a shared library as `XCORE_DLL_SYMBOL_POINTER`. If the call
+     * fails, the return value is `NULL`.
      */
-    XCORE_DLL_SYMBOL_POINTER GetSymbolPointer(XCORE_DLL_HANDLER        handler,
-                                              const xcore::stl::string& symbolName);
+    XCORE_DLL_SYMBOL_POINTER get_symbol_pointer_from_dll(XCORE_DLL_HANDLER        handler,
+                                                         const xcore::stl::string& symbolName);
+
+    /**
+     * @brief Get a new guid as byte array. The returned guid is variant 1 of Version 4 (random).
+     *
+     * @return xcore::stl::array<unsigned char, 16>
+     */
+    xcore::stl::array<unsigned char, 16> get_guid();
 }}

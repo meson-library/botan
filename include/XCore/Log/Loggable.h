@@ -51,9 +51,9 @@ namespace XCore { namespace Log {
         /**
          * @brief Get the name of this loggable object.
          *
-         * @return core::stl::string&
+         * @return xcore::stl::string&
          */
-        virtual core::stl::string GetName() = 0;
+        virtual xcore::stl::string GetName() = 0;
 
         /**
          * @brief Get the severity level of this loggable object.
@@ -78,7 +78,7 @@ namespace XCore { namespace Log {
          * @return true
          * @return false
          */
-        virtual bool ContainsSink(const core::stl::string& name) = 0;
+        virtual bool ContainsSink(const xcore::stl::string& name) = 0;
 
         /**
          * @brief Get a sink from this logabble object.
@@ -87,21 +87,21 @@ namespace XCore { namespace Log {
          *
          * @return XCore::Log::Sinkable&
          */
-        virtual XCore::Log::Sinkable& GetSink(const core::stl::string& name) = 0;
+        virtual XCore::Log::Sinkable& GetSink(const xcore::stl::string& name) = 0;
 
         /**
          * @brief Add a sink to this logabble object.
          *
          * @param[in] sink The Sink to be added.
          */
-        virtual void AddSink(core::stl::shared_ptr<XCore::Log::Sinkable> sink) = 0;
+        virtual void AddSink(xcore::stl::shared_ptr<XCore::Log::Sinkable> sink) = 0;
 
         /**
          * @brief Remove a sink from this logabble object.
          *
          * @param[in] name The name of the Sink to be removed.
          */
-        virtual void RemoveSink(const core::stl::string& name) = 0;
+        virtual void RemoveSink(const xcore::stl::string& name) = 0;
 
         /**
          * @brief Log a message with a defined severity level with this loggable
@@ -111,6 +111,6 @@ namespace XCore { namespace Log {
          *
          * @param[in] msg The message to be logged.
          */
-        virtual void Log(XCore::Log::Level level, const core::stl::string& msg) = 0;
+        virtual void Log(XCore::Log::Level level, const xcore::stl::string& msg) = 0;
     };
 }}

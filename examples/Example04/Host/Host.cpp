@@ -27,7 +27,7 @@
 
 int main()
 {
-    core::stl::string pluginPath = "Example04.plugin";
+    xcore::stl::string pluginPath = "Example04.plugin";
     XCORE_DLL_HANDLER dllHandler = XCore::DLL::Load(pluginPath);
     SDK::MyPlugin*    plugin     = (SDK::MyPlugin*)XCORE_START_PLUGIN(dllHandler);
 

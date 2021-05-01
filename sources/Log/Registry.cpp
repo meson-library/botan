@@ -27,19 +27,19 @@
 
 
 namespace {
-    core::stl::unordered_map<core::stl::string, core::stl::unique_ptr<XCore::Log::Loggable>> loggers;
+    xcore::stl::unordered_map<xcore::stl::string, xcore::stl::unique_ptr<XCore::Log::Loggable>> loggers;
     std::shared_mutex                                                                        mutex;
 }
 
 
-bool XCore::Log::Registry::Contains(const core::stl::string& loggerName)
+bool XCore::Log::Registry::Contains(const xcore::stl::string& loggerName)
 {
     std::shared_lock<std::shared_mutex> lock(mutex);
 
     return loggers.count(loggerName) > 0;
 }
 
-XCore::Log::Loggable& XCore::Log::Registry::Get(const core::stl::string& loggerName)
+XCore::Log::Loggable& XCore::Log::Registry::Get(const xcore::stl::string& loggerName)
 {
     std::shared_lock<std::shared_mutex> lock(mutex);
 
@@ -50,28 +50,30 @@ XCore::Log::Loggable& XCore::Log::Registry::Get(const core::stl::string& loggerN
     }
     else
     {
-        throw;
+        throw std::runtime_error("A logger with the given name (" + std::string(loggerName.c_str())
+                                 + ") was not found.");
     }
 }
 
-void XCore::Log::Registry::Remove(const core::stl::string& loggerName)
+void XCore::Log::Registry::Remove(const xcore::stl::string& loggerName)
 {
     std::unique_lock<std::shared_mutex> lock(mutex);
 
     auto result = loggers.erase(loggerName);
     if (result == 0)
     {
-        throw;
+        throw std::runtime_error("A logger with the given name (" + std::string(loggerName.c_str())
+                                 + ") was not found.");
     }
 }
 
-void XCore::Log::Registry::Add(core::stl::unique_ptr<Loggable> logger)
+void XCore::Log::Registry::Add(xcore::stl::unique_ptr<Loggable> logger)
 {
     std::unique_lock<std::shared_mutex> lock(mutex);
 
-    auto result = loggers.insert(core::stl::make_pair(logger->GetName(), core::stl::move(logger)));
+    auto result = loggers.insert(xcore::stl::make_pair(logger->GetName(), xcore::stl::move(logger)));
     if (result.second == false)
     {
-        throw;
+        throw std::runtime_error("This logger can not be added to registry.");
     }
 }

@@ -22,12 +22,9 @@
 
 #include <XCore/XCore.h>
 #include <iostream>
+
 int main()
 {
-    // auto guid   = XCore::Common::Types::newGuid();
-    // auto sdsd   = guid.ToString();
-    // auto sdsd_c = sdsd.c_str();
-
     XCore::Common::Types::Guid guid = XCore::Common::Types::Guid();
     XCore::Common::Types::Guid::TryParse("de54da2b-25e2-4e63-b470-aabdc2964666", guid);
 
@@ -35,21 +32,21 @@ int main()
          Create a console sink with name: "console-sink-01".
      */
     XCore::Log::Level consoleSink01Level = XCore::Log::Level::Trace;
-    auto consoleSink01 = core::stl::make_shared<XCore::Log::ConsoleSink>("console-sink-01");
+    auto consoleSink01 = xcore::stl::make_shared<XCore::Log::ConsoleSink>("console-sink-01");
     consoleSink01->SetLevel(consoleSink01Level);
 
     /*
         Create a console sink with name: "console-sink-02".
     */
     XCore::Log::Level consoleSink02Level = XCore::Log::Level::Trace;
-    auto consoleSink02 = core::stl::make_shared<XCore::Log::ConsoleSink>("console-sink-02");
+    auto consoleSink02 = xcore::stl::make_shared<XCore::Log::ConsoleSink>("console-sink-02");
     consoleSink02->SetLevel(consoleSink02Level);
 
     /*
         Create a file sink with name: "file-sink-01".
     */
     XCore::Log::Level fileSink01Level = XCore::Log::Level::Trace;
-    auto              fileSink01      = core::stl::make_shared<XCore::Log::FileSink>("file-sink-01",
+    auto              fileSink01      = xcore::stl::make_shared<XCore::Log::FileSink>("file-sink-01",
                                                                    "file-sink-01.log");
     fileSink01->SetLevel(fileSink01Level);
 
@@ -57,7 +54,7 @@ int main()
         Create a file sink with name: "file-sink-02".
     */
     XCore::Log::Level fileSink02Level = XCore::Log::Level::Trace;
-    auto              fileSink02      = core::stl::make_shared<XCore::Log::FileSink>("file-sink-02",
+    auto              fileSink02      = xcore::stl::make_shared<XCore::Log::FileSink>("file-sink-02",
                                                                    "file-sink-02.log");
     fileSink02->SetLevel(fileSink02Level);
 
@@ -65,16 +62,16 @@ int main()
         Create a compound sink.
     */
     XCore::Log::Level compoundConsoleSink01Level = XCore::Log::Level::Trace;
-    auto              compoundConsoleSink01      = core::stl::make_shared<XCore::Log::ConsoleSink>(
+    auto              compoundConsoleSink01      = xcore::stl::make_shared<XCore::Log::ConsoleSink>(
         "compound-console-sink-01");
     compoundConsoleSink01->SetLevel(compoundConsoleSink01Level);
 
     XCore::Log::Level compoundFileSink01Level = XCore::Log::Level::Trace;
-    auto              compoundFileSink01      = core::stl::make_shared<XCore::Log::FileSink>(
+    auto              compoundFileSink01      = xcore::stl::make_shared<XCore::Log::FileSink>(
         "compound-file-sink-01", "compound-file-sink-01.log");
     compoundFileSink01->SetLevel(compoundFileSink01Level);
 
-    core::stl::vector<core::stl::shared_ptr<XCore::Log::Sinkable>> compoundSinks;
+    xcore::stl::vector<xcore::stl::shared_ptr<XCore::Log::Sinkable>> compoundSinks;
     compoundSinks.push_back(compoundConsoleSink01);
     compoundSinks.push_back(compoundFileSink01);
 
@@ -83,7 +80,7 @@ int main()
         This log has a console sink with name: "console-sink-01".
     */
     XCore::Log::Level logger01Level = XCore::Log::Level::Trace;
-    auto logger01 = core::stl::make_shared<XCore::Log::Logger>("logger-01", consoleSink01);
+    auto logger01 = xcore::stl::make_shared<XCore::Log::Logger>("logger-01", consoleSink01);
     logger01->SetLevel(logger01Level);
 
     /*
@@ -91,7 +88,7 @@ int main()
         This log has a console sink with name: "console-sink-02".
     */
     XCore::Log::Level logger02Level = XCore::Log::Level::Trace;
-    auto logger02 = core::stl::make_shared<XCore::Log::Logger>("logger-02", consoleSink02);
+    auto logger02 = xcore::stl::make_shared<XCore::Log::Logger>("logger-02", consoleSink02);
     logger02->SetLevel(logger02Level);
 
     /*
@@ -99,7 +96,7 @@ int main()
         This log has a file sink with name: "file-sink-01".
     */
     XCore::Log::Level logger03Level = XCore::Log::Level::Trace;
-    auto logger03 = core::stl::make_shared<XCore::Log::Logger>("logger-03", fileSink01);
+    auto logger03 = xcore::stl::make_shared<XCore::Log::Logger>("logger-03", fileSink01);
     logger03->SetLevel(logger03Level);
 
     /*
@@ -107,7 +104,7 @@ int main()
         This log has a file sink with name: "file-sink-02".
     */
     XCore::Log::Level logger04Level = XCore::Log::Level::Trace;
-    auto logger04 = core::stl::make_shared<XCore::Log::Logger>("logger-04", fileSink02);
+    auto logger04 = xcore::stl::make_shared<XCore::Log::Logger>("logger-04", fileSink02);
     logger04->SetLevel(logger04Level);
 
     /*
@@ -116,7 +113,7 @@ int main()
         "compound-file-sink-01".
     */
     XCore::Log::Level logger05Level = XCore::Log::Level::Trace;
-    auto logger05 = core::stl::make_shared<XCore::Log::Logger>("logger-05", compoundSinks);
+    auto logger05 = xcore::stl::make_shared<XCore::Log::Logger>("logger-05", compoundSinks);
     logger05->SetLevel(logger05Level);
 
     /*

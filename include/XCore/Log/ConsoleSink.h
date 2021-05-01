@@ -47,10 +47,10 @@ namespace XCore { namespace Log {
          *
          * @param[in] name A unique name for the sink that will be built.
          */
-        ConsoleSink(const core::stl::string& name);
+        ConsoleSink(const xcore::stl::string& name);
 
     public:
-        virtual core::stl::string GetName() override;
+        virtual xcore::stl::string GetName() override;
         virtual XCore::Log::Level GetLevel() override;
         virtual void              SetLevel(XCore::Log::Level level) override;
         virtual void              Flush() override;
@@ -58,6 +58,6 @@ namespace XCore { namespace Log {
 
     private:
         struct Impl;
-        core::stl::unique_ptr<Impl> m_impl;
+        xcore::stl::unique_ptr<Impl> m_impl;
     };
 }}

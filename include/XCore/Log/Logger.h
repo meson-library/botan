@@ -50,7 +50,7 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const core::stl::string& name);
+        Logger(const xcore::stl::string& name);
 
         /**
          * @brief Construct a new Logger object.
@@ -60,7 +60,7 @@ namespace XCore { namespace Log {
          * @param[in] level The maximum severity level that this logger can
          *     respond to.
          */
-        Logger(const core::stl::string& name, XCore::Log::Level level);
+        Logger(const xcore::stl::string& name, XCore::Log::Level level);
 
         /**
          * @brief Construct a new Logger object.
@@ -75,7 +75,7 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const core::stl::string& name, core::stl::shared_ptr<XCore::Log::Sinkable> sink);
+        Logger(const xcore::stl::string& name, xcore::stl::shared_ptr<XCore::Log::Sinkable> sink);
 
         /**
          * @brief Construct a new Logger object.
@@ -93,9 +93,9 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const core::stl::string&                    name,
+        Logger(const xcore::stl::string&                    name,
                XCore::Log::Level                           level,
-               core::stl::shared_ptr<XCore::Log::Sinkable> sink);
+               xcore::stl::shared_ptr<XCore::Log::Sinkable> sink);
 
         /**
          * @brief Construct a new Logger object.
@@ -110,8 +110,8 @@ namespace XCore { namespace Log {
          *
          * @see XCore::Log::Level
          */
-        Logger(const core::stl::string&                                       name,
-               core::stl::vector<core::stl::shared_ptr<XCore::Log::Sinkable>> sinks);
+        Logger(const xcore::stl::string&                                       name,
+               xcore::stl::vector<xcore::stl::shared_ptr<XCore::Log::Sinkable>> sinks);
 
         /**
          * @brief Construct a new Logger object.
@@ -125,23 +125,23 @@ namespace XCore { namespace Log {
          *     this logger and will redirect to an appropriate destination,
          *     such as file or console.
          */
-        Logger(const core::stl::string&                                       name,
+        Logger(const xcore::stl::string&                                       name,
                XCore::Log::Level                                              level,
-               core::stl::vector<core::stl::shared_ptr<XCore::Log::Sinkable>> sinks);
+               xcore::stl::vector<xcore::stl::shared_ptr<XCore::Log::Sinkable>> sinks);
 
     public:
-        virtual core::stl::string     GetName() override;
+        virtual xcore::stl::string     GetName() override;
         virtual XCore::Log::Level     GetLevel() override;
         virtual void                  SetLevel(XCore::Log::Level level) override;
-        virtual bool                  ContainsSink(const core::stl::string& name) override;
-        virtual XCore::Log::Sinkable& GetSink(const core::stl::string& name) override;
-        virtual void AddSink(core::stl::shared_ptr<XCore::Log::Sinkable> sink) override;
-        virtual void RemoveSink(const core::stl::string& name) override;
-        virtual void Log(XCore::Log::Level level, const core::stl::string& msg) override;
+        virtual bool                  ContainsSink(const xcore::stl::string& name) override;
+        virtual XCore::Log::Sinkable& GetSink(const xcore::stl::string& name) override;
+        virtual void AddSink(xcore::stl::shared_ptr<XCore::Log::Sinkable> sink) override;
+        virtual void RemoveSink(const xcore::stl::string& name) override;
+        virtual void Log(XCore::Log::Level level, const xcore::stl::string& msg) override;
         virtual void Dispose() override;
 
     private:
         struct Impl;
-        core::stl::unique_ptr<Impl> m_impl;
+        xcore::stl::unique_ptr<Impl> m_impl;
     };
 }}

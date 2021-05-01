@@ -22,22 +22,22 @@
 
 #include "XCore/DLL.h"
 
-XCORE_DLL_HANDLER XCore::DLL::Load(const core::stl::string& path)
+XCORE_DLL_HANDLER XCore::DLL::Load(const xcore::stl::string& path)
 {
-    XCORE_DLL_HANDLER handler = core::platform::load_dll(path);
+    XCORE_DLL_HANDLER handler = xcore::platform::load_dll(path);
     return handler;
 }
 
 bool XCore::DLL::Unload(XCORE_DLL_HANDLER& handler)
 {
-    bool status = core::platform::unload_dll(handler);
+    bool status = xcore::platform::unload_dll(handler);
     return status;
 }
 
 XCORE_DLL_SYMBOL_POINTER XCore::DLL::GetSymbolPointer(XCORE_DLL_HANDLER        handler,
-                                                      const core::stl::string& symbolName)
+                                                      const xcore::stl::string& symbolName)
 {
-    XCORE_DLL_SYMBOL_POINTER symbolPointer = core::platform::get_symbol_pointer_from_dll(handler,
+    XCORE_DLL_SYMBOL_POINTER symbolPointer = xcore::platform::get_symbol_pointer_from_dll(handler,
                                                                                          symbolName);
     return symbolPointer;
 }

@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "../Core.h"
+#include "../support.h"
 
 namespace XCore { namespace Common { namespace Types {
     /**
@@ -38,16 +38,16 @@ namespace XCore { namespace Common { namespace Types {
      */
     struct AssetInfo
     {
-        AssetInfo(core::stl::string name,
-                  core::stl::string author      = "",
-                  core::stl::string license     = "",
-                  core::stl::string description = "")
+        AssetInfo(xcore::stl::string name,
+                  xcore::stl::string author      = "",
+                  xcore::stl::string license     = "",
+                  xcore::stl::string description = "")
             : Name(name), Author(author), License(license), Description(description) {};
 
-        core::stl::string Name;
-        core::stl::string Author;
-        core::stl::string License;
-        core::stl::string Description;
+        xcore::stl::string Name;
+        xcore::stl::string Author;
+        xcore::stl::string License;
+        xcore::stl::string Description;
     };
 
     typedef struct AssetInfo AssetInfo;

@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "../Core.h"
+#include "../support.h"
 
 namespace XCore { namespace Common { namespace Types {
     /**
@@ -43,13 +43,13 @@ namespace XCore { namespace Common { namespace Types {
      */
     struct SemVer
     {
-        SemVer(int major, int minor = 0, int path = 0, core::stl::string label = "")
+        SemVer(int major, int minor = 0, int path = 0, xcore::stl::string label = "")
             : Major(major), Minor(minor), Path(path), Label(label) {};
 
         int               Major;
         int               Minor;
         int               Path;
-        core::stl::string Label;
+        xcore::stl::string Label;
     };
 
     typedef struct SemVer SemVer;

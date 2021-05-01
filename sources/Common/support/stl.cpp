@@ -20,15 +20,22 @@
 // |
 // +---------------------------------------------------------------------------
 
-/**
- * @file
- *
- * @brief
- */
+#include "XCore/Common/support/stl.h"
 
-#pragma once
+void* XCORE_CDECL operator new[](
+    size_t size, const char* name, int flags, unsigned debugFlags, const char* file, int line)
+{
+    return new uint8_t[size];
+}
 
-#include "Types/AssetInfo.h"
-#include "Types/Disposable.h"
-#include "Types/Guid.h"
-#include "Types/SemVer.h"
+void* XCORE_CDECL operator new[](size_t      size,
+                                 size_t      alignment,
+                                 size_t      alignmentOffset,
+                                 const char* name,
+                                 int         flags,
+                                 unsigned    debugFlags,
+                                 const char* file,
+                                 int         line)
+{
+    return new uint8_t[size];
+}

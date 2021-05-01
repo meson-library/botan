@@ -30,32 +30,32 @@
 
 struct XCore::Log::ConsoleSink::Impl
 {
-    core::stl::string           Name;
-    core::stl::shared_ptr<void> Data;
+    xcore::stl::string           Name;
+    xcore::stl::shared_ptr<void> Data;
 };
 
 
-XCore::Log::ConsoleSink::ConsoleSink(const core::stl::string& name)
-    : m_impl {core::stl::make_unique<Impl>()}
+XCore::Log::ConsoleSink::ConsoleSink(const xcore::stl::string& name)
+    : m_impl {xcore::stl::make_unique<Impl>()}
 {
     m_impl->Name = name;
-    m_impl->Data = core::stl::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+    m_impl->Data = xcore::stl::make_shared<spdlog::sinks::stdout_color_sink_mt>();
 }
 
-core::stl::string XCore::Log::ConsoleSink::GetName()
+xcore::stl::string XCore::Log::ConsoleSink::GetName()
 {
     return m_impl->Name;
 }
 
 XCore::Log::Level XCore::Log::ConsoleSink::GetLevel()
 {
-    auto sink = core::stl::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_impl->Data);
+    auto sink = xcore::stl::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_impl->Data);
     return ConvertLevel(sink->level());
 }
 
 void XCore::Log::ConsoleSink::SetLevel(XCore::Log::Level level)
 {
-    auto sink = core::stl::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_impl->Data);
+    auto sink = xcore::stl::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_impl->Data);
     sink->set_level(ConvertLevel(level));
 }
 
@@ -66,6 +66,6 @@ void* XCore::Log::ConsoleSink::GetData()
 
 void XCore::Log::ConsoleSink::Flush()
 {
-    auto sink = core::stl::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_impl->Data);
+    auto sink = xcore::stl::static_pointer_cast<spdlog::sinks::stdout_color_sink_mt>(m_impl->Data);
     sink->flush();
 }

@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 #pragma once
 
-#include "../Core.h"
+#include "../support.h"
 
 namespace XCore { namespace Common { namespace Types {
 
@@ -32,8 +32,8 @@ namespace XCore { namespace Common { namespace Types {
     {
     public:
         Guid();
-        Guid(const core::stl::string& input);
-        Guid(const core::stl::array<unsigned char, 16>& input);
+        Guid(const xcore::stl::string& input);
+        Guid(const xcore::stl::array<unsigned char, 16>& input);
 
         Guid(const Guid& other) = default;
         Guid& operator=(const Guid& other) = default;
@@ -45,12 +45,12 @@ namespace XCore { namespace Common { namespace Types {
 
         static Guid NewGuid();
 
-        static bool TryParse(const core::stl::string& input, Guid& result);
+        static bool TryParse(const xcore::stl::string& input, Guid& result);
         bool        IsEmpty() const;
-        const core::stl::array<unsigned char, 16>& ToByteArray() const;
-        core::stl::string                          ToString() const;
+        const xcore::stl::array<unsigned char, 16>& ToByteArray() const;
+        xcore::stl::string                          ToString() const;
 
     private:
-        core::stl::array<unsigned char, 16> m_bytes;
+        xcore::stl::array<unsigned char, 16> m_bytes;
     };
 }}}

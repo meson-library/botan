@@ -23,12 +23,7 @@
 /**
  * @file
  *
- * @brief
+ * @brief Contains specific code for OSX platform.
  */
 
 #pragma once
-
-#include "Types/AssetInfo.h"
-#include "Types/Disposable.h"
-#include "Types/Guid.h"
-#include "Types/SemVer.h"

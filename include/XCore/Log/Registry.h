@@ -38,7 +38,7 @@ namespace XCore { namespace Log { namespace Registry {
      * @return true
      * @return false
      */
-    bool Contains(const core::stl::string& loggerName);
+    bool Contains(const xcore::stl::string& loggerName);
 
     /**
      * @brief Get from this registry a logger with the given name.
@@ -47,19 +47,19 @@ namespace XCore { namespace Log { namespace Registry {
      *
      * @return XCore::Log::Loggable&
      */
-    XCore::Log::Loggable& Get(const core::stl::string& loggerName);
+    XCore::Log::Loggable& Get(const xcore::stl::string& loggerName);
 
     /**
      * @brief Remove from this registry a logger with the given name.
      *
      * @param loggerName The logger name (case insensitive).
      */
-    void Remove(const core::stl::string& loggerName);
+    void Remove(const xcore::stl::string& loggerName);
 
     /**
      * @brief Add the supplied logger to this registry.
      *
      * @param logger The logger to be added.
      */
-    void Add(core::stl::unique_ptr<XCore::Log::Loggable> logger);
+    void Add(xcore::stl::unique_ptr<XCore::Log::Loggable> logger);
 }}}
