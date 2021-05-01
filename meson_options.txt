@@ -12,5 +12,5 @@ option('build_examples',
 option('build_docs',
         description : 'Build the documentation.',
         type        : 'boolean',
-        value       : true,
+        value       : false,
         yield       : true)

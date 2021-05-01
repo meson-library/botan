@@ -93,14 +93,14 @@ namespace XCore {
 }
 
 /**
- * @namespace core
+ * @namespace xcore
  *
- * @brief This is the core, our complementary namespace to the 'std' namespace that is the standard
+ * @brief This is the xcore, our complementary namespace to the 'std' namespace that is the standard
  * library.
  */
-namespace core {
+namespace xcore {
     /**
-     * @namespace core::platform
+     * @namespace xcore::platform
      *
      * @brief Contains a set of specific platform implementation resources.
      */
@@ -109,13 +109,13 @@ namespace core {
     }
 
     /**
-     * @namespace core::stl
+     * @namespace xcore::stl
      *
      * @brief Contains our stl implementation.
      *
      * @details This namespace contains our stl implementation. This stl implementation was made by
      * Electronic Arts (EASTL). The original thirdparty library can be found in the following url
-     * https://github.com/meson-library/eastl. The namespace `core::stl` is an alias to the original
+     * https://github.com/meson-library/eastl. The namespace `xcore::stl` is an alias to the original
      * library namespace that is `eastl`.
      */
     namespace stl {
@@ -123,14 +123,14 @@ namespace core {
     }
 
     /**
-     * @namespace core::filesystem
+     * @namespace xcore::filesystem
      *
      * @brief Contains a set of resources for work with filesystem.
      *
      * @details This is the start point for filesystem manipulations like read and write to files,
      * list directories, set <br> file attributes, copy and move files and so on... <br> <br> We use
      * a thirdparty library for this purpose. The original library can be found in the following url
-     * <br> https://github.com/meson-library/filesystem. The namespace `core::filesystem` is an
+     * <br> https://github.com/meson-library/filesystem. The namespace `xcore::filesystem` is an
      * alias to the original library <br> namespace that is `ghc::filesystem`. Basicaly the original
      * library consist of a C++11 cross-platform <br> implementation of the standard
      * `std::filesystem` (Now already included in the C++17 standard).

@@ -1,7 +1,7 @@
 #
 # Find the tools tha will be used to generate documentation.
 #
-doxygen = find_program('wrapper_doxygen', required : true)
+bash = find_program('bash', required : true)
 dot = find_program('dot', required : true)
 
 
@@ -31,7 +31,7 @@ doxyfile = configure_file(input         : 'doxygen.config.in',
 custom_target('api-reference',
               input              : doxyfile,
               output             : 'html',
-              command            : [doxygen, '--workfolder', root_build_dir/docs_dir/'api-reference', '--config-file', root_build_dir/'@0@'.format(doxyfile)],
+              command            : [bash, 'wrapper_doxygen', '--workfolder', root_build_dir/docs_dir/'api-reference', '--config-file', root_build_dir/'@0@'.format(doxyfile)],
               build_always_stale : true,
               install            : true,
               install_dir        : install_dir_docs/'api-reference')
