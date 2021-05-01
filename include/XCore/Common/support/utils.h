@@ -1,7 +1,7 @@
 // +---------------------------------------------------------------------------
 // |
 // |   XCore GPL Source Code
-// |   Copyright (c) 2020 XNerv Ltda (http://xnerv.com). All rights reserved.
+// |   Copyright (c) 2021 XNerv Ltda (http://xnerv.com). All rights reserved.
 // |
 // |   This file is part of the XCore GPL Source Code.
 // |
