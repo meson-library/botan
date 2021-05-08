@@ -23,25 +23,40 @@
 /**
  * @file
  *
- * @brief Contains a set of resources for work with shared library.
+ * @brief Contains specific code for Linux platform.
  */
 
 #pragma once
 
-#include "common.h"
-#include "stl.h"
+#include "../macros.h"
 
-namespace xcore { namespace dll {
+#include <array>
+#include <string>
+
+/**
+ * @brief A handle to a shared library.
+ *
+ * @details On a POSIX compliant system this typedef represents `void*`.
+ */
+typedef void* XCORE_DLL_HANDLER;
+
+/**
+ * @brief A pointer to a symbol inside a shared library.
+ *
+ * @details On a POSIX compliant system this typedef represents `void*`.
+ */
+typedef void* XCORE_DLL_SYMBOL_POINTER;
+
+
+namespace xcore { namespace common { namespace platform {
     /**
      * @brief Load a shared library at runtime.
      *
-     * @details Load a shared library at runtime in a cross platform manner.
-     *
      * @param[in] path A path to the shared library to be loaded.
      *
-     * @return An handle to the loaded shared library. If the function fails, the return value is `NULL`.
+     * @return A shared library handler as `XCORE_DLL_HANDLER`.
      */
-    XCORE_API XCORE_DLL_HANDLER load(const xcore::stl::string& path);
+    XCORE_API XCORE_DLL_HANDLER load_dll(const std::string& path);
 
     /**
      * @brief Unload a shared library at runtime.
@@ -50,16 +65,25 @@ namespace xcore { namespace dll {
      *
      * @return true if success, otherwise false.
      */
-    XCORE_API bool unload(XCORE_DLL_HANDLER& handler);
+    XCORE_API bool unload_dll(XCORE_DLL_HANDLER& handler);
 
     /**
      * @brief Get a symbol pointer from the loaded shared library.
      *
      * @param[in] handler A shared library handler.
+     *
      * @param[in] symbolName A symbol name exported from the shared library (variable or function).
      *
-     * @return A symbol pointer from the shared library. If the function fails, the return value is `NULL`.
+     * @return A symbol pointer from a shared library as `XCORE_DLL_SYMBOL_POINTER`. If the call
+     * fails, the return value is `NULL`.
      */
-    XCORE_API XCORE_DLL_SYMBOL_POINTER get_symbol_pointer(XCORE_DLL_HANDLER         handler,
-                                                          const xcore::stl::string& symbolName);
-}}
+    XCORE_API XCORE_DLL_SYMBOL_POINTER get_symbol_pointer_from_dll(XCORE_DLL_HANDLER  handler,
+                                                                   const std::string& symbolName);
+
+    /**
+     * @brief Get a new guid as byte array. The returned guid is variant 1 of Version 4 (random).
+     *
+     * @return std::array<unsigned char, 16>
+     */
+    XCORE_API std::array<unsigned char, 16> get_guid();
+}}}

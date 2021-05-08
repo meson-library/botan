@@ -20,19 +20,19 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include <XCore/XCore.h>
+#include <xcore/xcore.h>
 
 int main()
 {
     typedef void (*display_helloworld_from_shared_library)(void);
 
-    XCORE_DLL_HANDLER        dllHandler    = XCore::DLL::Load("Example02Library.dll");
-    XCORE_DLL_SYMBOL_POINTER symbolPointer = XCore::DLL::GetSymbolPointer(
+    XCORE_DLL_HANDLER        dllHandler    = xcore::dll::load("example02_library.dll");
+    XCORE_DLL_SYMBOL_POINTER symbolPointer = xcore::dll::get_symbol_pointer(
         dllHandler, "display_helloworld_from_shared_library");
 
     auto function_pointer = ((display_helloworld_from_shared_library)symbolPointer);
 
     function_pointer();
 
-    XCore::DLL::Unload(dllHandler);
+    xcore::dll::unload(dllHandler);
 }

@@ -20,24 +20,16 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/dll.h"
+/**
+ * @file
+ *
+ * @brief Contains specific code for OSX platform.
+ */
 
-XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
-{
-    XCORE_DLL_HANDLER handler = xcore::common::platform::load_dll(xcore::stl::to_std_string(path));
-    return handler;
-}
+#pragma once
 
-bool xcore::dll::unload(XCORE_DLL_HANDLER& handler)
-{
-    bool status = xcore::common::platform::unload_dll(handler);
-    return status;
-}
+#include "../macros.h"
 
-XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER         handler,
-                                                        const xcore::stl::string& symbolName)
-{
-    XCORE_DLL_SYMBOL_POINTER symbolPointer = xcore::common::platform::get_symbol_pointer_from_dll(
-        handler, xcore::stl::to_std_string(symbolName));
-    return symbolPointer;
-}
+namespace xcore { namespace common { namespace platform {
+
+}}}

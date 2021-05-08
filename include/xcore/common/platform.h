@@ -20,24 +20,29 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/dll.h"
+/**
+ * @file
+ *
+ * @brief This header is responsible to choose the rigth platform.
+ */
 
-XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
-{
-    XCORE_DLL_HANDLER handler = xcore::common::platform::load_dll(xcore::stl::to_std_string(path));
-    return handler;
-}
+#pragma once
 
-bool xcore::dll::unload(XCORE_DLL_HANDLER& handler)
-{
-    bool status = xcore::common::platform::unload_dll(handler);
-    return status;
-}
+#include "macros.h"
 
-XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER         handler,
-                                                        const xcore::stl::string& symbolName)
-{
-    XCORE_DLL_SYMBOL_POINTER symbolPointer = xcore::common::platform::get_symbol_pointer_from_dll(
-        handler, xcore::stl::to_std_string(symbolName));
-    return symbolPointer;
-}
+#if !defined(XCORE_OS_FAMILY_WINDOWS) && !defined(XCORE_OS_FAMILY_LINUX)                           \
+    && !defined(XCORE_OS_FAMILY_OSX)
+#    error "Unsupported platform!"
+#endif
+
+#if defined(XCORE_OS_FAMILY_WINDOWS) || defined(DOXYGEN)
+#    include "platform/win.h"
+#endif
+
+#if defined(XCORE_OS_FAMILY_LINUX) || defined(DOXYGEN)
+#    include "platform/lnx.h"
+#endif
+
+#if defined(XCORE_OS_FAMILY_OSX) || defined(DOXYGEN)
+#    include "platform/osx.h"
+#endif

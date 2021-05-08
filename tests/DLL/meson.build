@@ -1,5 +1,5 @@
 
-sources      += [files('DLLTest.cpp')]
+sources      += [files('dll_test.cpp')]
 dependencies += []
 
-subdir('ExampleDLL')
+subdir('example_library')

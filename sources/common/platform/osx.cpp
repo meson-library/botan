@@ -20,24 +20,10 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/dll.h"
+#include "xcore/common/platform/osx.h"
 
-XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
-{
-    XCORE_DLL_HANDLER handler = xcore::common::platform::load_dll(xcore::stl::to_std_string(path));
-    return handler;
-}
+#if defined(XCORE_OS_FAMILY_OSX)
 
-bool xcore::dll::unload(XCORE_DLL_HANDLER& handler)
-{
-    bool status = xcore::common::platform::unload_dll(handler);
-    return status;
-}
+/* OSX implementations goes here. */
 
-XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER         handler,
-                                                        const xcore::stl::string& symbolName)
-{
-    XCORE_DLL_SYMBOL_POINTER symbolPointer = xcore::common::platform::get_symbol_pointer_from_dll(
-        handler, xcore::stl::to_std_string(symbolName));
-    return symbolPointer;
-}
+#endif

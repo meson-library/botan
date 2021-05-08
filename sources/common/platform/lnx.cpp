@@ -20,24 +20,43 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/dll.h"
+#include "xcore/common/platform/lnx.h"
 
-XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
+#if defined(XCORE_OS_FAMILY_LINUX)
+
+#    include <dlfcn.h>
+#    include <uuid/uuid.h>
+
+XCORE_DLL_HANDLER xcore::common::platform::load_dll(const std::string& path)
 {
-    XCORE_DLL_HANDLER handler = xcore::common::platform::load_dll(xcore::stl::to_std_string(path));
+    XCORE_DLL_HANDLER handler = dlopen(path.c_str(), RTLD_LAZY);
     return handler;
 }
 
-bool xcore::dll::unload(XCORE_DLL_HANDLER& handler)
+bool xcore::common::platform::unload_dll(XCORE_DLL_HANDLER handler)
 {
-    bool status = xcore::common::platform::unload_dll(handler);
-    return status;
+    if (dlclose(handler) == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
-XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER         handler,
-                                                        const xcore::stl::string& symbolName)
+XCORE_DLL_SYMBOL_POINTER xcore::common::platform::get_symbol_pointer_from_dll(
+    XCORE_DLL_HANDLER handler, const std::string& symbolName)
 {
-    XCORE_DLL_SYMBOL_POINTER symbolPointer = xcore::common::platform::get_symbol_pointer_from_dll(
-        handler, xcore::stl::to_std_string(symbolName));
+    XCORE_DLL_SYMBOL_POINTER symbolPointer = dlsym(handler, symbolName.c_str());
     return symbolPointer;
 }
+
+std::array<unsigned char, 16> xcore::common::platform::get_guid()
+{
+    uuid_t id;
+    uuid_generate(id);
+    return id;
+}
+
+#endif

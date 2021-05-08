@@ -20,24 +20,12 @@
 // |
 // +---------------------------------------------------------------------------
 
-#include "xcore/dll.h"
+#include <stdio.h>
+#include <xcore/xcore.h>
 
-XCORE_DLL_HANDLER xcore::dll::load(const xcore::stl::string& path)
+XCORE_EXTERN_C_BEGIN
+DLL_EXAMPLE_LIBRARY_API char* get_helloworld_from_shared_library(void)
 {
-    XCORE_DLL_HANDLER handler = xcore::common::platform::load_dll(xcore::stl::to_std_string(path));
-    return handler;
+    return "Hello World from shared library.\n";
 }
-
-bool xcore::dll::unload(XCORE_DLL_HANDLER& handler)
-{
-    bool status = xcore::common::platform::unload_dll(handler);
-    return status;
-}
-
-XCORE_DLL_SYMBOL_POINTER xcore::dll::get_symbol_pointer(XCORE_DLL_HANDLER         handler,
-                                                        const xcore::stl::string& symbolName)
-{
-    XCORE_DLL_SYMBOL_POINTER symbolPointer = xcore::common::platform::get_symbol_pointer_from_dll(
-        handler, xcore::stl::to_std_string(symbolName));
-    return symbolPointer;
-}
+XCORE_EXTERN_C_END

@@ -151,7 +151,7 @@ EXIT /B 0
     ECHO #         Default to 'debug'.                                         #
     echo #                                                                     #
     echo #     --build-link    The linkage type should be one of the           #
-    ECHO #         following values: 'static', 'shared' or 'both'. Default     #
+    ECHO #         following values: 'static' or 'shared'. Default     #
     ECHO #         to 'shared'.                                                #
     ECHO #                                                                     #
     ECHO #######################################################################

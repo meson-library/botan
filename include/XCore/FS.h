@@ -23,7 +23,19 @@
 /**
  * @file
  *
- * @brief Contains a set of resources for work with filesystem.
+ * @brief Contains a set of resources for work with a file system.
  */
 
 #pragma once
+
+/**
+ * @cond
+ */
+#include <ghc/filesystem.hpp>
+/**
+ * @endcond
+ */
+
+namespace xcore {
+    namespace fs = ghc::filesystem;
+}

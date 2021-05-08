@@ -5,13 +5,19 @@ if get_option('build_tests')
     sources       = []
     dependencies  = []
 
-    subdir('Common')
-    subdir('DLL')
-    subdir('Plugin')
+    subdir('dll')
 
-    executable('Tests',
+    e = executable('tests',
             sources      : sources,
             dependencies : dependencies + [xcore_dep, gtest_main_dep],
-            install      : true,
-            install_dir  : install_dir_tests)
+            install_dir  : install_dir_tests,
+            install      : true)
+
+    test(proj_name + ' tests', e,
+        workdir: get_option('prefix')/install_dir_tests)
+
+    if build_machine.system() == 'windows'
+        install_data(['run.cmd'],
+            install_dir : install_dir_tests)
+    endif
 endif

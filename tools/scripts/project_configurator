@@ -119,11 +119,13 @@ configure_project()
     then
         meson setup "$project_path" --buildtype $build_for_type \
             --default-library $build_for_link --backend $project_type --prefix "$artifact_path" \
-            -Dbuild_examples=$build_examples_arg -Dbuild_docs=$build_docs_arg -Dbuild_tests=$build_tests_arg
+            -Dbuild_examples=$build_examples_arg -Dbuild_docs=$build_docs_arg \
+            -Dbuild_tests=$build_tests_arg
     else
         meson setup "$project_path" --reconfigure --buildtype $build_for_type \
             --default-library $build_for_link --backend $project_type --prefix "$artifact_path" \
-            -Dbuild_examples=$build_examples_arg -Dbuild_docs=$build_docs_arg -Dbuild_tests=$build_tests_arg
+            -Dbuild_examples=$build_examples_arg -Dbuild_docs=$build_docs_arg \
+            -Dbuild_tests=$build_tests_arg
     fi
 }
 

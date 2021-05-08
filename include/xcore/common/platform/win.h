@@ -23,25 +23,44 @@
 /**
  * @file
  *
- * @brief Contains a set of resources for work with shared library.
+ * @brief Contains specific code for Windows platform.
  */
 
 #pragma once
 
-#include "common.h"
-#include "stl.h"
+#include "../macros.h"
 
-namespace xcore { namespace dll {
+#include <array>
+#include <string>
+#include <windows.h>
+
+/**
+ * @brief A handle to a shared library.
+ *
+ * @details On MSVC this macro expands to `HMODULE`.
+ */
+typedef HMODULE XCORE_DLL_HANDLER;
+
+/**
+ * @brief A pointer to a symbol inside a shared library.
+ *
+ * @details On MSVC this macro expands to `FARPROC`.
+ */
+typedef FARPROC XCORE_DLL_SYMBOL_POINTER;
+
+
+namespace xcore { namespace common { namespace platform {
     /**
      * @brief Load a shared library at runtime.
      *
-     * @details Load a shared library at runtime in a cross platform manner.
-     *
      * @param[in] path A path to the shared library to be loaded.
      *
-     * @return An handle to the loaded shared library. If the function fails, the return value is `NULL`.
+     * @return A shared library handler as `XCORE_DLL_HANDLER`.
+     *
+     * @note This function return a `XCORE_DLL_HANDLER` that in Windows is of type
+     * [HMODULE](https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751(v=vs.85).aspx).
      */
-    XCORE_API XCORE_DLL_HANDLER load(const xcore::stl::string& path);
+    XCORE_API XCORE_DLL_HANDLER load_dll(const std::string& path);
 
     /**
      * @brief Unload a shared library at runtime.
@@ -50,16 +69,28 @@ namespace xcore { namespace dll {
      *
      * @return true if success, otherwise false.
      */
-    XCORE_API bool unload(XCORE_DLL_HANDLER& handler);
+    XCORE_API bool unload_dll(XCORE_DLL_HANDLER& handler);
 
     /**
      * @brief Get a symbol pointer from the loaded shared library.
      *
      * @param[in] handler A shared library handler.
+     *
      * @param[in] symbolName A symbol name exported from the shared library (variable or function).
      *
-     * @return A symbol pointer from the shared library. If the function fails, the return value is `NULL`.
+     * @return A symbol pointer from the shared library as `XCORE_DLL_SYMBOL_POINTER`. If the call
+     * fails, the return value is `NULL`.
+     *
+     * @note This function return a `XCORE_DLL_SYMBOL_POINTER` that in Windows is of type
+     * [FARPROC](https://msdn.microsoft.com/en-us/library/windows/desktop/ms633571(v=vs.85).aspx).
      */
-    XCORE_API XCORE_DLL_SYMBOL_POINTER get_symbol_pointer(XCORE_DLL_HANDLER         handler,
-                                                          const xcore::stl::string& symbolName);
-}}
+    XCORE_API XCORE_DLL_SYMBOL_POINTER get_symbol_pointer_from_dll(XCORE_DLL_HANDLER  handler,
+                                                                   const std::string& symbolName);
+
+    /**
+     * @brief Get a new guid as byte array. The returned guid is variant 1 of Version 4 (random).
+     *
+     * @return std::array<unsigned char, 16>
+     */
+    XCORE_API std::array<unsigned char, 16> get_guid();
+}}}

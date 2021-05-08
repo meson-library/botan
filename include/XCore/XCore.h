@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "Common.h"
-#include "DLL.h"
-#include "FS.h"
-#include "Log.h"
-#include "Math.h"
-#include "Plugin.h"
+#include "common.h"
+#include "dll.h"
+#include "log.h"
+#include "stl.h"
+#include "fs.h"
+

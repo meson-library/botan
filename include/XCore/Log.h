@@ -28,11 +28,26 @@
 
 #pragma once
 
-#include "Log/ConsoleSink.h"
-#include "Log/FileSink.h"
-#include "Log/Level.h"
-#include "Log/Loggable.h"
-#include "Log/Logger.h"
-#include "Log/Macros.h"
-#include "Log/Registry.h"
-#include "Log/Sinkable.h"
+#include "common.h"
+
+/**
+ * @cond
+ */
+#if defined(XCORE_OS_FAMILY_WINDOWS)
+#   pragma warning(push)
+#   pragma warning(disable : 4251)
+#   pragma warning(disable : 4275)
+#endif
+
+#include <spdlog/spdlog.h>
+
+#if defined(XCORE_OS_FAMILY_WINDOWS)
+#   pragma warning(pop)
+#endif
+/**
+ * @endcond
+ */
+
+namespace xcore {
+    namespace log = spdlog;
+}

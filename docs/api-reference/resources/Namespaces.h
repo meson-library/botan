@@ -31,67 +31,6 @@
 
 #error "For namespaces documentation only. This file must not be included in any other file!"
 
-
-/**
- * @namespace XCore
- *
- * @brief The root namespace for te XCore library.
- */
-namespace XCore {
-    /**
-     * @namespace XCore::DLL
-     *
-     * @brief Contains a set of resources for work with shared library.
-     */
-    namespace DLL {
-
-    }
-
-
-    /**
-     * @namespace XCore::Math
-     *
-     * @brief Contains a set of resources for work with math.
-     *
-     * @details This is the start point for mathematical manipulations. <br><br>We use a thirdparty
-     * library for this purpose. The original library can be found in the following url <br>
-     * https://github.com/meson-library/eigen. The namespace `XCore::Math` is an alias to the
-     * original library <br> namespace that is `Eigen`.
-     */
-    namespace Math {
-
-    }
-
-
-    /**
-     * @namespace XCore::Log
-     *
-     * @brief Contains a set of resources for work with logs.
-     */
-    namespace Log {
-        /**
-         * @namespace XCore::Log::Registry
-         *
-         * @brief Contains a global registry for loggers.
-         */
-        namespace Registry {
-
-        }
-    }
-
-
-    /**
-     * @namespace XCore::Plugin
-     *
-     * @brief Contains a set of resources for work with plugins.
-     *
-     * @details This is the start point for plugin manipulations.
-     */
-    namespace Plugin {
-
-    }
-}
-
 /**
  * @namespace xcore
  *
@@ -115,8 +54,8 @@ namespace xcore {
      *
      * @details This namespace contains our stl implementation. This stl implementation was made by
      * Electronic Arts (EASTL). The original thirdparty library can be found in the following url
-     * https://github.com/meson-library/eastl. The namespace `xcore::stl` is an alias to the original
-     * library namespace that is `eastl`.
+     * https://github.com/meson-library/eastl. The namespace `xcore::stl` is an alias to the
+     * original library namespace that is `eastl`.
      */
     namespace stl {
 
@@ -136,6 +75,24 @@ namespace xcore {
      * `std::filesystem` (Now already included in the C++17 standard).
      */
     namespace filesystem {
+
+    }
+
+    /**
+     * @namespace xcore::dll
+     *
+     * @brief Contains a set of resources for work with shared library.
+     */
+    namespace dll {
+
+    }
+
+    /**
+     * @namespace xcore::log
+     *
+     * @brief Contains a set of resources for work with logs.
+     */
+    namespace log {
 
     }
 }
