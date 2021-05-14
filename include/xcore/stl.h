@@ -165,6 +165,22 @@ namespace xcore { namespace stl {
     }
 
     /**
+     * @brief
+     *
+     * @tparam N
+     * @tparam T
+     * @param input
+     * @return xcore::stl::array<T, N>
+     */
+    template<std::size_t N, typename T>
+    xcore::stl::array<T, N> to_xcore_array(std::array<T, N>& input)
+    {
+        xcore::stl::array<T, N> converted;
+        std::copy(input.begin(), input.end(), converted.begin());
+        return converted;
+    }
+
+    /**
      * @brief Convert a std::string to a xcore::stl::string.
      *
      * @param[in] input The string to convert.

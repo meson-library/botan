@@ -23,14 +23,31 @@
 /**
  * @file
  *
- * @brief Main header for the XCore library.
+ * @brief Contains a set of resources for work with logs.
  */
 
 #pragma once
 
 #include "common.h"
-#include "dll.h"
-#include "log.h"
-#include "stl.h"
-#include "fs.h"
 
+/**
+ * @cond
+ */
+#if defined(XCORE_OS_FAMILY_WINDOWS)
+#    pragma warning(push)
+#    pragma warning(disable : 4251)
+#    pragma warning(disable : 4275)
+#endif
+
+#include <spdlog/spdlog.h>
+
+#if defined(XCORE_OS_FAMILY_WINDOWS)
+#    pragma warning(pop)
+#endif
+/**
+ * @endcond
+ */
+
+namespace xcore {
+    namespace log = spdlog;
+}
