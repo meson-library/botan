@@ -1,7 +1,7 @@
 #
 # Project info.
 #
-project('XCore', ['cpp'],
+project('xcore', ['cpp'],
          version       : '0.1.0',
          license       : ['GPL3'],
          meson_version : '>= 0.55.0')
@@ -10,7 +10,7 @@ project('XCore', ['cpp'],
 #
 # Declare some useful global variables.
 #
-proj_name                 = meson.project_name().to_lower()
+proj_name                 = meson.project_name()
 root_dir                  = meson.current_source_dir()
 root_build_dir            = meson.current_build_dir()
 include_dir_root          = 'include'
