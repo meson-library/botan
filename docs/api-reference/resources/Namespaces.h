@@ -38,13 +38,21 @@
  * library.
  */
 namespace xcore {
-    /**
-     * @namespace xcore::platform
-     *
-     * @brief Contains a set of specific platform implementation resources.
-     */
-    namespace platform {
 
+    /**
+     * @namespace xcore::common
+     *
+     * @brief Contains a set of common resources.
+     */
+    namespace common {
+        /**
+         * @namespace xcore::common::platform
+         *
+         * @brief Contains a set of specific platform resources.
+         */
+        namespace platform {
+
+        }
     }
 
     /**
