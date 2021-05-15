@@ -13,9 +13,6 @@ if get_option('build_tests')
             install_dir  : install_dir_tests,
             install      : true)
 
-    test(proj_name + ' tests', e,
-        workdir: get_option('prefix')/install_dir_tests)
-
     if build_machine.system() == 'windows'
         install_data(['run.cmd'],
             install_dir : install_dir_tests)
