@@ -1,4 +1,4 @@
-# XCore
+# xcore
 
 Esta é uma biblioteca básica que contem os principais módulos que uma
 aplicaçao pode vir a precisar.
