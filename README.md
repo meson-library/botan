@@ -1,9 +1,5 @@
-# xcore
+# Botan
 
-Esta é uma biblioteca básica que contem os principais módulos que uma
-aplicaçao pode vir a precisar.
+Source code from official releases with added Meson build definition files.
 
-* dll.h - Modulo para manipulação de bibliotecas dinâmicas.
-* fs.h  - Modulo para manipulação do sistema de arquivos.
-* log.h - Modulo para log.
-* stl.h - Modulo contendo nossa implementação de STL.
+[Official source code for Botan 2.18.1](https://github.com/randombit/botan/archive/refs/tags/2.18.1.zip)

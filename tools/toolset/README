@@ -1,7 +1,0 @@
-
-In this directory, we can place external third-party tools as
-submodules. This way we can manage them more easily and also reduce the
-total size of this repository.
-
-A list of supported tools can be found at the following address
-https://github.com/tools-library
