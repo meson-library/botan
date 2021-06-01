@@ -1,8 +1,7 @@
 
 install_dir_example01 = install_dir_examples/'example01'
 
-subdir('library')
-subdir('host')
+subdir('app')
 
 install_data(['README.md'],
                install_dir : install_dir_docs/'examples'/'01')

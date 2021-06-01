@@ -11,12 +11,12 @@ IF EXIST meson.build (
     EXIT /B !ERRORLEVEL!
 )
 
-IF NOT EXIST example01_host.exe (
-    ECHO.RUNNING EXAMPLE INFO: The executable 'example01_host.exe' was not found in the examples directory^^!
+IF NOT EXIST app.exe (
+    ECHO.RUNNING EXAMPLE INFO: The executable 'app.exe' was not found in the examples directory^^!
 
     EXIT /B !ERRORLEVEL!
 )
 
-example01_host.exe
+app.exe
 
 ENDLOCAL

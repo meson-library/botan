@@ -1,4 +1,0 @@
-[wrap-git]
-directory = xcore
-url = https://github.com/meson-library/xcore.git
-revision = master

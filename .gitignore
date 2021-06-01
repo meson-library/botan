@@ -88,4 +88,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+/include/*
+!/include/.gitkeep
+
+/sources/*
+!/sources/meson.build
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,windows,linux,macos

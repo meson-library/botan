@@ -16,3 +16,6 @@
 [submodule "tools/toolset/win-clang-tools"]
 	path = tools/toolset/win-clang-tools
 	url = https://github.com/tools-library/win-clang-tools.git
+[submodule "tools/toolset/win-python"]
+	path = tools/toolset/win-python
+	url = https://github.com/tools-library/win-python.git

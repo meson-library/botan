@@ -1,4 +1,6 @@
 
 if get_option('build_docs')
-    subdir('api-reference')
+    install_data(['botan.pdf'],
+               install_dir :  install_dir_docs)
+
 endif

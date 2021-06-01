@@ -5,7 +5,7 @@ tasks in progress and tasks completed.
 
 ### Todo
 
-- [ ] Add modulo de rede.
+
 
 ### In Progress
 
@@ -14,4 +14,3 @@ tasks in progress and tasks completed.
 ### Done ✓
 
 - [x] Create a TODO.md
-- [x] Add module de arquivo.

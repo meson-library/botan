@@ -100,6 +100,7 @@ EXIT /B 0
     CALL "tools\toolset\win-clang-tools\setup.cmd"
     CALL "tools\toolset\win-doxygen\setup.cmd"
     CALL "tools\toolset\win-meson\setup.cmd"
+    CALL "tools\toolset\win-python\setup.cmd"
     CALL "tools\toolset\win-git\setup.cmd" --mode 3
     CALL "tools\toolset\win-msvc\setup.cmd" --vs-version "%build_for_vs_version%" --arch %build_for_arch%
 

@@ -1,34 +1,19 @@
 #
-# Define sources, includes, compile flags and so on...
+# Define sources, compile flags and so on...
 #
-includes = ['..'/include_dir_root]
+sources = [build_identifier/'botan.cpp']
 
-sources = ['dll.cpp',
-           'stl.cpp',
-           'common'/'platform'/'win.cpp',
-           'common'/'platform'/'lnx.cpp',
-           'common'/'platform'/'osx.cpp']
+extra_files = ['..'/include_dir_proj/'botan.h']
 
-extra_files = ['..'/include_dir_proj/'xcore.h',
+specific_cpp_args = []
+specific_dependencies = []
+if build_machine.system() == 'windows' and meson.get_compiler('cpp').get_id() == 'msvc'
+    specific_cpp_args += ['/bigobj']
 
-               '..'/include_dir_proj/'fs.h',
-               '..'/include_dir_proj/'dll.h',
-               '..'/include_dir_proj/'stl.h',
-               '..'/include_dir_proj/'common.h',
-
-               '..'/include_dir_proj/'common'/'macros.h',
-               '..'/include_dir_proj/'common'/'platform.h',
-               '..'/include_dir_proj/'common'/'platform'/'lnx.h',
-               '..'/include_dir_proj/'common'/'platform'/'osx.h',
-               '..'/include_dir_proj/'common'/'platform'/'win.h']
-
-
-#
-# Import dependencies.
-#
-filesystem_dep = subproject('filesystem').get_variable('filesystem_dep')
-eastl_dep      = subproject('eastl').get_variable('eastl_dep')
-spdlog_dep      = subproject('spdlog').get_variable('spdlog_dep')
+    specific_dependencies += meson.get_compiler('cpp').find_library('crypt32', required : true)
+    specific_dependencies += meson.get_compiler('cpp').find_library('user32', required : true)
+    specific_dependencies += meson.get_compiler('cpp').find_library('ws2_32', required : true)
+endif
 
 
 #
@@ -45,49 +30,49 @@ if get_option('default_library') == 'static'
         static_lib_name_suffix = 'lib'
     endif
 
-    xcore_static = static_library(static_lib_name,
+    botan_static = static_library(static_lib_name,
                                   name_prefix         : static_lib_name_prefix,
                                   name_suffix         : static_lib_name_suffix,
-                                  include_directories : includes,
+                                  include_directories : ['..'/include_dir_root/'botan'],
                                   sources             : sources,
                                   extra_files         : extra_files,
-                                  cpp_args            : ['-DXCORE_BUILD_STATIC_LIBRARY'],
-                                  dependencies        : [filesystem_dep, eastl_dep, spdlog_dep],
+                                  cpp_args            : specific_cpp_args,
+                                  dependencies        : [],
                                   install             : true)
 
-    xcore_static_dep = declare_dependency(include_directories : includes,
-                                          link_with           : xcore_static,
-                                          compile_args        : ['-DXCORE_USE_STATIC_LIBRARY'],
-                                          dependencies        : [filesystem_dep, eastl_dep, spdlog_dep])
+    botan_static_dep = declare_dependency(include_directories : ['..'/include_dir_root],
+                                          link_with           : botan_static,
+                                          compile_args        : [],
+                                          dependencies        : [] + specific_dependencies)
 
 elif get_option('default_library') == 'shared'
     shared_lib_name = proj_name
 
-    xcore_shared = shared_library(shared_lib_name,
-                                  include_directories : includes,
+    botan_shared = shared_library(shared_lib_name,
+                                  include_directories : ['..'/include_dir_root/'botan'],
                                   sources             : sources,
                                   extra_files         : extra_files,
-                                  cpp_args            : ['-DXCORE_BUILD_SHARED_LIBRARY'],
-                                  dependencies        : [filesystem_dep, eastl_dep, spdlog_dep],
+                                  cpp_args            : ['-DBOTAN_DLL=__declspec(dllexport)'] + specific_cpp_args,
+                                  dependencies        : [] + specific_dependencies,
                                   install             : true)
 
-    xcore_shared_dep = declare_dependency(include_directories : includes,
-                                          link_with           : xcore_shared,
-                                          compile_args        : ['-DXCORE_USE_SHARED_LIBRARY'],
-                                          dependencies        : [filesystem_dep, eastl_dep, spdlog_dep])
+    botan_shared_dep = declare_dependency(include_directories : ['..'/include_dir_root],
+                                          link_with           : botan_shared,
+                                          compile_args        : [],
+                                          dependencies        : [])
 else
     error('[' + proj_name + '] The option "default_library" has an inválid value.')
 endif
 
 
 #
-# With these lines we, connotatively, export xcore_dep, xcore_static_dep and xcore_shared_dep to the
+# With these lines we, connotatively, export botan_dep, botan_static_dep and botan_shared_dep to the
 # outside world.
 #
 if get_option('default_library') == 'static'
-    xcore_dep = xcore_static_dep
+    botan_dep = botan_static_dep
 elif get_option('default_library') == 'shared'
-    xcore_dep = xcore_shared_dep
+    botan_dep = botan_shared_dep
 endif
 
 
@@ -95,7 +80,7 @@ endif
 # Install lib data (headers for the external API, docs, licenses and so on...)
 #
 install_subdir('..'/include_dir_proj,
-               install_dir : include_dir_root)
+               install_dir : include_dir)
 
 install_data(['..'/'LICENSE.GPL3'],
               install_dir : install_dir_licenses)
