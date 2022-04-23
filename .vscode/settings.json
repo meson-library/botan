@@ -1,4 +1,77 @@
 {
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+            "${env:windir}\\Sysnative\\cmd.exe",
+            "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+
+        "Project Shell (static|x64|debug)": {
+            "overrideName": true,
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+                ],
+                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debug --build-link static "],   
+                "icon": "terminal-cmd"
+        },
+        "Project Shell (static|x64|release)": {
+            "overrideName": true,
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+                ],
+                "args": [" cmd /k shell.cmd --build-arch x64 --build-type release --build-link static "],   
+                "icon": "terminal-cmd"
+        },
+        "Project Shell (static|x64|debugoptimized)": {
+            "overrideName": true,
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+                ],
+                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debugoptimized --build-link static "],   
+                "icon": "terminal-cmd"
+        },
+        
+        "Project Shell (shared|x64|debug)": {
+            "overrideName": true,
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+                ],
+                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debug --build-link shared "],   
+                "icon": "terminal-cmd"
+        },
+        "Project Shell (shared|x64|release)": {
+            "overrideName": true,
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+                ],
+                "args": [" cmd /k shell.cmd --build-arch x64 --build-type release --build-link shared "],   
+                "icon": "terminal-cmd"
+        },
+        "Project Shell (shared|x64|debugoptimized)": {
+            "overrideName": true,
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+                ],
+                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debugoptimized --build-link shared "],   
+                "icon": "terminal-cmd"
+        }
+    },
+
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+
     "files.associations": {
         "algorithm": "cpp",
         "array": "cpp",
@@ -10,7 +83,6 @@
         "cmath": "cpp",
         "codecvt": "cpp",
         "compare": "cpp",
-        "complex": "cpp",
         "concepts": "cpp",
         "condition_variable": "cpp",
         "csignal": "cpp",

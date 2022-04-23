@@ -8,12 +8,23 @@ project('botan', ['cpp'],
 
 
 #
+# Find the tools tha will be used to generate the amalgamation source code.
+#
+python = find_program('python', required : true)
+
+
+#
 # Declare some useful global variables.
 #
 proj_name                 = meson.project_name()
 root_dir                  = meson.current_source_dir()
 root_build_dir            = meson.current_build_dir()
 build_identifier          = build_machine.system() + '_' + build_machine.cpu_family() + '_' + meson.get_compiler('cpp').get_id() + '_' + get_option('default_library')
+
+amalgamation_options      = get_option('buildtype')
+amalgamation_digest       = run_command(python, '-c', 'import hashlib as h;print(h.md5(b\'' + build_identifier + amalgamation_options + '\').hexdigest())').stdout().strip()
+build_identifier          = build_identifier + '_' + amalgamation_digest
+
 include_dir               = 'include'
 include_dir_root          = include_dir/build_identifier
 include_dir_proj          = include_dir_root/proj_name
@@ -47,6 +58,5 @@ endif
 # Delegate the rest of configuration to the rigth place.
 #
 subdir(sources_dir_original)
-subdir(sources_dir)
 subdir(examples_dir)
 subdir(docs_dir)
