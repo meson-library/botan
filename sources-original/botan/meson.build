@@ -85,7 +85,7 @@ extra_files = [proj_name+'_' + amalgamation_digest + '.h']
 specific_cpp_args = []
 specific_dependencies = []
 if build_machine.system() == 'windows' and meson.get_compiler('cpp').get_id() == 'msvc'
-    specific_cpp_args += ['/bigobj']
+    specific_cpp_args += ['/bigobj', '/wd4250', '/wd4251', '/wd4275', '/wd4127']
 
     specific_dependencies += meson.get_compiler('cpp').find_library('crypt32', required : true)
     specific_dependencies += meson.get_compiler('cpp').find_library('user32', required : true)
