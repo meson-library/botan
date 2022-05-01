@@ -10,6 +10,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
     SET "build_for_arch=x64"
     SET "build_for_type=debug"
     SET "build_for_link=shared"
+    SET "exec_cmd="
     SET "help_val=false"
     :LOOP
         SET current_arg=%1
@@ -34,6 +35,10 @@ SETLOCAL ENABLEDELAYEDEXPANSION
         IF [%current_arg%] EQU [--build-link] (
             SHIFT
             CALL SET "build_for_link=%%1"
+        )
+        IF [%current_arg%] EQU [--exec-cmd] (
+            SHIFT
+            CALL SET "exec_cmd=%%1"
         )
         SHIFT
     IF NOT "%~1"=="" GOTO :LOOP
@@ -60,9 +65,9 @@ EXIT /B 0
     ECHO.*                  ENVIRONMENT
     ECHO.*
     ECHO.*    OPERATIONAL SYSTEM: %build_for_os%
+    ECHO.*    LINK              : %build_for_link%
     ECHO.*    ARCHITECTURE      : %build_for_arch%
     ECHO.*    TYPE              : %build_for_type%
-    ECHO.*    LINK              : %build_for_link%
     ECHO.*    VS VERSION        : %build_for_vs_version%
     ECHO.*
     cecho *                         {navy}              (o_{default}{\n}
@@ -71,27 +76,31 @@ EXIT /B 0
     ECHO.****************************************************
     ECHO.
 
-    ECHO.ENVIRONMENT READY FOR USE. STARTING SHELL...
+    IF [%exec_cmd%] EQU [] (
+        ECHO.ENVIRONMENT READY FOR USE. STARTING SHELL...
+        ECHO.
+        ECHO.Some useful commands available in this shell:
+        ECHO.    project_configurator # Command used to configure project.
+        ECHO.    project_builder      # Command used to build project.
+        ECHO.    project_cleaner      # Command used to clean project.
+        ECHO.    project_formatter    # Command used to format source code.
+        ECHO.
+
+        ECHO.Important:
+        ECHO.     * You can start the above useful commands with the '--help'
+        ECHO.       argument to see more options.
+        ECHO.     * You can start this script '%SCRIPT_NAME%' with the '--help'
+        ECHO.       argument to see more options.
+
+        bash.exe --minimal-search-path
+    ) ELSE (
+       ECHO.ENVIRONMENT READY FOR USE. STARTING SHELL TO RUN A COMMAND AND EXIT.
+       ECHO.COMMAND TO RUN: %exec_cmd%
+       ECHO.
+       bash.exe --minimal-search-path -c %exec_cmd%
+    )
     ECHO.
-
-    ECHO.Some useful commands available in this shell:
-    ECHO.    project_configurator # Command used to configure project.
-    ECHO.    project_builder      # Command used to build project.
-    ECHO.    project_cleaner      # Command used to clean project.
-    ECHO.    project_rebuilder    # Command used to rebuild project.
-    ECHO.    project_formatter    # Command used to format source code.
-    ECHO.
-
-    ECHO.Important:
-    ECHO.     * You can start the above useful commands with the '--help'
-    ECHO.       argument to see more options.
-    ECHO.     * You can start this script '%SCRIPT_NAME%' with the '--help'
-    ECHO.       argument to see more options.
-
-    bash.exe --minimal-search-path
-
     ECHO.ENDING SHELL...
-    ECHO.
 EXIT /B 0
 
 
@@ -99,8 +108,8 @@ EXIT /B 0
     CALL "tools\toolset\win-utils\setup.cmd" cecho ninja
     CALL "tools\toolset\win-clang-tools\setup.cmd"
     CALL "tools\toolset\win-doxygen\setup.cmd"
-    CALL "tools\toolset\win-meson\setup.cmd"
     CALL "tools\toolset\win-python\setup.cmd"
+    CALL "tools\toolset\win-meson\setup.cmd"
     CALL "tools\toolset\win-git\setup.cmd" --mode 3
     CALL "tools\toolset\win-msvc\setup.cmd" --vs-version "%build_for_vs_version%" --arch %build_for_arch%
 
@@ -123,8 +132,8 @@ EXIT /B 0
     ECHO #                                                                     #
     ECHO # USAGE:                                                              #
     ECHO #     %SCRIPT_NAME% {[-h^|--help] ^| [--vs-version "version"]               #
-    ECHO #         [--build-arch arch] [--build-type type]                     #
-    ECHO #         [--build-link link]}                                        #
+    ECHO #         [--build-link link] [--build-arch arch]                     #
+    ECHO #         [--build-type type]}                                        #
     ECHO #                                                                     #
     ECHO # EXAMPLES:                                                           #
     ECHO #     %script_name%                                                       #
@@ -143,6 +152,10 @@ EXIT /B 0
     ECHO #         following url                                               #
     ECHO #         https://github.com/microsoft/vswhere/wiki/Examples. Default #
     ECHO #         to '[16.6,)'.                                               #
+    echo #                                                                     #
+    echo #     --build-link    The linkage type should be one of the           #
+    ECHO #         following values: 'static' or 'shared'. Default             #
+    ECHO #         to 'shared'.                                                #
     ECHO #                                                                     #
     ECHO #     --build-arch    The build architecture should be one of the     #
     ECHO #         following values: 'x64'. Default to 'x64'.                  #
@@ -150,10 +163,9 @@ EXIT /B 0
     ECHO #     --build-type    The build type should be one of the             #
     ECHO #         following values: 'debug', 'release' or 'debugoptimized'.   #
     ECHO #         Default to 'debug'.                                         #
-    echo #                                                                     #
-    echo #     --build-link    The linkage type should be one of the           #
-    ECHO #         following values: 'static' or 'shared'. Default     #
-    ECHO #         to 'shared'.                                                #
+    ECHO #                                                                     #         
+    ECHO #     --exec-cmd      A command to run in this environment and exit.  #
+    ECHO #                                                                     #
     ECHO #                                                                     #
     ECHO #######################################################################
 EXIT /B 0

@@ -6,72 +6,80 @@
         },
         "Command Prompt": {
             "path": [
-            "${env:windir}\\Sysnative\\cmd.exe",
-            "${env:windir}\\System32\\cmd.exe"
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
             ],
             "args": [],
             "icon": "terminal-cmd"
         },
-
         "Project Shell (static|x64|debug)": {
             "overrideName": true,
             "path": [
                 "${env:windir}\\Sysnative\\cmd.exe",
                 "${env:windir}\\System32\\cmd.exe"
-                ],
-                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debug --build-link static "],   
-                "icon": "terminal-cmd"
+            ],
+            "args": [
+                " cmd /k shell.cmd --build-link static --build-arch x64 --build-type debug "
+            ],
+            "icon": "terminal-cmd"
         },
         "Project Shell (static|x64|release)": {
             "overrideName": true,
             "path": [
                 "${env:windir}\\Sysnative\\cmd.exe",
                 "${env:windir}\\System32\\cmd.exe"
-                ],
-                "args": [" cmd /k shell.cmd --build-arch x64 --build-type release --build-link static "],   
-                "icon": "terminal-cmd"
+            ],
+            "args": [
+                " cmd /k shell.cmd --build-link static --build-arch x64 --build-type release "
+            ],
+            "icon": "terminal-cmd"
         },
         "Project Shell (static|x64|debugoptimized)": {
             "overrideName": true,
             "path": [
                 "${env:windir}\\Sysnative\\cmd.exe",
                 "${env:windir}\\System32\\cmd.exe"
-                ],
-                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debugoptimized --build-link static "],   
-                "icon": "terminal-cmd"
+            ],
+            "args": [
+                " cmd /k shell.cmd --build-link static --build-arch x64 --build-type debugoptimized "
+            ],
+            "icon": "terminal-cmd"
         },
-        
         "Project Shell (shared|x64|debug)": {
             "overrideName": true,
             "path": [
                 "${env:windir}\\Sysnative\\cmd.exe",
                 "${env:windir}\\System32\\cmd.exe"
-                ],
-                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debug --build-link shared "],   
-                "icon": "terminal-cmd"
+            ],
+            "args": [
+                " cmd /k shell.cmd --build-link shared --build-arch x64 --build-type debug "
+            ],
+            "icon": "terminal-cmd"
         },
         "Project Shell (shared|x64|release)": {
             "overrideName": true,
             "path": [
                 "${env:windir}\\Sysnative\\cmd.exe",
                 "${env:windir}\\System32\\cmd.exe"
-                ],
-                "args": [" cmd /k shell.cmd --build-arch x64 --build-type release --build-link shared "],   
-                "icon": "terminal-cmd"
+            ],
+            "args": [
+                " cmd /k shell.cmd --build-link shared --build-arch x64 --build-type release "
+            ],
+            "icon": "terminal-cmd"
         },
         "Project Shell (shared|x64|debugoptimized)": {
             "overrideName": true,
             "path": [
                 "${env:windir}\\Sysnative\\cmd.exe",
                 "${env:windir}\\System32\\cmd.exe"
-                ],
-                "args": [" cmd /k shell.cmd --build-arch x64 --build-type debugoptimized --build-link shared "],   
-                "icon": "terminal-cmd"
+            ],
+            "args": [
+                " cmd /k shell.cmd --build-link shared --build-arch x64 --build-type debugoptimized "
+            ],
+            "icon": "terminal-cmd"
         }
     },
-
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
-
     "files.associations": {
         "algorithm": "cpp",
         "array": "cpp",

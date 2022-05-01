@@ -47,7 +47,7 @@ main()
         root_path=`cygpath -w "$root_path"`
     fi
 
-    local base_path="${root_path}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}_${build_for_link}"
+    local base_path="${root_path}build/${build_for_os:0:3}-${build_for_link}-${build_for_arch}-${build_for_type}"
     local projects_folder="projects"
 
     if [[ $build_ninja_project_arg == true ]]
@@ -70,7 +70,7 @@ build_project()
     if [[ -d $project_path ]]
     then
         meson compile -C "$project_path"
-        meson install --only-changed -C "$project_path"
+        meson install -C "$project_path" --only-changed 
     else
         echo 'Project not configured. First configure the project before executing this command.'
     fi

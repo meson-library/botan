@@ -1,0 +1,208 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Project Configure",
+            "type": "shell",
+            "command": "\"project_configurator --ninja ${input:buildExamples} ${input:buildDocs}\"",
+            "group": "build",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/c",
+                            "shell.cmd",
+                            "${input:buildConfig}",
+                            "--exec-cmd"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Project Configure - Show Configs",
+            "type": "shell",
+            "command": "\"project_configurator --ninja --show-cfg\"",
+            "group": "build",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/c",
+                            "shell.cmd",
+                            "${input:buildConfig}",
+                            "--exec-cmd"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Project Build",
+            "type": "shell",
+            "command": "\"project_builder --ninja\"",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/c",
+                            "shell.cmd",
+                            "${input:buildConfig}",
+                            "--exec-cmd"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Project Clean",
+            "type": "shell",
+            "command": "\"project_cleaner --ninja -r\"",
+            "group": "build",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/c",
+                            "shell.cmd",
+                            "${input:buildConfig}",
+                            "--exec-cmd"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Project Format All",
+            "type": "shell",
+            "command": "\"project_formatter --fix\"",
+            "group": "build",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/c",
+                            "shell.cmd",
+                            "${input:buildConfig}",
+                            "--exec-cmd"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "Project Configure All",
+            "type": "shell",
+            "command": "Invoke-Expression $env:TASK_1; Invoke-Expression $env:TASK_2; Invoke-Expression $env:TASK_3; Invoke-Expression $env:TASK_4; Invoke-Expression $env:TASK_5; Invoke-Expression $env:TASK_6",
+            "group": "build",
+            "options": {
+                "env": {
+                    "TASK_1": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type debug --exec-cmd \"project_configurator --ninja ${input:buildExamples} ${input:buildDocs}\"",
+                    "TASK_2": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type debugoptimized --exec-cmd \"project_configurator --ninja ${input:buildExamples} ${input:buildDocs}\"",
+                    "TASK_3": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type release --exec-cmd \"project_configurator --ninja ${input:buildExamples} ${input:buildDocs}\"",
+                    "TASK_4": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type debug --exec-cmd \"project_configurator --ninja ${input:buildExamples} ${input:buildDocs}\"",
+                    "TASK_5": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type debugoptimized --exec-cmd \"project_configurator --ninja ${input:buildExamples} ${input:buildDocs}\"",
+                    "TASK_6": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type release --exec-cmd \"project_configurator --ninja ${input:buildExamples} ${input:buildDocs}\""
+                },
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Project Build All",
+            "type": "shell",
+            "command": "Invoke-Expression $env:TASK_1; Invoke-Expression $env:TASK_2; Invoke-Expression $env:TASK_3; Invoke-Expression $env:TASK_4; Invoke-Expression $env:TASK_5; Invoke-Expression $env:TASK_6",
+            "group": "build",
+            "options": {
+                "env": {
+                    "TASK_1": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type debug --exec-cmd \"project_builder --ninja\"",
+                    "TASK_2": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type debugoptimized --exec-cmd \"project_builder --ninja\"",
+                    "TASK_3": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type release --exec-cmd \"project_builder --ninja\"",
+                    "TASK_4": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type debug --exec-cmd \"project_builder --ninja\"",
+                    "TASK_5": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type debugoptimized --exec-cmd \"project_builder --ninja\"",
+                    "TASK_6": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type release --exec-cmd \"project_builder --ninja\""
+                },
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            }
+        },
+        {
+            "label": "Project Clean All",
+            "type": "shell",
+            "command": "Invoke-Expression $env:TASK_1; Invoke-Expression $env:TASK_2; Invoke-Expression $env:TASK_3; Invoke-Expression $env:TASK_4; Invoke-Expression $env:TASK_5; Invoke-Expression $env:TASK_6",
+            "group": "build",
+            "options": {
+                "env": {
+                    "TASK_1": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type debug --exec-cmd \"project_cleaner --ninja -r\"",
+                    "TASK_2": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type debugoptimized --exec-cmd \"project_cleaner --ninja -r\"",
+                    "TASK_3": "cmd.exe /c shell.cmd --build-link shared --build-arch x64 --build-type release --exec-cmd \"project_cleaner --ninja -r\"",
+                    "TASK_4": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type debug --exec-cmd \"project_cleaner --ninja -r\"",
+                    "TASK_5": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type debugoptimized --exec-cmd \"project_cleaner --ninja -r\"",
+                    "TASK_6": "cmd.exe /c shell.cmd --build-link static --build-arch x64 --build-type release --exec-cmd \"project_cleaner --ninja -r\""
+                },
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            }
+        },
+        {
+            "label": "Project Rebuild All",
+            "group": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Project Clean All",
+                "Project Build All"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "buildConfig",
+            "description": "What build configuration?",
+            "options": [
+                {"label": "shared-x64-debug", "value": "--build-link shared --build-arch x64 --build-type debug"},
+                {"label": "shared-x64-debugoptimized", "value": "--build-link shared --build-arch x64 --build-type debugoptimized"},
+                {"label": "shared-x64-release", "value": "--build-link shared --build-arch x64 --build-type release"},
+
+                {"label": "static-x64-debug", "value": "--build-link static --build-arch x64 --build-type debug"},
+                {"label": "static-x64-debugoptimized", "value": "--build-link static --build-arch x64 --build-type debugoptimized"},
+                {"label": "static-x64-release", "value": "--build-link static --build-arch x64 --build-type release"}
+            ]
+        },
+        {
+            "type": "pickString",
+            "id": "buildExamples",
+            "description": "Build the example programs?",
+            "options": [
+                "",
+                "--build-examples"
+            ],
+            "default": ""
+        },
+        {
+            "type": "pickString",
+            "id": "buildDocs",
+            "description": "Build the documentation?",
+            "options": [
+                "",
+                "--build-docs"
+            ],
+            "default": ""
+        }
+    ]
+}

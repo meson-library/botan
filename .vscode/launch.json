@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Example 01 (app.exe)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${input:buildConfig}/artifact/ninja/bin/examples/botan/example01/app.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/${input:buildConfig}/artifact/ninja/bin/examples/botan/example01",
+            "environment": [
+                {
+                    "name": "Path",
+                    "value": "${env:Path};${workspaceFolder}/build/${input:buildConfig}/artifact/ninja/bin"
+                }
+            ],
+            "console": "externalTerminal",
+            "visualizerFile": "${workspaceFolder}/subprojects/eastl/doc/EASTL.natvis",
+            "preLaunchTask": ""
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "buildConfig",
+            "description": "What build configuration?",
+            "options": [
+                "win-shared-x64-debug",
+                "win-shared-x64-debugoptimized",
+                "win-shared-x64-release",
+
+                "win-static-x64-debug",
+                "win-static-x64-debugoptimized",
+                "win-static-x64-release"
+            ]
+        }
+    ]
+}

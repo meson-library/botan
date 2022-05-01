@@ -57,7 +57,7 @@ main()
         root_path=`cygpath -w "$root_path"`
     fi
 
-    local base_path="${root_path}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}_${build_for_link}"
+    local base_path="${root_path}build/${build_for_os:0:3}-${build_for_link}-${build_for_arch}-${build_for_type}"
     local projects_folder="projects"
     local artifact_folder="artifact"
 

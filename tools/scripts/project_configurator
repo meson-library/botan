@@ -7,8 +7,9 @@ process_cmd()
     local configure_ninja_project_arg=false
     local configure_vs2019_project_arg=false
     local show_project_cfg_arg=false
-    local build_examples_arg=false
     local build_docs_arg=false
+    local build_tests_arg=false
+    local build_examples_arg=false
 
     while [[ $# > 0 ]]; do
         case $1 in
@@ -24,11 +25,14 @@ process_cmd()
             --show-cfg)
                 show_project_cfg_arg=true
             ;;
-            --build-examples)
-                build_examples_arg=true
-            ;;
             --build-docs)
                 build_docs_arg=true
+            ;;
+            --build-tests)
+                build_tests_arg=true
+            ;;
+            --build-examples)
+                build_examples_arg=true
             ;;
         esac
         shift
@@ -59,9 +63,9 @@ main()
         exit -1
     fi
 
-    if [[ $configure_ninja_project_arg == false && $configure_vs2019_project_arg == false && ($build_examples_arg == true || $build_docs_arg == true)]]
+    if [[ $configure_ninja_project_arg == false && $configure_vs2019_project_arg == false && ($build_docs_arg == true || $build_tests_arg == true || $build_examples_arg == true)]]
     then
-        echo "When passing the '--build-examples' or '--build-docs' arguments we need to pass the type of project we want to affect. They can be '--ninja' or '--vs2019'."
+        echo "When passing the '--build-docs', '--build-tests' or '--build-examples' arguments we need to pass the type of project we want to affect. They can be '--ninja' or '--vs2019'."
         exit -1
     fi
 
@@ -70,7 +74,7 @@ main()
         root_path=`cygpath -w "$root_path"`
     fi
 
-    local base_path="${root_path}build/${build_for_os:0:3}_${build_for_arch}_${build_for_type}_${build_for_link}"
+    local base_path="${root_path}build/${build_for_os:0:3}-${build_for_link}-${build_for_arch}-${build_for_type}"
     local projects_folder="projects"
     local artifact_folder="artifact"
 
@@ -115,11 +119,11 @@ configure_project()
     then
         meson setup "$project_path" --buildtype $build_for_type \
             --default-library $build_for_link --backend $project_type --prefix "$artifact_path" \
-            -Dbuild_examples=$build_examples_arg -Dbuild_docs=$build_docs_arg
+            -Dbuild_docs=$build_docs_arg -Dbuild_tests=$build_tests_arg -Dbuild_examples=$build_examples_arg
     else
         meson setup "$project_path" --reconfigure --buildtype $build_for_type \
             --default-library $build_for_link --backend $project_type --prefix "$artifact_path" \
-            -Dbuild_examples=$build_examples_arg -Dbuild_docs=$build_docs_arg
+            -Dbuild_docs=$build_docs_arg -Dbuild_tests=$build_tests_arg -Dbuild_examples=$build_examples_arg
     fi
 }
 
@@ -133,13 +137,13 @@ show_help()
     echo "#                                                                     #"
     echo "# USAGE:                                                              #"
     echo "#     $script_name {-h|--help | [--ninja|--vs2019             #"
-    echo "#                      [--show-cfg] [--build-examples]                #"
-    echo "#                      [--build-docs]]}                               #"
+    echo "#                      [--show-cfg] [--build-docs] [--build-tests]    #"
+    echo "#                      [--build-examples]]}                           #"
     echo "#                                                                     #"
     echo "# EXAMPLES:                                                           #"
     echo "#     $script_name -h                                         #"
     echo "#     $script_name --ninja                                    #"
-    echo "#     $script_name --ninja  --build-docs                      #"
+    echo "#     $script_name --ninja  --build-docs --build-tests        #"
     echo "#     $script_name --ninja --show-cfg                         #"
     echo "#                                                                     #"
     echo "# ARGUMENTS:                                                          #"
@@ -151,10 +155,11 @@ show_help()
     echo "#                                                                     #"
     echo "#     --show-cfg    Show the project configurations and exit.         #"
     echo "#                                                                     #"
-    echo "#     --build-examples    Configure build targets for example         #"
-    echo "#         programs.                                                   #"
-    echo "#                                                                     #"
     echo "#     --build-docs    Configure build targets for the documentation.  #"
+    echo "#                                                                     #"
+    echo "#     --build-tests    Configure build targets for the tests.         #"
+    echo "#                                                                     #"
+    echo "#     --build-examples    Configure build targets for the examples.   #"
     echo "#                                                                     #"
     echo "#######################################################################"
 }
